@@ -24,7 +24,7 @@ export class UpdateCustomerComponent implements OnInit {
   //  }
    
   getALLCustomerDetails(){
-  this._customerService.getByCustomerId("/2").subscribe(data=>{
+  this._customerService.getByCustomerId("/1").subscribe(data=>{
     if(data){
       this.customerDetails=data;
       this.setCustomerDetails(this.customerDetails);
