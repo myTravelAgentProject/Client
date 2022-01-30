@@ -1,7 +1,7 @@
 import { Component, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Routes,RouterModule } from "@angular/router";
-import { CustomerService } from "../../../services/customer.service";
+import { CustomerService } from "./customer.service";
 import { CustomerComponent } from "./customer/customer.component";
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 
