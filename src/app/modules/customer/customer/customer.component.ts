@@ -23,7 +23,7 @@ export class CustomerComponent implements OnInit {
   constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
 
   // customerDetails!: Customer
-  customers!: CustomerDTO[];
+  customers: CustomerDTO[]=[];
 
   // isSingleClick: Boolean = true;
 

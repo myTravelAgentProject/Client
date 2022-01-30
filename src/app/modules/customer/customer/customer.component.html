@@ -1,7 +1,8 @@
 <!-- <ul class="list-group">
     <li class="list-group-item"
-    *ngFor="let customer of customers">
-        <div class="row" (dblclick)="getCustomerDetails(customer.id)">
+    *ngFor="let c of customers">{{c.firstName}}
+    *ngFor="let customer of customers" --> 
+        <!-- <div class="row" (dblclick)="getCustomerDetails(customer.id)">
             <div class="col-1">
                 {{customer.firstName}}
             </div>
@@ -18,10 +19,10 @@
                 {{customer.phoneNumber}}
             </div>
         </div>
-</li> -->
-<!-- </ul> -->
+</li>
+</ul>---->
 
-<button (click)="getAllCustomers()">Get All Customer</button>
+ <button (click)="getAllCustomers()">Get All Customer</button>
 <button (dblclick)="getCustomerDetails(22)">Get All Customer Details</button>
-<button mat-raised-button color="primary">Primary</button>
+<button mat-raised-button color="primary">Primary</button> 
 
