@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Customer } from 'src/app/models/Customer.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 
@@ -10,85 +10,96 @@ import { CustomerService } from 'src/app/modules/customer/customer.service';
 })
 export class UpdateCustomerComponent implements OnInit {
 
-  constructor(private _customerService:CustomerService) { }
+  constructor(private _customerService: CustomerService) { }
 
-  private customerDetails:Customer=new Customer(0,"","","","");
+  // private customerDetails!: Customer;
   
-  id:number=0;
+  edit: boolean = true;
+  customerForm!: FormGroup;
 
-  setCustomerDetails(customer: Customer): void {
-    this.customerDetails=customer;
-    this.customerForm.controls["FirstName"].setValue(customer.firstName);
-    this.customerForm.controls["LastName"].setValue(customer.lastName);
-    this.customerForm.controls["NumOfAdults"].setValue(customer.numOfAdults);
-    this.customerForm.controls["NumOfKids"].setValue(customer.numOfKIds);
-    this.customerForm.controls["HighFloor"].setValue(customer.highFloor);
-    this.customerForm.controls["Porch"].setValue(customer.porch);
-    this.customerForm.controls["SeparteBeds"].setValue(customer.separteBeds);
-    this.customerForm.controls["MultipleRooms"].setValue(customer.multipleRooms);
-    this.customerForm.controls["EmailAddress"].setValue(customer.emailAddress);
-    this.customerForm.controls["Address"].setValue(customer.address);
-    this.customerForm.controls["PhoneNumber"].setValue(customer.phoneNumber);
-    this.customerForm.controls["Comments"].setValue(customer.comments);
-  }
-
-  customerForm:FormGroup=new FormGroup({
-    "FirstName":new FormControl("",Validators.required),
-    "LastName":new FormControl("",Validators.required),
-    "NumOfAdults":new FormControl(""),
-    "NumOfKids":new FormControl(""),
-    "HighFloor":new FormControl(""),
-    "Porch":new FormControl(""),
-    "SeparteBeds":new FormControl(""),
-    "MultipleRooms":new FormControl(""),
-    "EmailAddress":new FormControl("",Validators.email),
-    "Address":new FormControl("",Validators.required),
-    "PhoneNumber":new FormControl("",Validators.required),
-    "Comments":new FormControl(""),
-  });
-   
-  getALLCustomerDetails(){
-  this._customerService.getByCustomerId("/22").subscribe(data=>{
-    if(data){
-      this.setCustomerDetails(data);
-      console.log(data);
-    }
-    else{console.log("no such customer");}
-  })
-  };
-
-  saveCustomer(){
-     this.id=this.customerDetails.id;
-     this.customerDetails=this.customerForm.value;
-    //this.customerDetails.id=0;
-    this.customerDetails.id=this.id;
-    if(this.customerDetails.id==0){
-      this._customerService.addNewCustomer(this.customerDetails).subscribe(
-        data=>{
-          if(data)
-          {
-            console.log("sucsess "+data)
-          }else
-          console.log("faild");
-        });
-    } 
-    else
-      this._customerService.updateCustomer(this.customerDetails).subscribe(
-        data=>{
-          if(data)
-          {
-            console.log("sucsess")
-          }else
-          console.log("faild");
-        });
-  };
-
- 
-  
+  @Input()
+  customerID!: number;
+  // @Output()
+  // onSaveClicked = new EventEmitter<boolean>()
 
 
   ngOnInit(): void {
-    
+    this.buildForm();
+    this.getALLCustomerDetails();
   }
+
+  setCustomerDetails(customer: Customer): void {
+    // this.customerDetails = customer;
+    this.customerForm.patchValue(customer);
+    // this.customerForm.controls["firstName"].setValue(customer.firstName);
+    // this.customerForm.controls["lastName"].setValue(customer.lastName);
+    // this.customerForm.controls["numOfAdults"].setValue(customer.numOfAdults);
+    // this.customerForm.controls["numOfKids"].setValue(customer.numOfKids);
+    // this.customerForm.controls["highFloor"].setValue(customer.highFloor);
+    // this.customerForm.controls["porch"].setValue(customer.porch);
+    // this.customerForm.controls["separteBeds"].setValue(customer.separteBeds);
+    // this.customerForm.controls["multipleRooms"].setValue(customer.multipleRooms);
+    // this.customerForm.controls["emailAddress"].setValue(customer.emailAddress);
+    // this.customerForm.controls["address"].setValue(customer.address);
+    // this.customerForm.controls["phoneNumber"].setValue(customer.phoneNumber);
+    // this.customerForm.controls["comments"].setValue(customer.comments);
+  }
+
+  buildForm(): void {
+    this.customerForm = new FormGroup({
+      "id":new FormControl(0),
+      "firstName": new FormControl("", Validators.required),
+      "lastName": new FormControl("", Validators.required),
+      "numOfAdults": new FormControl(0),
+      "numOfKids": new FormControl(0),
+      "highFloor": new FormControl(),
+      "porch": new FormControl(),
+      "separteBeds": new FormControl(),
+      "multipleRooms": new FormControl(),
+      "emailAddress": new FormControl("", Validators.email),
+      "address": new FormControl("", Validators.required),
+      "phoneNumber": new FormControl("", Validators.required),
+      "comments": new FormControl(),
+    });
+   
+  }
+
+
+  getALLCustomerDetails() {
+    if(this.customerID){
+      this.customerForm.disable();
+    this._customerService.getByCustomerId(this.customerID).subscribe(data => {
+      if (data) {
+        this.setCustomerDetails(data);
+        console.log(data);
+      }
+      else { console.log("no such customer"); }
+    })}
+  };
+
+  onEditClickecd(): void {
+    this.customerForm.enable();
+  }
+
+  saveCustomer() {
+    // this.customerDetails = this.customerForm.value;
+    if (this.customerForm.value.id == 0) {
+      this._customerService.addNewCustomer(this.customerForm.value).subscribe(
+        data => {
+          if (data) {
+            console.log("sucsess " + data)
+          } else
+            console.log("faild");
+        });
+    }
+    else
+      this._customerService.updateCustomer(this.customerForm.value).subscribe(
+        data => {
+          if (data) {
+            console.log("sucsess")
+          } else
+            console.log("faild");
+        });
+  };
 
 }

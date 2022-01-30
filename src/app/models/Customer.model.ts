@@ -3,7 +3,7 @@ export class Customer{
     firstName:string;
     lastName:string;
     numOfAdults?:number;
-    numOfKIds?:number;
+    numOfKids?:number;
     highFloor?:boolean;
     porch?:boolean;
     separteBeds?:boolean;

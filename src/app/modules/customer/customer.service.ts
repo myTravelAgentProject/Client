@@ -16,8 +16,8 @@ export class CustomerService {
   getAllCustomers(): Observable<CustomerDTO[]> {
     return this._http.get<CustomerDTO[]>(this.baseUrl)
   }
-  getByCustomerId(id: string): Observable<Customer> {
-    return this._http.get<Customer>(this.baseUrl+id)
+  getByCustomerId(id: number): Observable<Customer> {
+    return this._http.get<Customer>(`${this.baseUrl}${id}`)
   }
   addNewCustomer(newCustomer:Customer):Observable<number>{
       return this._http.post<number>(this.baseUrl,newCustomer)
