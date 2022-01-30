@@ -9,7 +9,5 @@ export class CustomerChildren{
       this.customerId=customerId;
       this.age=age;
       this.name=name;
-      
-
     }
 }
