@@ -47,7 +47,8 @@ export class CustomerComponent implements OnInit {
 
   getAllCustomers() {
     this._customerService.getAllCustomers().subscribe(data => {
-      if (data) { this.customers = data; console.log(this.customers) } else { console.log("no customers") }
+      if (data) { this.customers = data; console.log(this.customers);alert("succed!!")
+       } else { console.log("no customers") }
     })
   }
 
@@ -61,4 +62,5 @@ export class CustomerComponent implements OnInit {
     this.getAllCustomers();
   }
 
+  hide=true;
 }

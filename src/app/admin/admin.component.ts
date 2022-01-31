@@ -28,7 +28,8 @@ export class AdminComponent implements OnInit {
       this._adminService.getAdmin(name,password).subscribe(data=>{
         if(data)
         {this.userAdmin=data;
-         console.log(this.userAdmin.id);}
+         console.log(this.userAdmin.id);
+         alert("Welcome to "+this.userAdmin.name);}
         else{console.log("no such user");}  
       })
     };
@@ -38,7 +39,7 @@ export class AdminComponent implements OnInit {
           this.userAdmin.password=password
           this._adminService.addNewAdmin(this.userAdmin).subscribe(data=>{
             if(data)
-            { console.log(this.userAdmin.id)}
+            { console.log(this.userAdmin.id); }
             else{console.log("no such user")}  }
             )};
   ngOnInit(): void {
