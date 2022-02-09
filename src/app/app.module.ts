@@ -16,10 +16,13 @@ import { CustomerModule } from './modules/customer/customer.module';
 import { RouterModule,Routes } from '@angular/router';
 import { CustomerComponent } from './modules/customer/customer/customer.component';
 import { UpdateCustomerComponent } from './modules/customer/update-customer/update-customer.component';
+import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
+import { LoginComponent } from './login/login.component';
 //import { UpdateCustomerComponent } from './modules/update-customer/update-customer.component';
 
 const APP_ROUTES:Routes=[
-  {path:"admin",component:AdminComponent},
+  {path:"homePage",component:HomePageComponent},
+  {path:"login",component:LoginComponent},
   {path:"newCustomer",component:UpdateCustomerComponent},
   //{path:"customer", loadChildren:()=> import("./modules/customer/customers/customer.module").then(m=>m.CustomerModule)},
 
@@ -29,6 +32,8 @@ const APP_ROUTES:Routes=[
   declarations: [
     AppComponent,
     AdminComponent,
+    HomePageComponent,
+    LoginComponent,
    
   ],
   imports: [

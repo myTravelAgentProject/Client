@@ -22,17 +22,17 @@ export class AdminComponent implements OnInit {
    //this.adminForm.get('name')?.value, this.adminForm.get('name')?.value
   }
   
-  Login(name:string,password:string){
-    name=name.replace(/\s/g, '');
-    password=password.replace(/\s/g, '');
-      this._adminService.getAdmin(name,password).subscribe(data=>{
-        if(data)
-        {this.userAdmin=data;
-         console.log(this.userAdmin.id);
-         alert("Welcome to "+this.userAdmin.name);}
-        else{console.log("no such user");}  
-      })
-    };
+  // Login(name:string,password:string){
+  //   name=name.replace(/\s/g, '');
+  //   password=password.replace(/\s/g, '');
+  //     this._adminService.getAdmin(name,password).subscribe(data=>{
+  //       if(data)
+  //       {this.userAdmin=data;
+  //        console.log(this.userAdmin.id);
+  //        alert("Welcome to "+this.userAdmin.name);}
+  //       else{console.log("no such user");}  
+  //     })
+  //   };
         
         AddNewAdmin(name:string,password:string){
           this.userAdmin.name=name;

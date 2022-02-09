@@ -18,13 +18,14 @@ import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.comp
 export class CustomerComponent implements OnInit {
 
 
-  @Output()
-  onGetCustomerDetails: EventEmitter<Customer> = new EventEmitter();
+  // @Output()
+  // onGetCustomerDetails: EventEmitter<Customer> = new EventEmitter();
 
   constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
 
   // customerDetails!: Customer
   customers: CustomerDTO[]=[];
+  dataSource=this.customers;
 
   // isSingleClick: Boolean = true;
 
@@ -34,7 +35,7 @@ export class CustomerComponent implements OnInit {
 
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
-      width: '1250px',
+      width: '1200',
       data: {id:Id},
     });
 
@@ -62,5 +63,4 @@ export class CustomerComponent implements OnInit {
     this.getAllCustomers();
   }
 
-  hide=true;
 }

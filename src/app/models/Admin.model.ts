@@ -1,12 +1,12 @@
-export interface Admin{
+export class Admin{
     id:number;
     name:string ;
     password:string;
     
-    // constructor(id:number,name:string,password:string) {
-    //    this.id=id;
-    //    this.name=name;
-    //    this.password=password;
-    // }
+    constructor(id:number,name:string,password:string) {
+       this.id=id;
+       this.name=name;
+       this.password=password;
+    }
 
 }
