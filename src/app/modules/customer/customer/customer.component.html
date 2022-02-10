@@ -1,0 +1,73 @@
+ <ul class="list-group">
+    <li class="list-group-item"
+
+
+
+    *ngFor="let customer of customers">
+         <div class="row" (dblclick)="getCustomerDetails(customer.id)">
+
+            <div class="col-1">
+                {{customer.firstName}}
+            </div>
+            <div class="col-1">
+                {{customer.lastName}}
+            </div>
+            <div class="col-1">
+                {{customer.emailAddress}}
+            </div>
+            <div class="col-1">
+                {{customer.address}}
+            </div>
+            <div class="col-1">
+                {{customer.phoneNumber}}
+            </div>
+        </div>
+</li>
+</ul>
+
+ <button (click)="getAllCustomers()">Get All Customer</button>
+<button (dblclick)="getCustomerDetails(17)">Get All Customer Details</button>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Save</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="false">Delete</button>
+  </mat-dialog-actions>
+<!-- <button mat-raised-button color="primary">Primary</button>  -->
+<!-- <br>
+<div >  
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="firstName" formControlName="firstName" >
+    </mat-form-field>
+    <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="lastName" name="LastName" formControlName="lastName">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="phoneNumber" name="PhoneNumber" formControlName="phoneNumber">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="address"  name="Address" formControlName="address" >
+      </mat-form-field>
+  </form>
+</div> -->
+<!-- <form (submit)="$event.preventDefault()">
+    <mat-form-field appearance="fill">
+      <mat-label>First name</mat-label>
+      <input matInput #first>
+      <mat-hint *ngIf="firstNameAutofilled">Autofilled!</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Last name</mat-label>
+      <input matInput #last>
+      <mat-hint *ngIf="lastNameAutofilled">Autofilled!</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button>Submit</button>
+  </form> -->

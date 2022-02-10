@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/Customer.model';
-import { CustomerService } from 'src/app/services/customer.service';
+import { CustomerService } from 'src/app/modules/customer/customer.service';
 //import { threadId } from 'worker_threads';
 
 @Component({

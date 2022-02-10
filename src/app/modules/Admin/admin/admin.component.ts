@@ -1,8 +1,8 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Admin } from '../models/Admin.model';
-import { AdminService } from '../services/admin.service';
+import { Admin } from 'src/app/models/Admin.model';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  admin!:Admin
   userAdmin!: Admin;
   adminForm!:FormGroup;
 //  hide = true;
@@ -23,12 +24,13 @@ export class AdminComponent implements OnInit {
   }
   
   Login(name:string,password:string){
-    name=name.replace(/\s/g, '');
-    password=password.replace(/\s/g, '');
-      this._adminService.getAdmin(name,password).subscribe(data=>{
+    this.admin.name=name.replace(/\s/g, '');
+    this.admin.password=password.replace(/\s/g, '');
+      this._adminService.getAdmin(this.admin).subscribe(data=>{
         if(data)
         {this.userAdmin=data;
-         console.log(this.userAdmin.id);}
+        //  console.log(this.userAdmin.id);
+         alert("Welcome to "+this.userAdmin.name);}
         else{console.log("no such user");}  
       })
     };
@@ -38,7 +40,7 @@ export class AdminComponent implements OnInit {
           this.userAdmin.password=password
           this._adminService.addNewAdmin(this.userAdmin).subscribe(data=>{
             if(data)
-            { console.log(this.userAdmin.id)}
+            { console.log(this.userAdmin); }
             else{console.log("no such user")}  }
             )};
   ngOnInit(): void {
