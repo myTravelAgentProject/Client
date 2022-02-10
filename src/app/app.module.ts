@@ -23,8 +23,8 @@ import { LoginComponent } from './login/login.component';
 const APP_ROUTES:Routes=[
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
-  {path:"newCustomer",component:UpdateCustomerComponent},
-  //{path:"customer", loadChildren:()=> import("./modules/customer/customers/customer.module").then(m=>m.CustomerModule)},
+  // {path:"newCustomer",component:UpdateCustomerComponent},
+  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
 
  
 ];

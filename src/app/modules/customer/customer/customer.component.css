@@ -1,4 +1,4 @@
-.divider-text {
+/* .divider-text {
     position: relative;
     text-align: center;
     margin-top: 15px;
@@ -28,7 +28,7 @@
     background-color: #42AEEC;
     color: #fff;
 }
-.example-form {
+/* .example-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
@@ -36,10 +36,73 @@
   
   .example-full-width {
     width: 50%;
-  }
-  .card-default {
+  } */
+  /* .card-default {
     color: #333;
     background: linear-gradient(#fff,#ebebeb) repeat scroll 0 0 transparent;
     font-weight: 600;
     border-radius: 6px;
-}
+} */ 
+/* table {
+    width: 80%;
+  }
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  } */
+  table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }

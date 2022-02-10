@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { MatInput, MatInputModule } from "@angular/material/input";
 // import { MatLabel } from "@angular/material/form-field";
 import {MatTableModule} from '@angular/material/table';
+// import { MatPaginator } from "@angular/material/paginator";
+
 
 const CUSTOMER_ROUTES: Routes = [
     { path: "customer", component: CustomerComponent },
