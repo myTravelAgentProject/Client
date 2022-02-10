@@ -6,6 +6,10 @@ import { Customer } from 'src/app/models/Customer.model';
 import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
+import {AfterViewInit,   ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 //import { EventEmitter } from 'stream';
 //import { threadId } from 'worker_threads';
@@ -25,7 +29,8 @@ export class CustomerComponent implements OnInit {
 
   // customerDetails!: Customer
   customers: CustomerDTO[]=[];
-  dataSource=this.customers;
+
+  
 
   // isSingleClick: Boolean = true;
 
@@ -61,6 +66,18 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCustomers();
+    
   }
+  columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
+  dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
+
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  // }
+ 
+  // dataSource=this.customers;
+ clickedRows = new Set<CustomerDTO>();
 
 }
