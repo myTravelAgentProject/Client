@@ -4,6 +4,7 @@ import { Admin } from 'src/app/models/Admin.model';
 // import { Admin } from '../../models/Admin.model';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { AdminDTO } from 'src/app/models/AdminDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ export class AdminService {
 
   constructor(private _http: HttpClient) { }
 
-  getAdmin(admin:Admin): Observable<Admin> {
-    return this._http.post<Admin>(this.baseURL,admin)
+  getAdmin(admin:Admin): Observable<AdminDTO> {
+    return this._http.post<AdminDTO>("/api/Admin//Login",admin)
+    
   }
   addNewAdmin(newAdmin:Admin):Observable<any>{
     return this._http.post<any>(this.baseURL,newAdmin)

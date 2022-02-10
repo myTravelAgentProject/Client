@@ -1,5 +1,6 @@
  <ul class="list-group">
     <li class="list-group-item"
+<<<<<<< HEAD
 
 
 
@@ -19,12 +20,30 @@
                 {{customer.address}}
             </div>
             <div class="col-1">
+=======
+    *ngFor="let customer of customers">
+         <div class="row" (dblclick)="getCustomerDetails(customer.id)">
+            <div class="col-1">
+                {{customer.firstName}}
+            </div>
+            <div class="col-2">
+                {{customer.lastName}}
+            </div>
+            <div class="col-3">
+                {{customer.emailAddress}}
+            </div>
+            <div class="col-4">
+                {{customer.address}}
+            </div>
+            <div class="col-5">
+>>>>>>> 05d0285c9f62a856fadf86ae1d7a447e745831ce
                 {{customer.phoneNumber}}
             </div>
         </div>
 </li>
 </ul>
 
+<<<<<<< HEAD
  <button (click)="getAllCustomers()">Get All Customer</button>
 <button (dblclick)="getCustomerDetails(17)">Get All Customer Details</button>
 
@@ -33,6 +52,46 @@
     <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
     <button mat-button [mat-dialog-close]="false">Delete</button>
   </mat-dialog-actions>
+=======
+<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+
+  <!-- Position Column -->
+  <!-- <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  </ng-container>
+
+  <!-- Name Column 
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+  </ng-container> -->
+
+  <!-- Weight Column
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <!-- <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container> --> -->
+
+  <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>-->
+
+ <button (click)="getAllCustomers()">Get All Customer</button>
+<button (dblclick)="getCustomerDetails(17)">Get All Customer Details</button>
+
+<!--<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Save</button>
+     The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <!--   <button mat-button [mat-dialog-close]="false">Delete</button>
+  </mat-dialog-actions>  -->
+>>>>>>> 05d0285c9f62a856fadf86ae1d7a447e745831ce
 <!-- <button mat-raised-button color="primary">Primary</button>  -->
 <!-- <br>
 <div >  
