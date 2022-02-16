@@ -1,26 +1,5 @@
  <ul class="list-group">
     <li class="list-group-item"
-<<<<<<< HEAD
-
-
-
-    *ngFor="let customer of customers">
-         <div class="row" (dblclick)="getCustomerDetails(customer.id)">
-
-            <div class="col-1">
-                {{customer.firstName}}
-            </div>
-            <div class="col-1">
-                {{customer.lastName}}
-            </div>
-            <div class="col-1">
-                {{customer.emailAddress}}
-            </div>
-            <div class="col-1">
-                {{customer.address}}
-            </div>
-            <div class="col-1">
-=======
     *ngFor="let customer of customers">
          <div class="row" (dblclick)="getCustomerDetails(customer.id)">
             <div class="col-1">
@@ -36,23 +15,12 @@
                 {{customer.address}}
             </div>
             <div class="col-5">
->>>>>>> 05d0285c9f62a856fadf86ae1d7a447e745831ce
                 {{customer.phoneNumber}}
             </div>
         </div>
 </li>
 </ul>
 
-<<<<<<< HEAD
- <button (click)="getAllCustomers()">Get All Customer</button>
-<button (dblclick)="getCustomerDetails(17)">Get All Customer Details</button>
-
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Save</button>
-    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-    <button mat-button [mat-dialog-close]="false">Delete</button>
-  </mat-dialog-actions>
-=======
 <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
 
   <!-- Position Column -->
@@ -91,7 +59,6 @@
      The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
   <!--   <button mat-button [mat-dialog-close]="false">Delete</button>
   </mat-dialog-actions>  -->
->>>>>>> 05d0285c9f62a856fadf86ae1d7a447e745831ce
 <!-- <button mat-raised-button color="primary">Primary</button>  -->
 <!-- <br>
 <div >  
