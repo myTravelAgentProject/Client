@@ -24,9 +24,10 @@ export class LoginComponent implements OnInit {
    //this.adminForm.get('name')?.value, this.adminForm.get('name')?.value
   }
   
-  Login(name:string,password:string){
-    this.userAdmin.name=name.replace(/\s/g, '');
-    this.userAdmin.password=password.replace(/\s/g, '');
+  Login(){
+    this.userAdmin=this.adminForm.value;
+    this.userAdmin.name=this.userAdmin.name.replace(/\s/g, '');
+    this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
       this._adminService.getAdmin(this.userAdmin).subscribe(data=>{
         if(data)
         {this.userAdminDTO=data;

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './modules/Admin/admin/admin.component';
@@ -19,6 +18,7 @@ import { UpdateCustomerComponent } from './modules/customer/update-customer/upda
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 //import { UpdateCustomerComponent } from './modules/update-customer/update-customer.component';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 const APP_ROUTES:Routes=[
   {path:"homePage",component:HomePageComponent},
@@ -46,10 +46,10 @@ const APP_ROUTES:Routes=[
     BrowserAnimationsModule,
     CustomerModule,
    RouterModule.forRoot(APP_ROUTES),
-
     ///////////////// material modules /////////////////
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
     MatIconModule
     
     

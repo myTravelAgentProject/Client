@@ -1,15 +1,20 @@
-
-<nav>
+<app-login></app-login>
+<mat-tab-group>
+    <mat-tab label="Calendar"><app-home-page></app-home-page> </mat-tab>
+    <mat-tab label="Customers"> <app-customer></app-customer> </mat-tab>
+    <mat-tab label="Add New Customer"> <br><app-update-customer></app-update-customer></mat-tab>
+  </mat-tab-group>
+<!-- <nav>
     <ul clas="nav nav-tabs">
         <li><a routerLink="/homePage" routerLinkActive="active">Home Page</a></li>
         <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-       <!-- <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li> -->
+        <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li> 
        <li><a routerLink="/customer" routerLinkActive="active">Customers</a></li>
        <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">New Customer</a></li>
     </ul>
-</nav>
+</nav> -->
 <!-- <app-admin></app-admin>
 <app-customer></app-customer>
 <app-update-customer></app-update-customer> -->
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
