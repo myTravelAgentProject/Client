@@ -19,7 +19,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<div>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -34,7 +34,7 @@
     <form [formGroup]="adminForm">
       <input type="text" id="userName" class="fadeIn second" name="userName" placeholder="username"  formControlName="name" #name>
       <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password"  #password>
-      <input type="submit" class="fadeIn fourth" [disabled]="!adminForm.valid"  (click)="Login(name.value,password.value)" value="Log In">
+      <input type="submit" class="fadeIn fourth" [disabled]="!adminForm.valid"  (click)="Login()" value="Log In">
    <!-- <button type="submit" [disabled]="!adminForm.valid"  (click)="Login(name.value,password.value)">Login</button> -->
     <!-- Remind Passowrd -->
    </form>
@@ -44,4 +44,5 @@
     </div>
 
   </div>
+</div>
 </div>
