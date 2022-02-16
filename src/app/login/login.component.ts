@@ -11,7 +11,8 @@ import { AdminService } from '../modules/Admin/admin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userAdmin:Admin=new Admin(0,"","");
+  userAdmin!:AdminDTO
+  // =new Admin(0,"","");
   adminForm!:FormGroup;
   userAdminDTO!:AdminDTO
   

@@ -15,7 +15,7 @@ export class AdminService {
 
   constructor(private _http: HttpClient) { }
 
-  getAdmin(admin:Admin): Observable<AdminDTO> {
+  getAdmin(admin:AdminDTO): Observable<AdminDTO> {
     return this._http.post<AdminDTO>("/api/Admin//Login",admin)
     
   }
