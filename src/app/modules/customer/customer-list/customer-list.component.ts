@@ -61,13 +61,12 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   }
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
-
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator ;
+  paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
   private handleContacts() {
