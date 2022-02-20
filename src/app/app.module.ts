@@ -31,11 +31,7 @@ const APP_ROUTES:Routes=[
   declarations: [
     AppComponent,
     AdminComponent,
-<<<<<<< HEAD
-=======
-    HomePageComponent,
->>>>>>> ad902364ee0cc5055377278e94de11273b7b5723
-   
+    HomePageComponent, 
   ],
   imports: [
     BrowserModule,
