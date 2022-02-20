@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Admin } from '../models/Admin.model';
-import { AdminDTO } from '../models/AdminDTO.model';
-import { AdminService } from '../modules/Admin/admin.service';
+import { Admin } from 'src/app/models/Admin.model';
+import { AdminDTO } from 'src/app/models/AdminDTO.model';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,12 @@ import { AdminService } from '../modules/Admin/admin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userAdmin!:AdminDTO
-  // =new Admin(0,"","");
-  adminForm!:FormGroup;
-  userAdminDTO!:AdminDTO
+  userAdmin!:AdminDTO;
+  loginForm!:FormGroup;
+  userAdminDTO!:AdminDTO;
+  hide = true;
   
-  constructor(private _adminService: AdminService) { }
+  constructor(private _loginService: LoginService) { }
 
   onSubmit() {
    // this.userAdmin.name=
@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   }
   
   Login(){
-    this.userAdmin=this.adminForm.value;
+    this.userAdmin=this.loginForm.value;
     this.userAdmin.name=this.userAdmin.name.replace(/\s/g, '');
     this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
-      this._adminService.getAdmin(this.userAdmin).subscribe(data=>{
+      this._loginService.getAdmin(this.userAdmin).subscribe(data=>{
         if(data)
         {this.userAdminDTO=data;
          console.log(this.userAdminDTO);
@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
     };
 
   ngOnInit(): void {
-    this.adminForm=new FormGroup({
-      name:new FormControl("",Validators.email),
+    this.loginForm=new FormGroup({
+      name:new FormControl("",[Validators.required,Validators.email]),
       password:new FormControl("",[Validators.required,Validators.minLength(8)]),
     });
   }

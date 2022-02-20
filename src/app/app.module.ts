@@ -6,24 +6,23 @@ import { AdminComponent } from './modules/Admin/admin/admin.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-//import { CustomerComponent } from './modules/customer/customer.component';
 import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CustomerModule } from './modules/customer/customer.module';
 import { RouterModule,Routes } from '@angular/router';
-import { CustomerComponent } from './modules/customer/customer/customer.component';
-import { UpdateCustomerComponent } from './modules/customer/update-customer/update-customer.component';
+import { CustomerListComponent } from './modules/customer/customer-list/customer-list.component';
+import { CustomerCardComponent } from './modules/customer/customer-card/customer-card.component';
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
-import { LoginComponent } from './login/login.component';
-//import { UpdateCustomerComponent } from './modules/update-customer/update-customer.component';
+import { LoginComponent } from './modules/Login/login/login.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
+import { LoginModule } from './modules/Login/login.module';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 const APP_ROUTES:Routes=[
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
-  // {path:"newCustomer",component:UpdateCustomerComponent},
   {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
 
  
@@ -33,7 +32,6 @@ const APP_ROUTES:Routes=[
     AppComponent,
     AdminComponent,
     HomePageComponent,
-    LoginComponent,
    
   ],
   imports: [
@@ -45,13 +43,13 @@ const APP_ROUTES:Routes=[
     HttpClientModule,
     BrowserAnimationsModule,
     CustomerModule,
+    LoginModule,
    RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
     MatIconModule
-    
     
   ],
   providers: [],

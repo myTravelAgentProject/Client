@@ -1,6 +1,6 @@
 
 /* BASIC */
-
+ 
 html {
     background-color: #56baed;
   }
@@ -77,10 +77,10 @@ html {
     border-bottom: 2px solid #5fbae9;
   }
   
-  
+   
   
   /* FORM TYPOGRAPHY*/
-  
+/*  
   input[type=button], input[type=submit], input[type=reset]  {
     background-color: #56baed;
     border: none;
@@ -113,8 +113,8 @@ html {
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
-  }
-  
+  } */
+  /*
   input[type=text] {
     background-color: #f6f6f6;
     border: none;
@@ -145,11 +145,12 @@ html {
     color: #cccccc;
   }
   
-  
+   */
   
   /* ANIMATIONS */
   
   /* Simple CSS3 Fade-in-down Animation */
+  
   .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
@@ -262,4 +263,77 @@ html {
   #icon {
     width:30%;
   }
+  /* Material!!!!! */
+  .example-container .mat-form-field +.mat-form-field{
+    margin-left: 8px;
+  }
   
+  .example-right-align {
+    text-align: right;
+  } 
+   
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  } 
+  
+   input.example-right-align {
+    -moz-appearance: textfield;
+  }
+  
+ /*
+
+ .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: right;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.body{
+    margin: 20%;
+}
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+ 
+}
+.example-label{
+  text-align: right;
+}
+*/

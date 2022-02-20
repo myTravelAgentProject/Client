@@ -1,28 +1,4 @@
- <!-- <ul class="list-group">
-    <li class="list-group-item"
-    *ngFor="let customer of customers">
-         <div class="row" (dblclick)="getCustomerDetails(customer.id)">
-            <div class="col-1">
-                {{customer.firstName}}
-            </div>
-            <div class="col-2">
-                {{customer.lastName}}
-            </div>
-            <div class="col-3">
-                {{customer.emailAddress}}
-            </div>
-            <div class="col-4">
-                {{customer.address}}
-            </div>
-            <div class="col-5">
-                {{customer.phoneNumber}}
-            </div>
-        </div>
-</li>
-</ul>-->
 
-  <!-- <button (click)="getAllCustomers()">Get All Customer</button>
-<button (dblclick)="getCustomerDetails(17)">Get All Customer Details</button> -->
 <table mat-table [dataSource]="customers"  class="mat-elevation-z8">
 
   <ng-container matColumnDef="firstName">
@@ -56,21 +32,6 @@
   mat-row *matRowDef="let row; columns: columnsToDisplay;" (dblclick)="getCustomerDetails(row.id)"></tr> 
 </table>
 
- <!-- <tr
-      mat-row
-      (dblclick)="clickedRows.add(row)"
-      [class.demo-row-is-clicked]="clickedRows.has(row)"
-      *matRowDef="let row; columns: columnsToDisplay;"
-  ></tr> -->
-<!-- <div>
-  <h3>
-    Click Log
-  </h3>
-</div> -->
-<!-- 
-<div *ngIf="!clickedRows.size">
-  Clicked rows will be logged here
-</div> -->
 
 
  

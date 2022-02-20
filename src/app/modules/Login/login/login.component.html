@@ -1,0 +1,42 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" />
+      <h1>Welcome</h1>
+    </div>
+    
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" class="example-form">
+      <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email address</mat-label>
+        <input matInput type="text" id="userName" formControlName="name" >
+      </mat-form-field>
+    </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password">
+          <button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <button mat-stroked-button [disabled]="!loginForm.valid" (click)="Login()">Login</button>
+    <!-- Remind Passowrd -->
+   </form>
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Go to the Site</a>
+    </div>
+
+  </div>
+</div>
+</div>

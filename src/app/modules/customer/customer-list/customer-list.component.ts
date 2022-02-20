@@ -11,32 +11,21 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
 
-//import { EventEmitter } from 'stream';
-//import { threadId } from 'worker_threads';
-
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  selector: 'app-customer-list',
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.css']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerListComponent implements OnInit {
 
 
-  // @Output()
-  // onGetCustomerDetails: EventEmitter<Customer> = new EventEmitter();
-
+  
   constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
 
-  // customerDetails!: Customer
   customers: CustomerDTO[]=[];
 
   
 
-  // isSingleClick: Boolean = true;
-
-  // onClicked() {
-  //   this.isSingleClick = true;
-  // }
 
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
@@ -60,8 +49,6 @@ export class CustomerComponent implements OnInit {
 
   getCustomerDetails(id:number): void {
     this.openDialog(id);
-    // this.isSingleClick = false;
-    // this.onGetCustomerDetails.emit()
   }
 
   ngOnInit(): void {
