@@ -11,7 +11,9 @@ import { CommonModule } from '@angular/common';
 import { MatInput, MatInputModule } from "@angular/material/input";
 // import { MatLabel } from "@angular/material/form-field";
 import {MatTableModule} from '@angular/material/table';
-// import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
+import {TableModule} from 'primeng/table';
+import { MatSortModule } from "@angular/material/sort";
 
 
 const CUSTOMER_ROUTES: Routes = [
@@ -21,7 +23,7 @@ const CUSTOMER_ROUTES: Routes = [
 @NgModule({
     declarations: [CustomerComponent, UpdateCustomerComponent, CustomerDialogComponent],
     imports: [ReactiveFormsModule, FormsModule, RouterModule.forChild(CUSTOMER_ROUTES), MatDialogModule,
-        MatButtonModule,CommonModule,MatInputModule,MatTableModule],
+        MatButtonModule,CommonModule,MatInputModule,MatTableModule,TableModule,MatPaginatorModule,MatSortModule ],
     providers: [CustomerService],
     exports: [CustomerComponent, UpdateCustomerComponent]
 })

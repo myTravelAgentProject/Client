@@ -32,8 +32,6 @@ const APP_ROUTES:Routes=[
   declarations: [
     AppComponent,
     AdminComponent,
-    HomePageComponent,
-    LoginComponent,
    
   ],
   imports: [
@@ -41,7 +39,7 @@ const APP_ROUTES:Routes=[
     MatSliderModule,
     AppRoutingModule,
      ReactiveFormsModule,
-     FormsModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CustomerModule,

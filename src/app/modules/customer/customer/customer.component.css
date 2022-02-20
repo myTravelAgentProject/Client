@@ -1,55 +1,23 @@
-/* .divider-text {
-    position: relative;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.divider-text span {
-    padding: 7px;
-    font-size: 12px;
-    position: relative;   
-    z-index: 2;
-}
-.divider-text:after {
-    content: "";
-    position: absolute;
+ table {
     width: 100%;
-    border-bottom: 1px solid #ddd;
-    top: 55%;
-    left: 0;
-    z-index: 1;
-}
-
-.btn-facebook {
-    background-color: #405D9D;
-    color: #fff;
-}
-.btn-twitter {
-    background-color: #42AEEC;
-    color: #fff;
-}
-/* .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 50%;
-  } */
-  /* .card-default {
-    color: #333;
-    background: linear-gradient(#fff,#ebebeb) repeat scroll 0 0 transparent;
-    font-weight: 600;
-    border-radius: 6px;
-} */ 
-/* table {
-    width: 80%;
   }
   .mat-row .mat-cell {
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
     cursor: pointer;
+  }
+  .example-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+  }
+  
+  .mat-row:nth-child(even) {
+    background-color: #f1efef;
+  }
+  
+  .mat-row:nth-child(odd) {
+    background-color: #FFFFFF;
   }
   
   .mat-row:hover .mat-cell {
@@ -58,10 +26,7 @@
   
   .demo-row-is-clicked {
     font-weight: bold;
-  } */
-  table {
-    width: 100%;
-  }
+  } 
   
   tr.example-detail-row {
     height: 0;
@@ -106,3 +71,17 @@
   .example-element-description-attribution {
     opacity: 0.5;
   }
+  
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}

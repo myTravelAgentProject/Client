@@ -1,14 +1,18 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
 import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
-import {AfterViewInit,   ViewChild} from '@angular/core';
+//Material:
+import { MatDialog } from '@angular/material/dialog';
+import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+
 
 
 //import { EventEmitter } from 'stream';
@@ -19,13 +23,13 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerComponent implements OnInit,AfterViewInit {
 
 
   // @Output()
   // onGetCustomerDetails: EventEmitter<Customer> = new EventEmitter();
 
-  constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
+  constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
 
   // customerDetails!: Customer
   customers: CustomerDTO[]=[];
@@ -71,13 +75,26 @@ export class CustomerComponent implements OnInit {
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator ;
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  private handleContacts() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
  
-  // dataSource=this.customers;
- clickedRows = new Set<CustomerDTO>();
 
 }
+

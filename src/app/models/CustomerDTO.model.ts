@@ -2,7 +2,7 @@ export interface CustomerDTO{
     id:number;
     firstName:string;
     lastName:string;
-    emailAddress?:string;
+    emailAdress?:string;
     address:string;
     phoneNumber:string;
 }
