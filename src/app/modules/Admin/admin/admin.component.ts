@@ -1,8 +1,8 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Admin } from '../models/Admin.model';
-import { AdminService } from '../services/admin.service';
+import { Admin } from 'src/app/models/Admin.model';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { AdminService } from '../services/admin.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  admin!:Admin
   userAdmin!: Admin;
   adminForm!:FormGroup;
 //  hide = true;

@@ -1,5 +1,5 @@
 export interface AdminDTO{
-    name:string ;
+    name:string;
     password:string;
     token?:string;
     

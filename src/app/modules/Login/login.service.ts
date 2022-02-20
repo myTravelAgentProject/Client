@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Admin } from '../models/Admin.model';
+import { Admin } from 'src/app/models/Admin.model';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { AdminDTO } from '../models/AdminDTO.model';
+import { AdminDTO } from 'src/app/models/AdminDTO.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class LoginService {
 
   baseURL = "/api/Admin/";
 
@@ -21,7 +21,7 @@ export class AdminService {
   addNewAdmin(newAdmin:Admin):Observable<any>{
     return this._http.post<any>(this.baseURL,newAdmin)
 }
-changePaswword(changePaswword:Admin):Observable<any>{
-  return this._http.put(this.baseURL+changePaswword.id,changePaswword)
-  }
+// changePaswword(changePaswword:Admin):Observable<any>{
+//   return this._http.put(this.baseURL+changePaswword.id,changePaswword)
+//   }
 }

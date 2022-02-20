@@ -15,32 +15,30 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 
 
 
-//import { EventEmitter } from 'stream';
-//import { threadId } from 'worker_threads';
-
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  selector: 'app-customer-list',
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.css']
 })
+<<<<<<< HEAD:src/app/modules/customer/customer/customer.component.ts
 export class CustomerComponent implements OnInit,AfterViewInit {
 
+=======
+export class CustomerListComponent implements OnInit {
+>>>>>>> ad902364ee0cc5055377278e94de11273b7b5723:src/app/modules/customer/customer-list/customer-list.component.ts
 
-  // @Output()
-  // onGetCustomerDetails: EventEmitter<Customer> = new EventEmitter();
 
+<<<<<<< HEAD:src/app/modules/customer/customer/customer.component.ts
   constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
+=======
+  
+  constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
+>>>>>>> ad902364ee0cc5055377278e94de11273b7b5723:src/app/modules/customer/customer-list/customer-list.component.ts
 
-  // customerDetails!: Customer
   customers: CustomerDTO[]=[];
 
   
 
-  // isSingleClick: Boolean = true;
-
-  // onClicked() {
-  //   this.isSingleClick = true;
-  // }
 
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
@@ -64,8 +62,6 @@ export class CustomerComponent implements OnInit,AfterViewInit {
 
   getCustomerDetails(id:number): void {
     this.openDialog(id);
-    // this.isSingleClick = false;
-    // this.onGetCustomerDetails.emit()
   }
 
   ngOnInit(): void {
