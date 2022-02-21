@@ -21,11 +21,12 @@ import { LoginModule } from './modules/Login/login.module';
 import { MatFormFieldControl } from '@angular/material/form-field';
 
 const APP_ROUTES:Routes=[
+  
+  {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
-  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
-
- 
+  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)}
+  
 ];
 @NgModule({
   declarations: [
@@ -37,18 +38,19 @@ const APP_ROUTES:Routes=[
     BrowserModule,
     MatSliderModule,
     AppRoutingModule,
-     ReactiveFormsModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CustomerModule,
     LoginModule,
-   RouterModule.forRoot(APP_ROUTES),
+    RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    BrowserModule
     
   ],
   providers: [],

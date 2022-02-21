@@ -11,7 +11,7 @@ import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 })
 export class CustomerService {
 
-   baseUrl: string = "/api/Customer";
+   baseUrl: string = "/api/Customer/";
   constructor(private _http: HttpClient) { }
 
   getAllCustomers(): Observable<CustomerDTO[]> {
