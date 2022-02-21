@@ -8,6 +8,10 @@ html {
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-image: url('src/imgs/IMG_9302.JPG');
+    background-size: cover;
+    position: fixed;
+    width: 100%;
   }
   
   a {
@@ -151,7 +155,7 @@ html {
   
   /* Simple CSS3 Fade-in-down Animation */
   
-  .fadeInDown {
+  /* .fadeInDown {
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
@@ -184,10 +188,10 @@ html {
       -webkit-transform: none;
       transform: none;
     }
-  }
+  } */
   
   /* Simple CSS3 Fade-in Animation */
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  /* @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   
@@ -231,7 +235,7 @@ html {
   }
   
   /* Simple CSS3 Fade-in Animation */
-  .underlineHover:after {
+  /* .underlineHover:after {
     display: block;
     left: 0;
     bottom: -10px;
@@ -252,7 +256,7 @@ html {
   
   h1{
       color:#60a0ff;
-  }
+  } */ 
   
   /* OTHERS */
   
@@ -281,60 +285,56 @@ html {
     -moz-appearance: textfield;
   }
   
- /*
-
- .example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  text-align: right;
-}
-
-.example-full-width {
-  width: 100%;
-}
-
-.body{
-    margin: 20%;
-}
-section {
-  display: table;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  width: 490px;
-}
-
-.example-button-row .mat-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
  
+/*michal addes ;)*/
+.login-form{
+  text-align:left;
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  opacity: 0.85;
+  position: fixed;
+  left: 5%;
 }
-.example-label{
-  text-align: right;
+
+h1 {
+  font-size: 250%;
+  font-weight: 600;
+  /* color: #cccccc; */
+  color: rgb(141,194, 249);
+  margin: 0 20% 8% 20%; 
+  /* font-family: 'Lucida Handwriting'; */
 }
-*/
-/* jbmh */
+
+.login-form-text{
+  text-align: center;
+  /* align-items: center; */
+}
+
+.user-icon{
+  font-size: 600%;
+  margin: 30% 50% 5px 28%; 
+  color: rgb(141,194, 249);
+ 
+  /* color: #cccccc; */
+}
+
+.mat-form-field{
+ width: 80%;
+}
+
+button{
+  padding: 5% 20%;
+  font-size: 100%;
+  background-color:rgba(0,0,0,0);
+  border: none;
+  color: rgb(141,194, 249);
+  font-size: 250%;
+  font-weight: 600;
+  font-family: 'Lucida Handwriting';
+}
+
+button:disabled{
+  color: rgb(213,243, 253);
+}
+
