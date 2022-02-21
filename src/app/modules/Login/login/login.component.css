@@ -12,6 +12,7 @@ html {
     background-size: cover;
     position: fixed;
     width: 100%;
+    /* opacity: 50%; */
   }
   
   a {
@@ -308,6 +309,7 @@ h1 {
 
 .login-form-text{
   text-align: center;
+  opacity:100%;
   /* align-items: center; */
 }
 
