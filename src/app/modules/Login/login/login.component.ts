@@ -16,9 +16,10 @@ export class LoginComponent implements OnInit {
   userAdminDTO!:AdminDTO;
   hide = true;
   
-  constructor(private _loginService: LoginService) { }
+  constructor(private _loginService: LoginService,private router: Router) { }
 
-  onSubmit() {
+  onSubmit() {  
+      
    // this.userAdmin.name=
    //this._adminService.getAdmin().subscribe();
    //this.adminForm.get('name')?.value, this.adminForm.get('name')?.value
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
         {this.userAdminDTO=data;
          console.log(this.userAdminDTO);
          alert("Welcome to "+this.userAdminDTO.name);
+         this.router.navigate(['/homePage']); 
         }
         else{console.log("no such user");}  
       })
