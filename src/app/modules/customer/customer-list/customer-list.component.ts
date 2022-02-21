@@ -20,20 +20,11 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-<<<<<<< HEAD:src/app/modules/customer/customer/customer.component.ts
-export class CustomerComponent implements OnInit,AfterViewInit {
-
-=======
 export class CustomerListComponent implements OnInit {
->>>>>>> ad902364ee0cc5055377278e94de11273b7b5723:src/app/modules/customer/customer-list/customer-list.component.ts
 
 
-<<<<<<< HEAD:src/app/modules/customer/customer/customer.component.ts
-  constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
-=======
   
   constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
->>>>>>> ad902364ee0cc5055377278e94de11273b7b5723:src/app/modules/customer/customer-list/customer-list.component.ts
 
   customers: CustomerDTO[]=[];
 
@@ -83,13 +74,7 @@ export class CustomerListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }
+ 
  
 
 }
