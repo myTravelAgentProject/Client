@@ -31,8 +31,7 @@ const APP_ROUTES:Routes=[
   declarations: [
     AppComponent,
     AdminComponent,
-    HomePageComponent,
-   
+    HomePageComponent, 
   ],
   imports: [
     BrowserModule,

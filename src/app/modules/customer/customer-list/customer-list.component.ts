@@ -20,11 +20,11 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit,AfterViewInit {
 
 
-  
-  constructor(private _customerService: CustomerService, public dialog: MatDialog) { }
+
+  constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
 
   customers: CustomerDTO[]=[];
 
@@ -61,13 +61,12 @@ export class CustomerListComponent implements OnInit {
   }
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
-
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator ;
+  paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
   private handleContacts() {
