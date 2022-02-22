@@ -69,8 +69,7 @@ export class CustomerCardComponent implements OnInit {
 
   saveCustomer() {
     if (this.customerForm.value.id == 0) {
-      this._customerService.addNewCustomer(this.customerForm.value).subscribe(
-        data => {
+      this._customerService.addNewCustomer(this.customerForm.value).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
             this._router.navigate(['/homePage']); 

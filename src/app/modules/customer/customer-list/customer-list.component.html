@@ -1,5 +1,6 @@
 <div class="mat-elevation-z8 demo-table">
-  <table mat-table [dataSource]="customers" matSort >
+  <table mat-table [dataSource]="customers"  matSort (matSortChange)="announceSortChange($event)"
+  class="mat-elevation-z8" >
     <!-- (matSortChange)="announceSortChange($event)" -->
 
     <!-- Position Column -->
@@ -32,6 +33,12 @@
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getCustomerDetails(row.id)"></tr>
+    
+    <div class="example-button-container">
+      <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+  </div>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
