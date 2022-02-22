@@ -18,16 +18,26 @@ import { HomePageComponent } from './modules/homePage/home-page/home-page.compon
 import { LoginComponent } from './modules/Login/login/login.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { LoginModule } from './modules/Login/login.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 
 const APP_ROUTES:Routes=[
   
   {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
+  {path:"customer1",component:CustomerListComponent},
   {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)}
   
 ];
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  // interactionPlugin
+]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,13 +54,15 @@ const APP_ROUTES:Routes=[
     BrowserAnimationsModule,
     CustomerModule,
     LoginModule,
+    FullCalendarModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
     MatIconModule,
-    BrowserModule
+    BrowserModule,
+    DropDownsModule
     
   ],
   providers: [],

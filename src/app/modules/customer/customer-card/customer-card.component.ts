@@ -72,7 +72,7 @@ export class CustomerCardComponent implements OnInit {
       this._customerService.addNewCustomer(this.customerForm.value).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
-            this._router.navigate(['/homePage']); 
+            this._router.navigate(['/customer1']); 
           } else
             console.log("faild");
             this._router.navigate(['/homePage']); 
