@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 
@@ -10,7 +11,7 @@ import { CustomerService } from 'src/app/modules/customer/customer.service';
 })
 export class CustomerCardComponent implements OnInit {
 
-  constructor(private _customerService: CustomerService) { }
+  constructor(private _customerService: CustomerService,private _router:Router) { }
 
   edit: boolean = true;
   customerForm!: FormGroup;
@@ -71,9 +72,11 @@ export class CustomerCardComponent implements OnInit {
       this._customerService.addNewCustomer(this.customerForm.value).subscribe(
         data => {
           if (data) {
-            console.log("sucsess " + data)
+            console.log("sucsess " + data);
+            this._router.navigate(['/homePage']); 
           } else
             console.log("faild");
+            this._router.navigate(['/homePage']); 
         });
     }
     else

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Admin } from 'src/app/models/Admin.model';
 import { AdminDTO } from 'src/app/models/AdminDTO.model';
+import { UserService } from 'src/app/services/user.service';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   userAdminDTO!:AdminDTO;
   hide = true;
   
-  constructor(private _loginService: LoginService,private router: Router) { }
+  constructor(private _loginService: LoginService,private router: Router,private _userService:UserService) { }
 
   onSubmit() {  
       
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
          console.log(this.userAdminDTO);
          alert("Welcome to "+this.userAdminDTO.name);
          this.router.navigate(['/homePage']); 
+        this._userService.setAuthorized(true);
         }
         else{console.log("no such user");}  
       })

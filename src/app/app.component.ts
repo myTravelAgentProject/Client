@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,19 @@ import { Component, Input } from '@angular/core';
 export class AppComponent {
   title = 'MyTravelAgent-app';
 
-  @Input()
   authorized:boolean=false;
+  constructor(private _userservice:UserService) {
+
+  }
+  ngOnInit(){
+    this._userservice.getAuthorized().subscribe(data=>{
+      if(data){
+        this.authorized=data;
+      }
+      else{
+        alert("error")
+      }
+
+    })
+  }
 }

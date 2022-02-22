@@ -12,6 +12,7 @@ import { MatInput, MatInputModule } from "@angular/material/input";
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatIconModule } from "@angular/material/icon";
 
 
 const CUSTOMER_ROUTES: Routes = [
@@ -21,7 +22,7 @@ const CUSTOMER_ROUTES: Routes = [
 @NgModule({
     declarations: [CustomerListComponent, CustomerCardComponent, CustomerDialogComponent],
     imports: [ReactiveFormsModule, FormsModule, RouterModule.forChild(CUSTOMER_ROUTES), MatDialogModule,
-        MatButtonModule,CommonModule,MatInputModule,MatTableModule,MatPaginatorModule,MatSortModule ],
+        MatButtonModule,CommonModule,MatInputModule,MatTableModule,MatPaginatorModule,MatSortModule,MatIconModule ],
     providers: [CustomerService],
     exports: [CustomerListComponent, CustomerCardComponent]
 })
