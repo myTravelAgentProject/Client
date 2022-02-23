@@ -1,23 +1,46 @@
-<!-- <app-login></app-login> -->
+  <!-- <app-login></app-login> -->
 <!-- <mat-tab-group>
     <mat-tab label="Calendar"><app-home-page></app-home-page> </mat-tab>
     <mat-tab label="Customers"> <app-customer-list></app-customer-list> </mat-tab>
     <mat-tab label="Add New Customer"> <br><app-customer-card></app-customer-card></mat-tab>
   </mat-tab-group> -->
 
-<div *ngIf="authorized">
-<nav>
-    <ul clas="nav nav-tabs" >
-         <li ><a routerLink="/homePage" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></a></li>
-        <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-        <!-- <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li>  -->
-       <li><a routerLink="/customer" routerLinkActive="active">Customers</a></li>
-       <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">New Customer</a></li>
-    </ul>
-</nav> 
-</div>
- <!-- <app-admin></app-admin>
-<app-customer></app-customer>
-<app-update-customer></app-update-customer> -->
-<router-outlet></router-outlet>
+  <!-- <div *ngIf="authorized">
+    <nav>
+        <ul class="nav nav-tabs" >
+             <li ><a routerLink="/homePage" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></a></li>
+            <li><a routerLink="/login" routerLinkActive="active">Login</a></li> -->
+            <!-- <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li>  -->
+           <!-- <li><a routerLink="/customer" routerLinkActive="active">Customers</a></li>
+           <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">New Customer</a></li>
+        </ul>
+    </nav> 
+    </div> -->
+     <!-- <app-admin></app-admin>
+    <app-customer></app-customer>
+    <app-update-customer></app-update-customer> -->
+    <!-- <router-outlet></router-outlet> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Document</title>
+</head>
+<body>
+    <div class="tabs" *ngIf="authorized">
+      <button><a routerLink="/homePage" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></a></button>
+      <button><a routerLink="/login" routerLinkActive="active">Login</a></button>
+      <button><a routerLink="/customer" routerLinkActive="active">Customers</a></button>
+      <button><a routerLink="/customer/NewCustomer" routerLinkActive="active">New Customer</a></button>
+    </div>
+    <div class="router-outlet-component">
+      <router-outlet></router-outlet>
+    </div>
+</body>
+</html>
+
+
+
 
