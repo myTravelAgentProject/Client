@@ -5,14 +5,14 @@ import { CalendarComponent } from '../Calendar/calendar/calendar.component';
 
 const HOME_ROUTES:Routes=[
   {path:"calendar",component:CalendarComponent},
-  {path:"customer", loadChildren:()=> import("src/app/modules/customer/customer.module").then(m=>m.CustomerModule)} 
+  {path:"customer", loadChildren:()=> import("src/app/modules/customer/customer.module").then(m=>m.CustomerModule)}
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(HOME_ROUTES)
+    RouterModule.forChild(HOME_ROUTES)
   ]
 })
 export class HomePageModule { }
