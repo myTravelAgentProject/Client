@@ -88,4 +88,9 @@ export class CustomerCardComponent implements OnInit {
         });
   };
 
+  deleteCustomer(){
+    this._customerService.deleteCustomer(this.customerForm.value.id);
+    this._router.navigate(['/customer']); 
+  }
+
 }

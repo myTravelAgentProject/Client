@@ -26,7 +26,7 @@ export class CustomerService {
   updateCustomer(customerToUpdate:Customer):Observable<any>{
     return this._http.put(this.baseUrl+customerToUpdate.id,customerToUpdate)
     }
-    deleteCustomer(id:number):Observable<any>{
+  deleteCustomer(id:number):Observable<any>{
     return this._http.delete(this.baseUrl+id)
-    }
+  }
 }
