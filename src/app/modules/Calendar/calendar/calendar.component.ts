@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular';
+// import { CalendarOptions } from '@fullcalendar/angular';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import { Calendar } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-calendar',
@@ -12,12 +14,12 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-     weekends: true // initial value
-  };
+  // calendarOptions: CalendarOptions = {
+  //   initialView: 'dayGridMonth',
+  //    weekends: true // initial value
+  // };
 
-  toggleWeekends() {
-    this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
-  }
+  // toggleWeekends() {
+  //   this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
+  // };
 }
