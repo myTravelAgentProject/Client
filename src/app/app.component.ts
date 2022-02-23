@@ -18,9 +18,6 @@ export class AppComponent {
       if(data){
         this.authorized=data;
       }
-      // else{
-      //   alert("error")
-      // }
 
     })
   }

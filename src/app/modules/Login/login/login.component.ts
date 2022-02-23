@@ -30,13 +30,14 @@ export class LoginComponent implements OnInit {
     this.userAdmin=this.loginForm.value;
     this.userAdmin.name=this.userAdmin.name.replace(/\s/g, '');
     this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
-      this._loginService.getAdmin(this.userAdmin).subscribe(data=>{
+    this._loginService.getAdmin(this.userAdmin).subscribe(data=>{
         if(data)
-        {this.userAdminDTO=data;
+        {
+          this.userAdminDTO=data;
          console.log(this.userAdminDTO);
          alert("Welcome to "+this.userAdminDTO.name);
          this.router.navigate(['/homePage']); 
-        this._userService.setAuthorized(true);
+        //  this._userService.setAuthorized(true);
         }
         else{console.log("no such user");}  
       })
