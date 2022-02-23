@@ -18,31 +18,31 @@ import { HomePageComponent } from './modules/homePage/home-page/home-page.compon
 import { LoginComponent } from './modules/Login/login/login.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { LoginModule } from './modules/Login/login.module';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import { FullCalendarModule } from '@fullcalendar/angular';
+// import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+// import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 
 
 const APP_ROUTES:Routes=[
-  
   {path:"", pathMatch: "full", redirectTo:"login"},
-  {path:"homePage",component:HomePageComponent},
-  {path:"login",component:LoginComponent},
-  {path:"customer1",component:CustomerListComponent},
-  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)}
-  
+  {path:"homePage",loadChildren:()=> import("./modules/homePage/home-page.module").then(m=>m.HomePageModule)}
+  // {path:"login",component:LoginComponent},
+  // {path:"customer1",component:CustomerListComponent},
+  // {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)} 
 ];
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  // interactionPlugin
-]);
+// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+//   dayGridPlugin,
+//   // interactionPlugin
+// ]);
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    HomePageComponent, 
+    HomePageComponent,
+    // CalendarComponent, 
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserAnimationsModule,
     CustomerModule,
     LoginModule,
-    FullCalendarModule,
+    // FullCalendarModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,
@@ -62,7 +62,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatTabsModule,
     MatIconModule,
     BrowserModule,
-    DropDownsModule
+    // DropDownsModule
     
   ],
   providers: [],
