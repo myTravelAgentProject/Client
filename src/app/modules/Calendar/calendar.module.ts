@@ -6,18 +6,19 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
  
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   // interactionPlugin
 ]);
 
 @NgModule({
-  declarations: [CalendarComponent],
+  declarations: [],
   imports: [
     CommonModule  
     ,FullCalendarModule
  
   ],
-  exports:[CalendarComponent]
+  exports:[]
 })
 export class CalendarModule { }

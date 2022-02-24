@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CustomerModule } from './modules/customer/customer.module';
+import { CalendarModule } from './modules/Calendar/calendar.module';
 import { RouterModule,Routes } from '@angular/router';
 import { CustomerListComponent } from './modules/customer/customer-list/customer-list.component';
 import { CustomerCardComponent } from './modules/customer/customer-card/customer-card.component';
@@ -18,11 +19,12 @@ import { HomePageComponent } from './modules/homePage/home-page/home-page.compon
 import { LoginComponent } from './modules/Login/login/login.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { LoginModule } from './modules/Login/login.module';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import { Calendar, FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 // /*  */import { MatFormFieldControl } from '@angular/material/form-field';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 
 
 const APP_ROUTES:Routes=[
@@ -30,9 +32,10 @@ const APP_ROUTES:Routes=[
   {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
-  {path:"customer1",component:CustomerListComponent},
-  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)}
-  
+  // {path:"customer1",component:CustomerListComponent},
+  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
+  {path:"calendar",component:CalendarComponent}
+
 ];
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -41,8 +44,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    HomePageComponent, 
+    // AdminComponent,
+    HomePageComponent,
+    CalendarComponent, 
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CustomerModule,
     LoginModule,
     FullCalendarModule,
+    CalendarModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,

@@ -10,17 +10,17 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppModule } from 'src/app/app.module';
 
 
-const HOME_ROUTES:Routes=[
-  {path:"",component:HomePageComponent},
-  {path:"calendar",component:CalendarComponent},
-  {path:"customer", loadChildren:()=> import("src/app/modules/customer/customer.module").then(m=>m.CustomerModule)}
-];
+// const HOME_ROUTES:Routes=[
+//   {path:"",component:HomePageComponent},
+//   {path:"calendar",component:CalendarComponent},
+//   {path:"customer", loadChildren:()=> import("src/app/modules/customer/customer.module").then(m=>m.CustomerModule)}
+// ];
 
 @NgModule({
   declarations: [HomePageComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(HOME_ROUTES),
+    // RouterModule.forChild(HOME_ROUTES),
     MatIconModule,
     CustomerModule,
     CalendarModule
