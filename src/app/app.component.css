@@ -1,6 +1,6 @@
-/* elements */
+elements
 body{
-    background-image: url('src/imgs/hotel-room.jpg');
+    /* background-image: url('src/imgs/hotel-room.jpg'); */
     background-size: cover;
     position: fixed;
     width: 100%;
@@ -28,4 +28,15 @@ body{
     position: fixed;
     top:15%;
     left:5%;
+}
+
+
+
+.bi-person-circle{
+    text-align: center;
+}
+
+.mat-icon{
+    font-size: 50px;
+    color: black;
 }
