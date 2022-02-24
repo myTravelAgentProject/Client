@@ -29,7 +29,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 const APP_ROUTES:Routes=[
   {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",loadChildren:()=> import("./modules/homePage/home-page.module").then(m=>m.HomePageModule)},
-  {path:"login",component:LoginComponent},
+  {path:"login",component:LoginComponent}
   // {path:"calendar",component:CalendarComponent},
   // {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)} 
 ];
