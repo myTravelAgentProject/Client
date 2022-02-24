@@ -31,7 +31,7 @@ import { HomePageModule } from './modules/homePage/home-page.module';
 const APP_ROUTES:Routes=[
   {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",loadChildren:()=> import("./modules/homePage/home-page.module").then(m=>m.HomePageModule)},
-  {path:"login",component:LoginComponent}
+  {path:"login",component:LoginComponent},
   // {path:"calendar",component:CalendarComponent},
   {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)} ,
   {path:"calendar", loadChildren:()=> import("./modules/Calendar/calendar.module").then(m=>m.CalendarModule)} 
