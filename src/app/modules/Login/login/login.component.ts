@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
          console.log(this.userAdminDTO);
          alert("Welcome to "+this.userAdminDTO.name);
          this.router.navigate(['/homePage']); 
-        //  this._userService.setAuthorized(true);
+         this._userService.setAuthorized(true);
         }
         else{console.log("no such user");}  
       })
