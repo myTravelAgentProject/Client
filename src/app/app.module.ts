@@ -23,6 +23,8 @@ import { LoginModule } from './modules/Login/login.module';
 // import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
+import { HomePageModule } from './modules/homePage/home-page.module';
 // import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 
 
@@ -31,7 +33,9 @@ const APP_ROUTES:Routes=[
   {path:"homePage",loadChildren:()=> import("./modules/homePage/home-page.module").then(m=>m.HomePageModule)},
   {path:"login",component:LoginComponent}
   // {path:"calendar",component:CalendarComponent},
-  // {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)} 
+  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)} ,
+  {path:"calendar", loadChildren:()=> import("./modules/Calendar/calendar.module").then(m=>m.CalendarModule)} 
+
 ];
 // FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 //   dayGridPlugin,
@@ -40,8 +44,8 @@ const APP_ROUTES:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent
-    // HomePageComponent,
+    // AdminComponent
+    // HomePageComponent
     // CalendarComponent 
   ],
   imports: [
@@ -54,6 +58,7 @@ const APP_ROUTES:Routes=[
     BrowserAnimationsModule,
     // CustomerModule,
     LoginModule,
+    HomePageModule,
     // FullCalendarModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
