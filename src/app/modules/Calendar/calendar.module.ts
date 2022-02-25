@@ -17,7 +17,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   imports: [
     CommonModule  
     ,FullCalendarModule
- 
   ],
   exports:[]
 })

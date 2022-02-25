@@ -20,4 +20,5 @@ export class CalendarComponent implements OnInit {
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
   };
+  
 }
