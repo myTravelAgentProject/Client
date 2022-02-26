@@ -26,18 +26,19 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { OrdersListComponent } from './modules/orders/orders-list/orders.component';
-import { OrderCardComponent } from './modules/orders/order-card/order-card.component';
+import { OrdersModule } from './modules/orders/orders.module';
 
 
 const APP_ROUTES:Routes=[
   
-  // {path:"", pathMatch: "full", redirectTo:"login"},
+  {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
   // {path:"customer1",component:CustomerListComponent},
   {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
-  {path:"calendar",component:CalendarComponent}
+  {path:"calendar",component:CalendarComponent},
+  // {path:"order",component:OrdersListComponent},
+  {path:"orders", loadChildren:()=> import("./modules/orders/orders.module").then(m=>m.OrdersModule)},
 
 ];
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -50,8 +51,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     // AdminComponent,
     HomePageComponent,
     CalendarComponent,
-    // OrdersComponent,
-    // OrderCardComponent, 
   ],
   imports: [
     BrowserModule,
@@ -65,6 +64,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LoginModule,
     FullCalendarModule,
     CalendarModule,
+    OrdersModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MatInputModule,
