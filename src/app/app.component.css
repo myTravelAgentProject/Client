@@ -37,8 +37,8 @@ body{
 }
 
 .mat-icon{
-    font-size: 50px;
-    color: black;
+    font-size: 150%;
+    color: white;
 }
 
 ul {
@@ -67,4 +67,17 @@ ul {
   
   .active {
     background-color: #04AA6D;
+  }
+
+ 
+  .nav-tabs{
+    text-align: right;
+  }
+
+  .icons{
+    font-size: 200%;
+  }
+
+  .tab-name{
+    font-size: 150%;
   }

@@ -2,18 +2,32 @@
 <!-- <mat-tab-group>
     <mat-tab label="Calendar"><app-home-page></app-home-page> </mat-tab>
     <mat-tab label="Customers"> <app-customer-list></app-customer-list> </mat-tab>
-    <mat-tab label="Add New Customer"> <br><app-customer-card></app-customer-card></mat-tab>
-  </mat-tab-group> -->
+    <mat-tab label="Add New Customer"> <br><app-customer-card></app-customer-card></mat-tab>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ <!-- </mat-tab-group> -->
 <div *ngIf="authorized">
     <nav>
         <ul class="nav nav-tabs" >
-             <li ><a routerLink="/homePage" routerLinkActive="active">דף הבית</a></li>
+             <li >
+               <a routerLink="/calendar" routerLinkActive="active" class="tab-name">
+                <mat-icon class="icons">home</mat-icon>
+                <br>
+                 דף הבית</a></li>
             <!-- <li><a routerLink="/login" routerLinkActive="active">Login</a></li>  -->
              <!-- <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li>-->
            
-         <li><a routerLink="/customer" routerLinkActive="active">לקוחות</a></li>
-           <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">לקוח חדש</a></li>
-           <li><a routerLink="/calendar" routerLinkActive="active">לוח שנה </a></li>
+         <li><a routerLink="/customer" routerLinkActive="active">
+          <mat-icon>supervisor_account</mat-icon>
+          <br>
+          לקוחות</a></li>
+           <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">
+            <mat-icon>group_add</mat-icon>
+            <br>
+            לקוח חדש</a></li>
+           <li><a routerLink="/homePage" routerLinkActive="active">
+            <mat-icon>today</mat-icon>
+            <br>
+            הזמנות </a></li>
            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
           </button>
@@ -97,7 +111,7 @@
         </ul>
       </div>
     </div>
-  <!-- </div>  
+  </div>  
     <div class="tabs" *ngIf="authorized">
       <div *ngIf="authorized">
         <nav>
@@ -115,6 +129,37 @@
        <router-outlet></router-outlet>
 </body>
 </html>  -->
-
-
-    
+<!-- 
+<nav id="navbar-example2" class="navbar navbar-light bg-light px-3">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#scrollspyHeading1">First</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#scrollspyHeading2">Second</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+  <h4 id="scrollspyHeading1">First heading</h4>
+  <p>...</p>
+  <h4 id="scrollspyHeading2">Second heading</h4>
+  <p>...</p>
+  <h4 id="scrollspyHeading3">Third heading</h4>
+  <p>...</p>
+  <h4 id="scrollspyHeading4">Fourth heading</h4>
+  <p>...</p>
+  <h4 id="scrollspyHeading5">Fifth heading</h4>
+  <p>...</p>
+</div>
+     -->
