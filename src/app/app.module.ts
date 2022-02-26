@@ -26,6 +26,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { OrdersListComponent } from './modules/orders/orders-list/orders.component';
+import { OrderCardComponent } from './modules/orders/order-card/order-card.component';
 
 
 const APP_ROUTES:Routes=[
@@ -47,7 +49,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppComponent,
     // AdminComponent,
     HomePageComponent,
-    CalendarComponent, 
+    CalendarComponent,
+    // OrdersComponent,
+    // OrderCardComponent, 
   ],
   imports: [
     BrowserModule,
