@@ -62,22 +62,16 @@ ul {
   }
   
   li a:hover:not(.active) {
-    background-color:  #000;
+    /* background-color:  #000; */
+    color: #000;
   }
   
   .active {
-    background-color:#FC9616;;
+    background-color: rgb(141,194, 249);
   }
 
  
-  .nav-tabs{
-    text-align: right;
-  }
 
-  .icons{
-    font-size: 200%;
-  }
+ 
 
-  .tab-name{
-    font-size: 150%;
-  }
+ 
