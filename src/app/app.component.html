@@ -7,13 +7,30 @@
 <div *ngIf="authorized">
     <nav>
         <ul class="nav nav-tabs" >
-             <li ><a routerLink="/homePage" routerLinkActive="active">home</a></li>
+             <li ><a routerLink="/homePage" routerLinkActive="active">דף הבית</a></li>
             <!-- <li><a routerLink="/login" routerLinkActive="active">Login</a></li>  -->
              <!-- <li><a routerLink="/newCustomer" routerLinkActive="active">New Customer</a></li>-->
            
-         <li><a routerLink="/customer" routerLinkActive="active">Customers</a></li>
-           <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">New Customer</a></li>
-           <li><a routerLink="/calendar" routerLinkActive="active">Calendar</a></li>
+         <li><a routerLink="/customer" routerLinkActive="active">לקוחות</a></li>
+           <li><a routerLink="/customer/NewCustomer" routerLinkActive="active">לקוח חדש</a></li>
+           <li><a routerLink="/calendar" routerLinkActive="active">לוח שנה </a></li>
+           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
         </ul>
     </nav> 
     </div> 

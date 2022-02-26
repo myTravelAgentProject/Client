@@ -14,7 +14,8 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
   }
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth'
+    initialView: 'dayGridMonth',
+    // schedulerLicenseKey: 'XXX'
   };
 
   toggleWeekends() {

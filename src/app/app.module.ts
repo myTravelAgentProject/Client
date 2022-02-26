@@ -25,6 +25,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // /*  */import { MatFormFieldControl } from '@angular/material/form-field';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 const APP_ROUTES:Routes=[
@@ -67,7 +68,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatTabsModule,
     MatIconModule,
     BrowserModule,
-    DropDownsModule
+    DropDownsModule,
+    MatMenuModule,
     
   ],
   providers: [],

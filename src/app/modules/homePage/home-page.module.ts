@@ -8,6 +8,7 @@ import { CustomerModule } from '../customer/customer.module';
 import { CalendarModule } from '../Calendar/calendar.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppModule } from 'src/app/app.module';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 // const HOME_ROUTES:Routes=[
@@ -23,7 +24,8 @@ import { AppModule } from 'src/app/app.module';
     // RouterModule.forChild(HOME_ROUTES),
     MatIconModule,
     CustomerModule,
-    CalendarModule
+    CalendarModule,
+    MatMenuModule,
   ],
   exports:[HomePageComponent]
 })
