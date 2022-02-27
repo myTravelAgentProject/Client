@@ -4,3 +4,57 @@
     font-weight: 600;
     border-radius: 6px;
 }
+
+
+
+.mat-icon{
+    font-size: 200%;
+}
+
+.mat-form-field{
+    background-color: white;
+    
+}
+
+.form-card{
+    width: 40%;
+    position: relative;
+    right: 30%;
+}
+
+.first-name{
+    margin-left:2%;
+    width:49%;
+}
+
+.last-name{
+    width:49%;
+}
+
+.phone{
+width: 28%;
+margin-right: 2%;
+}
+
+
+.num-of-people{
+    width:50px ;
+    margin: left 2%;
+    margin-right: 0%; 
+}
+
+table{
+    width: 100%;
+    margin-right: 0%;
+    text-align: right;
+}
+
+.title{
+    text-align: center;
+}
+
+.example-button-row{
+    width: 5px;
+    margin: left 10%;
+    margin-right: 65%;
+  }

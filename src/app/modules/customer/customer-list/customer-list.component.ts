@@ -12,6 +12,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-list',
@@ -25,8 +28,11 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
 
   customers: CustomerDTO[]=[];
+  customersName:string[]=[];
 
-  
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions!: Observable<string[]>;
+  myControl = new FormControl();
 
 
   openDialog(Id:number): void {
@@ -49,20 +55,36 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
     })
   }
 
+  // getAllCustomersName(){
+  //   this.getAllCustomers();
+  //   this.customers.forEach((customer)=>{
+
+  //   }
+  // }
   getCustomerDetails(id:number): void {
     this.openDialog(id);
   }
 
   ngOnInit(): void {
     this.getAllCustomers();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
     
+  }
+  
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
+  sort: MatSort// = new MatSort;
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -82,6 +104,36 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  sortData(sort: Sort) {
+    const data = this.customers.slice();
+    if (!sort.active || sort.direction === '') {
+      this.customers = data;
+      return;
+    }
+
+    this.customers = data.sort((a: any, b: any) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'firstName':
+          return this.compare(a.firstName, b.firstName, isAsc);
+        case 'calories':
+          return this.compare(a.calories, b.calories, isAsc);
+        case 'fat':
+          return this.compare(a.fat, b.fat, isAsc);
+        case 'carbs':
+          return this.compare(a.carbs, b.carbs, isAsc);
+        case 'protein':
+          return this.compare(a.protein, b.protein, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
 }

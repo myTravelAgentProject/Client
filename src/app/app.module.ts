@@ -27,6 +27,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { OrdersModule } from './modules/orders/orders.module';
+import { MenuComponent } from './menu/menu.component';
 
 
 const APP_ROUTES:Routes=[
@@ -51,6 +52,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     // AdminComponent,
     HomePageComponent,
     CalendarComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

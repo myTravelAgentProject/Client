@@ -1,5 +1,24 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search by Name</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+
+
 <div class="mat-elevation-z8 demo-table">
-  <table mat-table [dataSource]="customers"  matSort (matSortChange)="announceSortChange($event)"
+  <table mat-table [dataSource]="customers"  matSort (matSortChange)="sortData($event)"
   class="mat-elevation-z8" >
     <!-- (matSortChange)="announceSortChange($event)" -->
 
@@ -43,9 +62,12 @@
    
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+  <mat-paginator [pageSizeOptions]="[1, 5, 10]"
                  showFirstLastButtons 
-                 aria-label="Select page of customers elements">
+                 aria-label="Select page of customers elements"
+                 [pageSize]="1"
+                 [length]="5"
+                 >
   </mat-paginator>
 </div>
 

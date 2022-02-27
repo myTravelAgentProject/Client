@@ -7,8 +7,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 const ORDER_ROUTES: Routes = [
-  { path: "ORDERS", component: OrdersListComponent },
-  { path: "customer/NewCustomer", component: OrderCardComponent },
+  { path: "orders", component: OrdersListComponent },
+  { path: "orders/NewOrder", component: OrderCardComponent },
 ];
 
 @NgModule({

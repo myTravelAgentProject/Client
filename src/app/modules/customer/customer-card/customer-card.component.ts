@@ -68,14 +68,15 @@ export class CustomerCardComponent implements OnInit {
   }
 
   saveCustomer() {
-    if (this.customerForm.value.id == 0) {
+    if (this.customerForm.get('id')?.value == 0) {
       this._customerService.addNewCustomer(this.customerForm.value).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
-            this._router.navigate(['/customer1']); 
-          } else
+            this._router.navigate(['./customerList']); 
+          } else {
             console.log("faild");
-            this._router.navigate(['/homePage']); 
+            this._router.navigate(['./homePage']);
+          }
         });
     }
     else
@@ -86,11 +87,20 @@ export class CustomerCardComponent implements OnInit {
           } else
             console.log("faild");
         });
-  };
-
-  deleteCustomer(){
-    this._customerService.deleteCustomer(this.customerForm.value.id);
-    this._router.navigate(['/customer']); 
   }
 
-}
+ 
+
+  deleteCustomer(){
+    if(this.customerForm.value.id!=0)
+      this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(data=>{
+        if(data)  {
+       console.log("delete");
+       this.getALLCustomerDetails();
+       this._router.navigate(['/customer']);}
+       else
+            console.log("faild");
+
+          });
+        }
+  }

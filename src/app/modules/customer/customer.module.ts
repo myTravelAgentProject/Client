@@ -13,15 +13,18 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatIconModule } from "@angular/material/icon";
+import { MatOptionModule} from "@angular/material/core";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const CUSTOMER_ROUTES: Routes = [
-    { path: "customer", component: CustomerListComponent },
-    { path: "customer/NewCustomer", component: CustomerCardComponent },
+    { path: "customerList", component: CustomerListComponent },
+    { path: "NewCustomer", component: CustomerCardComponent },
 ];
 @NgModule({
     declarations: [CustomerListComponent, CustomerCardComponent, CustomerDialogComponent],
     imports: [ReactiveFormsModule, FormsModule, RouterModule.forChild(CUSTOMER_ROUTES), MatDialogModule,
-        MatButtonModule,CommonModule,MatInputModule,MatTableModule,MatPaginatorModule,MatSortModule, MatIconModule ],
+        MatButtonModule,CommonModule,MatInputModule,MatTableModule,MatPaginatorModule,MatSortModule, MatIconModule,MatOptionModule,MatAutocompleteModule,MatCheckboxModule ],
     providers: [CustomerService],
     exports: [CustomerListComponent, CustomerCardComponent]
 })
