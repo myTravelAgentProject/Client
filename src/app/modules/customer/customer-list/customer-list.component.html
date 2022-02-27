@@ -22,19 +22,19 @@
   class="mat-elevation-z8" >
     <!-- (matSortChange)="announceSortChange($event)" -->
 
-    <!-- Position Column -->
+    <!-- FirstName Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by firstname"> First Name</th>
       <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- LastName Column -->
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by lastname"> Last Name </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by lastName"> Last Name </th>
       <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- EmailAddress Column -->
     <ng-container matColumnDef="emailAddress">
       <th mat-header-cell *matHeaderCellDef> EmailAddress </th>
       <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
