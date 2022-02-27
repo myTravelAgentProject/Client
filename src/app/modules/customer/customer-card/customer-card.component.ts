@@ -92,15 +92,18 @@ export class CustomerCardComponent implements OnInit {
  
 
   deleteCustomer(){
-    if(this.customerForm.value.id!=0)
-      this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(data=>{
-        if(data)  {
-       console.log("delete");
-       this.getALLCustomerDetails();
-       this._router.navigate(['/customer']);}
-       else
-            console.log("faild");
+    if(this.customerForm.value.id!=0){
+      this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(data=>
+        this._router.navigate(['./customerList']))
+      //   if(data)  {
+      //  console.log("delete");
+      // //  this.getALLCustomerDetails();
+      //  this._router.navigate(['./customerList']);}
+      //  else
+      //       console.log("faild");
 
-          });
+      //     });}
+      //     else
+      //     this._router.navigate(['./customerList'])
         }
-  }
+  }}
