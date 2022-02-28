@@ -17,9 +17,9 @@
 }
 
 .form-card{
-    width: 40%;
+    width: 90%;
     position: relative;
-    right: 30%;
+    right: 5%;
 }
 
 .first-name{
@@ -51,6 +51,7 @@ table{
 
 .title{
     text-align: center;
+    margin-top: 3%;
 }
 
 .example-button-row{
@@ -58,3 +59,18 @@ table{
     margin: left 10%;
     margin-right: 65%;
   }
+
+  .mat-stroked-button{
+text-align: center;
+width: 135px;
+height: 15%;
+margin-left: 2%;
+  }
+
+  .svg{
+      margin-left: 2%;
+  }
+
+  .btn {
+    font-size: 1vw;
+}

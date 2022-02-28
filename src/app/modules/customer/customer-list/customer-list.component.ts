@@ -37,7 +37,8 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
-      width: '1200',
+      width: '80%',
+      height:'80%',
       data: {id:Id},
     });
 
@@ -51,6 +52,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   getAllCustomers() {
     this._customerService.getAllCustomers().subscribe(data => {
       if (data) { this.customers = data; console.log(this.customers)
+        this.dialog.closeAll();
        } else { console.log("no customers") }
     })
   }
@@ -82,17 +84,17 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort// = new MatSort;
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
-  // private handleContacts() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  private handleContacts() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
  
   announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports
@@ -118,14 +120,14 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
       switch (sort.active) {
         case 'firstName':
           return this.compare(a.firstName, b.firstName, isAsc);
-        case 'calories':
-          return this.compare(a.calories, b.calories, isAsc);
-        case 'fat':
-          return this.compare(a.fat, b.fat, isAsc);
-        case 'carbs':
-          return this.compare(a.carbs, b.carbs, isAsc);
-        case 'protein':
-          return this.compare(a.protein, b.protein, isAsc);
+        case 'lastName':
+          return this.compare(a.lastName, b.lastName, isAsc);
+        // case 'fat':
+        //   return this.compare(a.fat, b.fat, isAsc);
+        // case 'carbs':
+        //   return this.compare(a.carbs, b.carbs, isAsc);
+        // case 'protein':
+        //   return this.compare(a.protein, b.protein, isAsc);
         default:
           return 0;
       }

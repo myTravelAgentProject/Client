@@ -83,7 +83,8 @@ export class CustomerCardComponent implements OnInit {
       this._customerService.updateCustomer(this.customerForm.value).subscribe(
         data => {
           if (data) {
-            console.log("sucsess")
+            console.log("sucsess");
+            this._router.navigate(['./homePage']);
           } else
             console.log("faild");
         });
@@ -92,15 +93,21 @@ export class CustomerCardComponent implements OnInit {
  
 
   deleteCustomer(){
-    if(this.customerForm.value.id!=0)
-      this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(data=>{
-        if(data)  {
-       console.log("delete");
-       this.getALLCustomerDetails();
-       this._router.navigate(['/customer']);}
-       else
-            console.log("faild");
+    if(this.customerForm.value.id!=0){
+      this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(()=>
+     this._router.navigate(['./customerList']))
+      //   if(data)  {
+      //  console.log("delete");
+      //  this.getALLCustomerDetails();
+      //  this._router.navigate(['./customerList']);}
+      //  else
+      //      { console.log("faild");}
 
-          });
-        }
-  }
+      //     // });}
+      //     // else
+      //     this._router.navigate(['./customerList'])
+      //   })
+     
+   } }
+ }
+//  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
