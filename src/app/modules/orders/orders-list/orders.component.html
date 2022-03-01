@@ -11,6 +11,13 @@
       <!-- (matSortChange)="announceSortChange($event)" -->
   
       <!-- FirstName Column -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef > Customer Name</th>
+        <!-- sortActionDescription="Sort by firstname" -->
+        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+      </ng-container>
+
+      <!-- FirstName Column -->
       <ng-container matColumnDef="checkInDate">
         <th mat-header-cell *matHeaderCellDef > Check In Date</th>
         <!-- sortActionDescription="Sort by firstname" -->
@@ -58,7 +65,7 @@
       </div>
       </td>
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getOrderDetails(row.id)"></tr>
       <!-- (dblclick)="getCustomerDetails(row.id)" -->
      <!--  -->
     </table>

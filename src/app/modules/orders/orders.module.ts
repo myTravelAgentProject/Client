@@ -5,11 +5,14 @@ import { OrdersListComponent } from './orders-list/orders.component';
 import { OrderCardComponent } from './order-card/order-card.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import { OrderDialogComponent } from './order-dialog/order-dialog.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const ORDER_ROUTES: Routes = [
   { path: "ordersList", component: OrdersListComponent },
@@ -17,9 +20,10 @@ const ORDER_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [OrdersListComponent,OrderCardComponent],
+  declarations: [OrdersListComponent,OrderCardComponent , OrderDialogComponent],
   imports: [
-    CommonModule,ReactiveFormsModule, FormsModule,MatIconModule ,RouterModule.forChild(ORDER_ROUTES),MatInputModule,MatTableModule,MatPaginatorModule,MatSortModule, MatIconModule,MatOptionModule],
+    CommonModule,ReactiveFormsModule, FormsModule,MatIconModule ,RouterModule.forChild(ORDER_ROUTES),MatDialogModule,MatInputModule,MatTableModule,MatPaginatorModule,
+    MatSortModule, MatIconModule,MatOptionModule,MatDatepickerModule,MatNativeDateModule],
      providers: [],
     exports: [OrdersListComponent, OrderCardComponent]
 })

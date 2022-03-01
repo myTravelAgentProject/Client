@@ -53,6 +53,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HomePageComponent,
     CalendarComponent,
     MenuComponent,
+ 
   ],
   imports: [
     BrowserModule,

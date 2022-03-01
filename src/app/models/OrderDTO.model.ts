@@ -1,7 +1,8 @@
 import { Time } from "@angular/common";
-export class Order{
+export class OrderDTO{
     id:number;
     customerId:number;
+    customerName:string;
     checkInDate:Date;
     checkOutDate:Date;
     bookingDate:Date;
@@ -19,22 +20,26 @@ export class Order{
     newPrice?:number;
     change?:boolean;
     hotelId:number;
+    hotelName:string;
     comments:string;
     isImportant?:boolean;
     hotelPrice:number;
 
+
     
-    constructor( id:number,   customerId:number,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number, comments:string
+    constructor( id:number,   customerId:number,customerName:string,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number,hotelName:string, comments:string
         ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,statusCode:number ,earlyCheckIn?:Time,lateCheckOut?:Time,floorHeight?:number,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean)
    {
       this.id=id;
       this.customerId=customerId;
+      this.customerName=customerName;
       this.checkInDate=checkInDate;
       this.checkOutDate=checkOutDate;
       this.bookingDate=bookingDate;
       this.separteBeds=separteBeds;
       this.multipleRooms=multipleRooms;
       this.hotelId=hotelId;
+      this.hotelName=hotelName;
       this.comments=comments;
       this.totalPrice=totalPrice;
       this.costPrice=costPrice;

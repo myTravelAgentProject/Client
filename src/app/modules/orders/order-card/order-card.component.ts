@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from 'src/app/models/Order.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { OrdersService } from '../orders.service';
 
 @Component({
@@ -9,9 +11,95 @@ import { OrdersService } from '../orders.service';
 })
 export class OrderCardComponent implements OnInit {
 
-  constructor(private _orderService:OrdersService) { }
+  constructor(private _orderService:OrdersService,private _router:Router) { }
 
+ 
+
+  orderID!: number;
+
+
+  orderForm:FormGroup
   ngOnInit(): void {
+    this.buildForm();
+    this.getOrderDetails();
   }
 
+  setOrderDetails(order: OrderDTO): void {
+    // this.customerDetails = customer;
+    this.orderForm.patchValue(order);
+    // this.customerForm.controls["firstName"].setValue(customer.firstName);
+  }
+  buildForm(): void {
+    this.orderForm = new FormGroup({
+      "id":new FormControl(0,Validators.required),
+      "customerId":new FormControl(0,Validators.required),
+      "customerName": new FormControl( "",Validators.required),
+      "checkInDate": new FormControl("",Validators.required),
+      "checkOutDate": new FormControl("",Validators.required),
+      "bookingDate":new FormControl("",Validators.required),
+      "earlyCheckIn": new FormControl(),
+      "lateCheckOut": new FormControl(),
+      "separteBeds": new FormControl(false,Validators.required),
+      "multipleRooms": new FormControl(false,Validators.required),
+      "floorHeight": new FormControl(0),
+      "totalPrice": new FormControl(0,Validators.required),
+      "costPrice": new FormControl(0,Validators.required),
+      "bookingId": new FormControl(),
+      "numOfAdults": new FormControl(0,Validators.required),
+      "numOfKids": new FormControl(0),
+      "statusCode": new FormControl(0,Validators.required),
+      "newPrice": new FormControl(),
+      "change": new FormControl(),
+      "hotelId": new FormControl(0,Validators.required),
+      "hotelName": new FormControl("",Validators.required),
+      "comments": new FormControl("",Validators.required),
+      "isImportant": new FormControl(),
+      "hotelPrice": new FormControl(0,Validators.required),
+    });
+  }
+   
+    getOrderDetails(){
+      if(this.orderID){
+        this.orderForm.disable();
+      this._orderService.getOrderById(this.orderID).subscribe(data => {
+        if (data) {
+          this.setOrderDetails(data);
+          console.log(data);
+        }
+        else { console.log("no such order"); }
+      })}
+    }
+
+onEditClickecd(): void {
+  this.orderForm.enable();
+}
+
+saveOrder() {
+  if (this.orderForm.get('id')?.value == 0) {
+    this._orderService.addNewOrder(this.orderForm.value).subscribe( data => {
+        if (data) {
+          console.log("sucsess " + data);
+          this._router.navigate(['./ordersList']); 
+        } else {
+          console.log("faild");
+          this._router.navigate(['./homePage']);
+        }
+      });
+  }
+  else
+    this._orderService.updateOrder(this.orderForm.value).subscribe(
+      data => {
+        if (data) {
+          console.log("sucsess");
+          this._router.navigate(['./ordersList']);
+        } else
+          console.log("faild");
+    
+        });
+      }
+    
+}
+
+function Input() {
+  throw new Error('Function not implemented.');
 }

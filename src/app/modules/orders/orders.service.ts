@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
-import { Order } from 'src/app/models/Order.model';
+import { OrderDTO } from 'src/app/models/OrderDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +14,20 @@ export class OrdersService {
 
   constructor(private _http: HttpClient) { }
 
-  getChangePriceOrders(): Observable<Order[]> {
-    return this._http.get<Order[]>(this.baseUrl+"ChangedPriceOrders")
+  getChangePriceOrders(): Observable<OrderDTO[]> {
+    return this._http.get<OrderDTO[]>(this.baseUrl+"ChangedPriceOrders")
   }
 
-  getTheLastOrders(): Observable<Order[]> {
-    return this._http.get<Order[]>(this.baseUrl+"lastOrders")
+  getTheLastOrders(): Observable<OrderDTO[]> {
+    return this._http.get<OrderDTO[]>(this.baseUrl+"lastOrders")
   }
-  getByOrderId(id: number): Observable<Order> {
-    return this._http.get<Order>(this.baseUrl+id)
+  getOrderById(id: number): Observable<OrderDTO> {
+    return this._http.get<OrderDTO>(this.baseUrl+id)
   }
-  addNewOrder(newOrder:Order):Observable<number>{
+  addNewOrder(newOrder:OrderDTO):Observable<number>{
       return this._http.post<number>(this.baseUrl,newOrder)
   }
-  updateOrder(orderToUpdate:Order):Observable<any>{
+  updateOrder(orderToUpdate:OrderDTO):Observable<any>{
     return this._http.put(this.baseUrl+orderToUpdate.id,orderToUpdate)
     }
   deleteOrder(id:number):Observable<any>{
