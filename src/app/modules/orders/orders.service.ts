@@ -17,7 +17,6 @@ export class OrdersService {
   getChangePriceOrders(): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl+"ChangedPriceOrders")
   }
-
   getTheLastOrders(): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl+"lastOrders")
   }
