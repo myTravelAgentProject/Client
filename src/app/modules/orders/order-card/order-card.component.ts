@@ -15,7 +15,7 @@ export class OrderCardComponent implements OnInit {
 
  
 
-  orderID!: number;
+  orderID: number=18;
 
 
   orderForm:FormGroup
@@ -60,7 +60,7 @@ export class OrderCardComponent implements OnInit {
    
     getOrderDetails(){
       if(this.orderID){
-        this.orderForm.disable();
+        // this.orderForm.disable();
       this._orderService.getOrderById(this.orderID).subscribe(data => {
         if (data) {
           this.setOrderDetails(data);
