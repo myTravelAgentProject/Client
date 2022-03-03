@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Customer } from 'src/app/models/Customer.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
+import { CustomerService } from '../../customer/customer.service';
 import { OrdersService } from '../orders.service';
 
 @Component({
@@ -11,12 +13,13 @@ import { OrdersService } from '../orders.service';
 })
 export class OrderCardComponent implements OnInit {
 
-  constructor(private _orderService:OrdersService,private _router:Router) { }
+  constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService) { }
 
  
-
-  orderID: number=18;
-
+ customers:Customer[]=[]
+  customerId:number;
+  @Input()
+  orderID: number;
 
   orderForm:FormGroup
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(0,Validators.required),
+      "customerId":new FormControl(1,Validators.required),
       "customerName": new FormControl( "",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
@@ -98,8 +101,16 @@ saveOrder() {
         });
       }
     
-}
+ 
 
-function Input() {
-  throw new Error('Function not implemented.');
+// getCustomerId(name:string){
+//   this._customerService.getAllCustomers().subscribe(data => {
+//     if (data) { this.customers = data; 
+//       console.log(this.customers);
+//        this.c1= this.customers.filter((c:Customer)=>{
+//           if((c.firstName+" "+c.lastName)==name){return  c.id}} );
+//      } else { console.log("no customer") }
+//   })
+// }
+
 }

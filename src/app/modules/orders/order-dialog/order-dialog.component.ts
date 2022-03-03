@@ -10,13 +10,13 @@ import { CustomerDialogComponent } from '../../customer/customer-dialog/customer
 })
 export class OrderDialogComponent implements OnInit {
 
-  orderId: number;
+  orderID!: number;
 
   constructor( public dialogRef: MatDialogRef<CustomerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: OrderDTO) { }
 
   ngOnInit(): void {
-    this.orderId = this.data.id;
+    this.orderID = this.data.id;
   }
 
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 import {  OrderDTO } from 'src/app/models/OrderDTO.model';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { OrdersService } from '../orders.service';
 
 @Component({
@@ -19,9 +20,9 @@ export class OrdersListComponent implements OnInit {
 
   
   openDialog(Id:number): void {
-    const dialogRef = this.dialog.open(OrdersListComponent, {
-      width: '80%',
-      height:'80%',
+    const dialogRef = this.dialog.open(OrderDialogComponent, {
+      width: '70%',
+      height:'70%',
       data: {id:Id},
     });
 

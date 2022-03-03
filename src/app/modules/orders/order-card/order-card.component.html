@@ -15,7 +15,7 @@
     <mat-form-field appearance="fill" class="example-form-field">
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [rangePicker]="rangePicker">
-        <input matStartDate formControlName="checKInDate" placeholder="Start date" >
+        <input matStartDate formControlName="checkInDate" placeholder="Start date" >
         <input matEndDate formControlName="checkOutDate" placeholder="End date">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
@@ -26,7 +26,10 @@
         </mat-date-range-picker-actions>
       </mat-date-range-picker>
     </mat-form-field>
-  </div>    
+   </div>  
+  <!--<input type="datetime" formControlName="checkInDate">
+  <input type="datetime" formControlName="checkOutDate">
+  <input type="datetime" formControlName="bookingDate"> -->
 
     <!-- <mat-form-field appearance="fill">
       <mat-label>Check In Date</mat-label>
@@ -96,11 +99,11 @@
     </mat-form-field>
   סטטוס קוד</h4>
     <br>
-    <h4>
+    <!-- <h4>
     <mat-form-field appearance="fill" class="num-of-people" >
       <input matInput type="number" formControlName="hotelId">
     </mat-form-field>
-    מס' מלון</h4>
+    מס' מלון</h4> -->
     <br>
     <h4>
     <mat-form-field appearance="fill" class="num-of-people" >
