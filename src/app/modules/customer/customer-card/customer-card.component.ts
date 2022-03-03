@@ -45,6 +45,7 @@ export class CustomerCardComponent implements OnInit {
       "emailAddress": new FormControl("", Validators.email),
       "address": new FormControl("", Validators.required),
       "phoneNumber": new FormControl("", Validators.required),
+      "anotherPhoneNumber":new FormControl(""),
       "comments": new FormControl(),
     });
    

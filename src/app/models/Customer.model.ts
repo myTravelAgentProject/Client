@@ -11,6 +11,7 @@ export interface Customer{
     emailAddress?:string;
     address:string;
     phoneNumber:string;
+    anotherPhoneNumber?:string;
     comments?:string;
 
     

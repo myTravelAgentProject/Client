@@ -5,4 +5,5 @@ export interface CustomerDTO{
     emailAdress?:string;
     address:string;
     phoneNumber:string;
+    anotherPhoneNumber?:string;
 }
