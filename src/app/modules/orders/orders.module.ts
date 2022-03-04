@@ -13,6 +13,8 @@ import { MatTableModule } from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const ORDER_ROUTES: Routes = [
   { path: "ordersList", component: OrdersListComponent },
@@ -23,7 +25,8 @@ const ORDER_ROUTES: Routes = [
   declarations: [OrdersListComponent,OrderCardComponent , OrderDialogComponent],
   imports: [
     CommonModule,ReactiveFormsModule, FormsModule,MatIconModule ,RouterModule.forChild(ORDER_ROUTES),MatDialogModule,MatInputModule,MatTableModule,MatPaginatorModule,
-    MatSortModule, MatIconModule,MatOptionModule,MatDatepickerModule,MatNativeDateModule],
+    MatSortModule, MatIconModule,MatOptionModule,MatDatepickerModule,MatNativeDateModule,MatCheckboxModule,
+    MatRadioModule,],
      providers: [],
     exports: [OrdersListComponent, OrderCardComponent]
 })

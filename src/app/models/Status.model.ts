@@ -8,3 +8,5 @@ export class Status{
        
     }
 }
+
+enum

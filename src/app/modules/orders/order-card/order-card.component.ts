@@ -36,10 +36,10 @@ export class OrderCardComponent implements OnInit {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
       "customerId":new FormControl(1,Validators.required),
-      "customerName": new FormControl( "",Validators.required),
+      "customerName": new FormControl("michal solo",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
-      "bookingDate":new FormControl("",Validators.required),
+      "bookingDate":new FormControl("03/03/2022",Validators.required),
       "earlyCheckIn": new FormControl(),
       "lateCheckOut": new FormControl(),
       "separteBeds": new FormControl(false,Validators.required),
@@ -50,12 +50,12 @@ export class OrderCardComponent implements OnInit {
       "bookingId": new FormControl(),
       "numOfAdults": new FormControl(0,Validators.required),
       "numOfKids": new FormControl(0),
-      "statusCode": new FormControl(0,Validators.required),
+      "statusCode": new FormControl(1,Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
-      "hotelId": new FormControl(0,Validators.required),
-      "hotelName": new FormControl("",Validators.required),
-      "comments": new FormControl("",Validators.required),
+      "hotelId": new FormControl(4959,Validators.required),
+      "hotelName": new FormControl("Gan Ba’eden",Validators.required),
+      "comments": new FormControl(""),
       "isImportant": new FormControl(),
       "hotelPrice": new FormControl(0,Validators.required),
     });
@@ -113,4 +113,10 @@ saveOrder() {
 //   })
 // }
 
+deleteOrder(){
+  if(this.orderForm.value.id!=0){
+    this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>
+   this._router.navigate(['./ordersList']))
+}
+}
 }

@@ -5,8 +5,6 @@
     border-radius: 6px;
 }
 
-
-
 .mat-icon{
     font-size: 200%;
 }
@@ -17,25 +15,19 @@
 }
 
 .form-card{
-    width: 60%;
+    width: 55%;
     position: relative;
     right: 20%;
 }
 
-.first-name{
-    margin-left:2%;
-    width:49%;
+.name-filed{
+    width:63%;
+    margin-left: 2%;
 }
 
-.last-name{
-    width:49%;
+.dates{
+    width: 35%;
 }
-
-.phone{
-width: 28%;
-margin-right: 2%;
-}
-
 
 .num-of-people{
     width:50px ;
@@ -76,4 +68,21 @@ margin-left: 2%;
 }
 .example-form-field {
     margin-right: 20px;
+  }
+
+  .hotel{
+      width: 46%;
+  }
+
+  .price{
+      width: 25%;
+      margin-right: 2%;
+  }
+
+  .comments{
+      width: 100%;
+  }
+
+  .status{
+      margin-right: 2%;
   }

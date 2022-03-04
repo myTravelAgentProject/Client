@@ -15,6 +15,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-customer-list',
@@ -29,11 +30,10 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   customers: CustomerDTO[]=[];
   customersName:string[]=[];
-
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions!: Observable<string[]>;
+  name:string;
+  // options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
   myControl = new FormControl();
-
 
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
@@ -75,12 +75,25 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
     );
     
   }
+ 
   
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+
+  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  // }
+
+  _filter(val: string): string[] {
+    return this.customers.map(x => x.firstName+' '+x.lastName).filter(option =>
+      option.toLowerCase().includes(val.toLowerCase()));
   }
+
+  // findCustomer(name:string){
+  //   this.customers=this.customers.filter(x=>x.firstName.toLowerCase()+' '+x.lastName.toLowerCase().includes(name.toLowerCase()));
+  // }
+
+  
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
   @ViewChild(MatPaginator)

@@ -77,7 +77,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserModule,
     DropDownsModule,
     MatMenuModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
