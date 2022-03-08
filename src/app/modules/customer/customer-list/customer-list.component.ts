@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
-import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
 //Material:
@@ -28,7 +27,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
 
-  customers: CustomerDTO[]=[];
+  customers: Customer[]=[];
   customersName:string[]=[];
   name:string;
   // options: string[] = ['One', 'Two', 'Three'];
@@ -95,7 +94,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
-  dataSource = new MatTableDataSource<CustomerDTO>(this.customers);
+  dataSource = new MatTableDataSource<Customer>(this.customers);
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
   @ViewChild(MatSort)

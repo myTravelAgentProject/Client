@@ -1,19 +1,4 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Search by Name</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +14,11 @@
              [formControl]="myControl"
              [matAutocomplete]="auto"  #name>
       <mat-autocomplete #auto="matAutocomplete">
+        <mat-select [formControl]="myControl">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option}}
         </mat-option>
+      </mat-select>
       </mat-autocomplete>
     </mat-form-field>
     <!-- <button (click)="findCustomer(name.value)">חיפוש</button> -->
@@ -84,7 +71,6 @@
     </td>
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getCustomerDetails(row.id)"></tr>
-   
   </table>
 
   <mat-paginator [pageSizeOptions]="[1, 5, 10]"
