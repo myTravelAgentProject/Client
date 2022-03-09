@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map, Observable, startWith } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from '../../customer/customer.service';
@@ -15,16 +16,40 @@ export class OrderCardComponent implements OnInit {
 
   constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService) { }
 
- 
- customers:Customer[]=[]
+ filteredOptions: Observable<string[]>;
+  myControl = new FormControl();
+  customers:Customer[]=[]
   customerId:number;
   @Input()
   orderID: number;
+  
 
   orderForm:FormGroup
   ngOnInit(): void {
     this.buildForm();
     this.getOrderDetails();
+    this.getAllCustomers1();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
+  }
+
+  getAllCustomers1(){
+    this._customerService.getAllCustomers().subscribe(data=>{
+      if(data)
+       {this.customers=data; 
+        console.log(this.customers);
+        // this.filteredOptions = this.myControl.valueChanges.pipe(
+        //   startWith(''),
+        //   map(value => this._filter(value)),
+        // );
+      }})
+  };
+ 
+  _filter(val: string): string[] {
+    return this.customers.map(x => x.firstName+' '+x.lastName).filter(option =>
+      option.toLowerCase().includes(val.toLowerCase()));
   }
 
   setOrderDetails(order: OrderDTO): void {
@@ -35,16 +60,18 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(1,Validators.required),
-      "customerName": new FormControl("michal solo",Validators.required),
+      "customerId":new FormControl(18,Validators.required),
+      "customerName": new FormControl("",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
-      "bookingDate":new FormControl("03/03/2022",Validators.required),
+      "bookingDate":new FormControl("",Validators.required),
       "earlyCheckIn": new FormControl(),
       "lateCheckOut": new FormControl(),
       "separteBeds": new FormControl(false,Validators.required),
       "multipleRooms": new FormControl(false,Validators.required),
-      "floorHeight": new FormControl(0),
+      "floorHeight": new FormControl(),
+      // "highFloor": new FormControl(),
+      // "porch":new FormControl(),
       "totalPrice": new FormControl(0,Validators.required),
       "costPrice": new FormControl(0,Validators.required),
       "bookingId": new FormControl(),
@@ -63,7 +90,7 @@ export class OrderCardComponent implements OnInit {
    
     getOrderDetails(){
       if(this.orderID){
-        // this.orderForm.disable();
+         this.orderForm.disable();
       this._orderService.getOrderById(this.orderID).subscribe(data => {
         if (data) {
           this.setOrderDetails(data);

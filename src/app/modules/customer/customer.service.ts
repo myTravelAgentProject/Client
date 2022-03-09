@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 // import { listenerCount } from 'process';
 
 @Injectable({
@@ -14,8 +13,8 @@ export class CustomerService {
    baseUrl: string = "/api/Customer/";
   constructor(private _http: HttpClient) { }
 
-  getAllCustomers(): Observable<CustomerDTO[]> {
-    return this._http.get<CustomerDTO[]>(this.baseUrl)
+  getAllCustomers(): Observable<Customer[]> {
+    return this._http.get<Customer[]>(this.baseUrl)
   }
   getByCustomerId(id: number): Observable<Customer> {
     return this._http.get<Customer>(this.baseUrl+id)

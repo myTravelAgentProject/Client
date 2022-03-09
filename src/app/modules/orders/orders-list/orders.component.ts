@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { CustomerDTO } from 'src/app/models/CustomerDTO.model';
 import {  OrderDTO } from 'src/app/models/OrderDTO.model';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { OrdersService } from '../orders.service';
