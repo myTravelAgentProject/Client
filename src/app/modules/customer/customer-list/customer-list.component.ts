@@ -15,6 +15,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-customer-list',
@@ -28,6 +29,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
 
   customers: Customer[]=[];
+  allCustomers:Customer[]=[];
   customersName:string[]=[];
   name:string;
   // options: string[] = ['One', 'Two', 'Three'];
@@ -50,7 +52,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   getAllCustomers() {
     this._customerService.getAllCustomers().subscribe(data => {
-      if (data) { this.customers = data; console.log(this.customers)
+      if (data) { this.allCustomers=data; this.customers = data; console.log(this.customers)
         this.dialog.closeAll();
        } else { console.log("no customers") }
     })
@@ -72,7 +74,6 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
       startWith(''),
       map(value => this._filter(value)),
     );
-    
   }
  
   
@@ -84,14 +85,25 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   // }
 
   _filter(val: string): string[] {
+    // this.filteredCustomers=this.customers.filter(option =>
+    //   (option.firstName+' '+option.lastName).toLowerCase().includes(val.toLowerCase()));
+      // return this.customers.map(x => x.firstName+' '+x.lastName);
     return this.customers.map(x => x.firstName+' '+x.lastName).filter(option =>
       option.toLowerCase().includes(val.toLowerCase()));
   }
 
-  // findCustomer(name:string){
-  //   this.customers=this.customers.filter(x=>x.firstName.toLowerCase()+' '+x.lastName.toLowerCase().includes(name.toLowerCase()));
-  // }
+  findCustomer(name:string){
+    this.customers=this.allCustomers.filter(option =>
+      (option.firstName+' '+option.lastName).toLowerCase().includes(name.toLowerCase()));
+    // this.customers=this.customers.filter(x=>x.firstName.toLowerCase()+' '+x.lastName.toLowerCase().includes(name.toLowerCase()));
+  }
 
+  clear(){
+    (document.getElementById('filterField') as HTMLInputElement).value='';
+    
+    // document.getElementById("filterField")?.ariaValueText='';
+    this.customers=this.allCustomers;
+  }
   
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<Customer>(this.customers);
@@ -103,6 +115,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
+  
   private handleContacts() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -121,13 +134,13 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   }
 
   sortData(sort: Sort) {
-    const data = this.customers.slice();
+    const data = this. customers.slice();
     if (!sort.active || sort.direction === '') {
-      this.customers = data;
+      this. customers = data;
       return;
     }
 
-    this.customers = data.sort((a: any, b: any) => {
+    this. customers = data.sort((a: any, b: any) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'firstName':
