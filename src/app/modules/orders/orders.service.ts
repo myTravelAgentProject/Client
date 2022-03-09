@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
+import { Hotel } from 'src/app/models/Hotel.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 
 @Injectable({
@@ -30,5 +31,8 @@ export class OrdersService {
     }
   deleteOrder(id:number):Observable<any>{
     return this._http.delete(this.baseUrl+id)
+  }
+  getAllHotels():Observable<Hotel[]>{
+    return this._http.get<Hotel[]>("api/Hotel/")
   }
 }

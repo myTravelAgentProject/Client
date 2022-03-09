@@ -164,5 +164,3 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   }
 
 }
-
-s
