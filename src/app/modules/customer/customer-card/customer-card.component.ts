@@ -20,13 +20,13 @@ export class CustomerCardComponent implements OnInit {
   customerForm!: FormGroup;
 
   @Input()
-  customerID!: number;
+  customerID: number=0;
  
 
   ngOnInit(): void {
     this.buildForm();
     this.getALLCustomerDetails();
-    this.getAllCustomerOrders(this.customerID);
+    this.getAllCustomerOrders();
   }
 
   setCustomerDetails(customer: Customer): void {
@@ -35,10 +35,10 @@ export class CustomerCardComponent implements OnInit {
     // this.customerForm.controls["firstName"].setValue(customer.firstName);
   }
 
-  
+
   buildForm(): void {
     this.customerForm = new FormGroup({
-      "id":new FormControl(0),
+      "id":new FormControl(2),
       "firstName": new FormControl("", Validators.required),
       "lastName": new FormControl("", Validators.required),
       "numOfAdults": new FormControl(0),
@@ -119,9 +119,9 @@ export class CustomerCardComponent implements OnInit {
    columnsToDisplay: string[] = ['customerName','checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
    dataSource = new MatTableDataSource<OrderDTO>(this.ordersList);
  
-   getAllCustomerOrders(customerID:number) {
-    // if (this.customerForm.get('id')?.value == 0) {
-      this._customerService.getOrdersByCustomerId(this.customerForm.value.id).subscribe( data => {
+   getAllCustomerOrders() {
+    //  if (this.customerForm.get('id')?.value != 0) {
+      this._customerService.getOrdersByCustomerId(this.customerID).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
             this.ordersList=data;
@@ -129,8 +129,8 @@ export class CustomerCardComponent implements OnInit {
             console.log("faild");
           }
         });
-    }
-  //  }
+    // }
+ }
 
  }
 //  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
