@@ -1,8 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
+import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
+import { OrdersService } from '../../orders/orders.service';
 
 @Component({
   selector: 'app-customer-card',
@@ -23,6 +26,7 @@ export class CustomerCardComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getALLCustomerDetails();
+    this.getAllCustomerOrders(this.customerID);
   }
 
   setCustomerDetails(customer: Customer): void {
@@ -31,6 +35,7 @@ export class CustomerCardComponent implements OnInit {
     // this.customerForm.controls["firstName"].setValue(customer.firstName);
   }
 
+  
   buildForm(): void {
     this.customerForm = new FormGroup({
       "id":new FormControl(0),
@@ -43,7 +48,7 @@ export class CustomerCardComponent implements OnInit {
       "separteBeds": new FormControl(),
       "multipleRooms": new FormControl(),
       "emailAddress": new FormControl("", Validators.email),
-      "address": new FormControl("", Validators.required),
+      "address": new FormControl(""),
       "phoneNumber": new FormControl("", Validators.required),
       "anotherPhoneNumber":new FormControl(""),
       "comments": new FormControl(),
@@ -91,8 +96,6 @@ export class CustomerCardComponent implements OnInit {
         });
   }
 
- 
-
   deleteCustomer(){
     if(this.customerForm.value.id!=0){
       this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(()=>
@@ -110,5 +113,24 @@ export class CustomerCardComponent implements OnInit {
       //   })
      
    } }
+
+   //Orders
+   ordersList:OrderDTO[]=[];
+   columnsToDisplay: string[] = ['customerName','checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
+   dataSource = new MatTableDataSource<OrderDTO>(this.ordersList);
+ 
+   getAllCustomerOrders(customerID:number) {
+    // if (this.customerForm.get('id')?.value == 0) {
+      this._customerService.getOrdersByCustomerId(this.customerForm.value.id).subscribe( data => {
+          if (data) {
+            console.log("sucsess " + data);
+            this.ordersList=data;
+          } else {
+            console.log("faild");
+          }
+        });
+    }
+  //  }
+
  }
 //  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };

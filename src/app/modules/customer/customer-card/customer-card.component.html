@@ -288,4 +288,69 @@
         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
       </svg>
       <h1>הזמנות</h1>
+      <div class="mat-elevation-z8 demo-table">
+        <table mat-table [dataSource]="ordersList"  
+        class="mat-elevation-z8" >
+        <!-- matSort (matSortChange)="sortData($event)" -->
+          <!-- (matSortChange)="announceSortChange($event)" -->
+      
+          <!-- FirstName Column -->
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef > Customer Name</th>
+            <!-- sortActionDescription="Sort by firstname" -->
+            <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+          </ng-container>
+    
+          <!-- FirstName Column -->
+          <ng-container matColumnDef="checkInDate">
+            <th mat-header-cell *matHeaderCellDef > Check In Date</th>
+            <!-- sortActionDescription="Sort by firstname" -->
+            <td mat-cell *matCellDef="let element"> {{element.checkInDate}} </td>
+          </ng-container>
+      
+          <!-- LastName Column -->
+          <ng-container matColumnDef="checkOutDate">
+            <th mat-header-cell *matHeaderCellDef> check Out Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
+          </ng-container>
+      
+          <!-- EmailAddress Column -->
+          <ng-container matColumnDef="totalPrice">
+            <th mat-header-cell *matHeaderCellDef> Total Price </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+          </ng-container>
+      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="costPrice">
+            <th mat-header-cell *matHeaderCellDef>Cost Price</th>
+            <td mat-cell *matCellDef="let element"> {{element.costPrice}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="numOfAdults">
+            <th mat-header-cell *matHeaderCellDef> Num Of Adults </th>
+            <td mat-cell *matCellDef="let element"> {{element.numOfAdults}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="numOfKids">
+            <th mat-header-cell *matHeaderCellDef> Num Of Kids </th>
+            <td mat-cell *matCellDef="let element"> {{element.numOfKids}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="hotelName">
+            <th mat-header-cell *matHeaderCellDef> Hotel Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.hotelName}} </td>
+          </ng-container>
+    
+          <td>
+          <div class="example-button-container">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          </td>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+          <!-- (dblclick)="getCustomerDetails(row.id)" -->
+         <!--  -->
+        </table>
     </div>

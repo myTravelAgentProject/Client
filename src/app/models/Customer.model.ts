@@ -9,7 +9,7 @@ export interface Customer{
     separteBeds?:boolean;
     multipleRooms?:boolean;
     emailAddress?:string;
-    address:string;
+    address?:string;
     phoneNumber:string;
     anotherPhoneNumber?:string;
     comments?:string;
