@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
+import { Hotel } from 'src/app/models/Hotel.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from '../../customer/customer.service';
 import { OrdersService } from '../orders.service';
@@ -17,9 +18,12 @@ export class OrderCardComponent implements OnInit {
   constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService) { }
 
  filteredOptions: Observable<string[]>;
+ hotelsOption:Observable<string[]>;
   myControl = new FormControl();
+  hotelName1= new FormControl();
   customers:Customer[]=[]
   customerId:number;
+  hotels:Hotel[]=[];
   @Input()
   orderID: number;
   
@@ -29,10 +33,16 @@ export class OrderCardComponent implements OnInit {
     this.buildForm();
     this.getOrderDetails();
     this.getAllCustomers1();
+    this.getHotelsList();
+    this.hotelsOption=this.hotelName1.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterHotel(value)),
+    )
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),
     );
+   
   }
 
   getAllCustomers1(){
@@ -40,10 +50,6 @@ export class OrderCardComponent implements OnInit {
       if(data)
        {this.customers=data; 
         console.log(this.customers);
-        // this.filteredOptions = this.myControl.valueChanges.pipe(
-        //   startWith(''),
-        //   map(value => this._filter(value)),
-        // );
       }})
   };
  
@@ -52,6 +58,19 @@ export class OrderCardComponent implements OnInit {
       option.toLowerCase().includes(val.toLowerCase()));
   }
 
+   _filterHotel(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    debugger;
+    return this.hotels.map(x=>x.name+' ').filter(option =>
+       option.toLowerCase().includes(filterValue));
+  }
+
+  getHotelsList(){
+    this._orderService.getAllHotels().subscribe(data=>
+      {if(data){
+        this.hotels=data;
+     }; });
+  }
   setOrderDetails(order: OrderDTO): void {
     // this.customerDetails = customer;
     this.orderForm.patchValue(order);
