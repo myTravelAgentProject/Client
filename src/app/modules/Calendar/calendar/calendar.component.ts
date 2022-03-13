@@ -99,3 +99,6 @@ export class CalendarComponent implements OnInit {
       
   };
 }
+
+
+https://www.positronx.io/angular-fullcalendar-create-and-display-dynamic-events/
