@@ -20,7 +20,7 @@ export class OrderCardComponent implements OnInit {
  filteredOptions: Observable<string[]>;
  hotelsOption:Observable<string[]>;
   myControl = new FormControl();
-  hotelName1= new FormControl();
+  myHotelControl= new FormControl();
   customers:Customer[]=[]
   customerId:number;
   hotels:Hotel[]=[];
@@ -34,9 +34,9 @@ export class OrderCardComponent implements OnInit {
     this.getOrderDetails();
     this.getAllCustomers1();
     this.getHotelsList();
-    this.hotelsOption=this.hotelName1.valueChanges.pipe(
+    this.hotelsOption=this.myHotelControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filterHotel(value)),
+      map(val => this._filterHotel(val)),
     )
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -58,18 +58,18 @@ export class OrderCardComponent implements OnInit {
       option.toLowerCase().includes(val.toLowerCase()));
   }
 
-   _filterHotel(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    debugger;
-    return this.hotels.map(x=>x.name+' ').filter(option =>
-       option.toLowerCase().includes(filterValue));
+  _filterHotel(value: string): string[] {
+    // const filterValue = value.toLowerCase();
+    // debugger;
+    return this.hotels.map(x=>x.name).filter(option =>
+       option.toLowerCase().includes(value.toLowerCase()));
   }
 
   getHotelsList(){
     this._orderService.getAllHotels().subscribe(data=>
       {if(data){
         this.hotels=data;
-     }; });
+     }; })
   }
   setOrderDetails(order: OrderDTO): void {
     // this.customerDetails = customer;
