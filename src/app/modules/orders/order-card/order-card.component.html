@@ -26,8 +26,26 @@
         </mat-select>
         </mat-autocomplete>
       </mat-form-field>
-      
+
+      <!-- hotel auto complete -->
       <mat-form-field  class="name-filed" appearance="fill">
+        <mat-label> מלון</mat-label>
+        <input type="text"
+            placeholder="לקוח"
+               matInput
+               [formControl]="myHotelControl"
+               [matAutocomplete]="auto"
+               >
+        <mat-autocomplete #auto="matAutocomplete" >
+          <mat-select [formControl]="myHotelControl">
+          <mat-option *ngFor="let hotelOption of filteredOptions | async" [value]="hotelOption">
+            {{hotelOption}}
+          </mat-option>
+        </mat-select>
+        </mat-autocomplete>
+      </mat-form-field>
+      
+      <!-- <mat-form-field  class="name-filed" appearance="fill">
         <mat-label> שם מלון</mat-label>
         <input type="text"
             placeholder="שם מלון"
@@ -41,11 +59,8 @@
           </mat-option>
         </mat-select>
         </mat-autocomplete>
-      </mat-form-field>
-  <!-- <mat-form-field class="name-filed" appearance="fill">
-    <mat-label><mat-icon>person</mat-icon> שם מלא של הלקוח</mat-label>
-    <input matInput formControlName="customerName">
-  </mat-form-field> -->
+      </mat-form-field> -->
+
   <mat-form-field appearance="fill" class="dates">
   <mat-label>תאריכים</mat-label>
   <mat-date-range-input [rangePicker]="rangePicker">
