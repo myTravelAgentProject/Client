@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { Calendar } from '@fullcalendar/core';
 
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
