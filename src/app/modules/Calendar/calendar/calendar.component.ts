@@ -56,7 +56,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CalendarOptions } from '@fullcalendar/angular';
-@Component({
+import { DatePipe } from '@angular/common';
+@Component({  
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
@@ -98,7 +99,5 @@ export class CalendarComponent implements OnInit {
          { title: 'event 2', date: '2022-04-02' }]
       
   };
+
 }
-
-
-https://www.positronx.io/angular-fullcalendar-create-and-display-dynamic-events/

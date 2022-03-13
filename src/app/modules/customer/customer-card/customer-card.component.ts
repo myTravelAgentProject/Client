@@ -21,7 +21,6 @@ export class CustomerCardComponent implements OnInit {
 
   @Input()
   customerID: number=0;
- 
 
   ngOnInit(): void {
     this.buildForm();
