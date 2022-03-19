@@ -294,21 +294,15 @@
         <!-- matSort (matSortChange)="sortData($event)" -->
           <!-- (matSortChange)="announceSortChange($event)" -->
       
-          <!-- FirstName Column -->
-          <ng-container matColumnDef="customerName">
-            <th mat-header-cell *matHeaderCellDef > Customer Name</th>
-            <!-- sortActionDescription="Sort by firstname" -->
-            <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-          </ng-container>
     
-          <!-- FirstName Column -->
+          <!-- checkin Column -->
           <ng-container matColumnDef="checkInDate">
             <th mat-header-cell *matHeaderCellDef > Check In Date</th>
             <!-- sortActionDescription="Sort by firstname" -->
             <td mat-cell *matCellDef="let element"> {{element.checkInDate}} </td>
           </ng-container>
       
-          <!-- LastName Column -->
+          <!-- checkout Column -->
           <ng-container matColumnDef="checkOutDate">
             <th mat-header-cell *matHeaderCellDef> check Out Date </th>
             <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
