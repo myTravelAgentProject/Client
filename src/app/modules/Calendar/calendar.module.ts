@@ -4,14 +4,14 @@ import { CalendarComponent } from './calendar/calendar.component';
  import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // import resourceTimelinePlugin from '@fullcalendar/resource-timeline'; 
-// import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+//  import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
  
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
-  // resourceTimelinePlugin
-  // interactionPlugin
+  //  resourceTimelinePlugin,
+  //  interactionPlugin
 ]);
 
 @NgModule({
