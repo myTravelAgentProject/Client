@@ -74,7 +74,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
       startWith(''),
       map(value => this._filter(value)),
     );
-  }
+    }
  
   
 
@@ -107,13 +107,13 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   
   columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
   dataSource = new MatTableDataSource<Customer>(this.customers);
-  @ViewChild(MatPaginator)
-  paginator: MatPaginator;
-  @ViewChild(MatSort)
-  sort: MatSort// = new MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort)sort: MatSort// = new MatSort;
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator=this.paginator;
+
   }
   
   private handleContacts() {
@@ -161,6 +161,9 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+  applyFilter(filterValue:string){
+    this.dataSource.filter=filterValue.trim().toLowerCase();
   }
 
 }

@@ -25,12 +25,11 @@
     <button (click)="findCustomer(name.value)">חיפוש</button>
     <button (click)="clear()">נקה שדות חיפוש</button>
   </form>
-</body>
-</html>
 
 
-
-
+<!-- <mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="שם לקוח">
+</mat-form-field> -->
 <div class="mat-elevation-z8 demo-table">
   <table mat-table [dataSource]="customers"  matSort (matSortChange)="sortData($event)"
   class="mat-elevation-z8" >
@@ -75,14 +74,16 @@
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getCustomerDetails(row.id)"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[1, 5, 10]"
-                 showFirstLastButtons 
-                 aria-label="Select page of customers elements"
-                 [pageSize]="1"
-                 [length]="5"
-                 >
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons >
   </mat-paginator>
+              <!-- aria-label="Select page of customers elements"
+                 [pageSize]="1"
+                 [length]="5" -->
 </div>
+
+</body>
+</html>
 
 <!-- 
 <table mat-table [dataSource]="customers"  class="mat-elevation-z8">

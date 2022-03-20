@@ -131,5 +131,6 @@ export class CustomerCardComponent implements OnInit {
     // }
  }
 
+
  }
 //  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
