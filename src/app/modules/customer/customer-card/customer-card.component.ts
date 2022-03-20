@@ -115,7 +115,7 @@ export class CustomerCardComponent implements OnInit {
 
    //Orders
    ordersList:OrderDTO[]=[];
-   columnsToDisplay: string[] = ['customerName','checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
+   columnsToDisplay: string[] = ['checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
    dataSource = new MatTableDataSource<OrderDTO>(this.ordersList);
  
    getAllCustomerOrders() {

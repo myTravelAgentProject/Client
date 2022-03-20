@@ -63,8 +63,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  Events: any[] = [{ title: 'event 2', date: '2022-04-02' },
-  { title: 'event 3', date: '2022-03-13' }];
+
+  Events: any[] = [];
   calendarOptions: CalendarOptions = {
     headerToolbar: {
       left: 'prev,next today',
@@ -83,15 +83,44 @@ export class CalendarComponent implements OnInit {
     alert('Clicked on date : ' + res.dateStr);
   }
   ngOnInit() {
-    
-    setTimeout(() => {
+   setTimeout(() => {
       this.calendarOptions = {
         initialView: 'dayGridMonth',
-        // dateClick: this.onDateClick.bind(this),
+        dateClick: this.onDateClick.bind(this),
         events: this.Events,
       };
     }, 2500);
   }
+
+  // Events: any[] = [{ title: 'event 2', date: '2022-04-02' },
+  // { title: 'event 3', date: '2022-03-13' }];
+  // calendarOptions: CalendarOptions = {
+  //   headerToolbar: {
+  //     left: 'prev,next today',
+  //     center: 'title',
+  //     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+  //   },
+  //   initialView: 'dayGridMonth',
+  //   weekends: true,
+  //   editable: true,
+  //   selectable: true,
+  //   selectMirror: true,
+  //   dayMaxEvents: true
+  // };
+  // constructor(private httpClient: HttpClient) {}
+  // onDateClick(res: any) {
+  //   alert('Clicked on date : ' + res.dateStr);
+  // }
+  // ngOnInit() {
+    
+  //   setTimeout(() => {
+  //     this.calendarOptions = {
+  //       initialView: 'dayGridMonth',
+  //       // dateClick: this.onDateClick.bind(this),
+  //       events: this.Events,
+  //     };
+  //   }, 2500);
+  // }
   
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!

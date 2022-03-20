@@ -9,6 +9,7 @@ import { CalendarModule } from '../Calendar/calendar.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppModule } from 'src/app/app.module';
 import {MatMenuModule} from '@angular/material/menu';
+import { MaterialModule } from '../material/material.module';
 
 
 // const HOME_ROUTES:Routes=[
@@ -22,10 +23,10 @@ import {MatMenuModule} from '@angular/material/menu';
   imports: [
     CommonModule,
     // RouterModule.forChild(HOME_ROUTES),
-    MatIconModule,
     CustomerModule,
     CalendarModule,
-    MatMenuModule,
+    MaterialModule,
+    
   ],
   exports:[HomePageComponent]
 })

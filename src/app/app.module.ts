@@ -3,13 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './modules/Admin/admin/admin.component';
-import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
 import { CustomerModule } from './modules/customer/customer.module';
 import { CalendarModule } from './modules/Calendar/calendar.module';
 import { RouterModule,Routes } from '@angular/router';
@@ -17,17 +13,16 @@ import { CustomerListComponent } from './modules/customer/customer-list/customer
 import { CustomerCardComponent } from './modules/customer/customer-card/customer-card.component';
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
 import { LoginComponent } from './modules/Login/login/login.component';
-import { MatTabsModule } from '@angular/material/tabs'; 
 import { LoginModule } from './modules/Login/login.module';
-import { Calendar, FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+// import { Calendar, FullCalendarModule } from '@fullcalendar/angular';
+// import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 // import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 // /*  */import { MatFormFieldControl } from '@angular/material/form-field';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
-import { MatMenuModule } from '@angular/material/menu';
 import { OrdersModule } from './modules/orders/orders.module';
 import { MenuComponent } from './menu/menu.component';
+import { MaterialModule } from './modules/material/material.module';
 
 
 const APP_ROUTES:Routes=[
@@ -42,22 +37,21 @@ const APP_ROUTES:Routes=[
   {path:"orders", loadChildren:()=> import("./modules/orders/orders.module").then(m=>m.OrdersModule)},
 
 ];
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  // interactionPlugin
-]);
+// FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+//   dayGridPlugin,
+//   // interactionPlugin
+// ]);
 @NgModule({
   declarations: [
     AppComponent,
     // AdminComponent,
     HomePageComponent,
-    CalendarComponent,
+    // CalendarComponent,
     MenuComponent,
  
   ],
   imports: [
     BrowserModule,
-    MatSliderModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
@@ -65,18 +59,15 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserAnimationsModule,
     CustomerModule,
     LoginModule,
-    FullCalendarModule,
+    CalendarModule,
+    // FullCalendarModule,
     CalendarModule,
     OrdersModule,
     RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
-    MatInputModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatIconModule,
+    MaterialModule,
     BrowserModule,
     DropDownsModule,
-    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
