@@ -6,6 +6,7 @@ import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
+import { DatePipe } from '@angular/common';
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   let calendarEl: HTMLElement = document.getElementById('calendar')!;
@@ -30,8 +31,9 @@ import { CalendarService } from '../calendar.service';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor(private _calendarService:CalendarService) { }
+  constructor(private _calendarService:CalendarService,public datepipe: DatePipe) { }
   Events: EventForCalendar[] = [];
+  newevent:EventForCalendar;
   OrdersEvents:OrderDTO[]=[];
   month:number;
   year:number;
@@ -44,9 +46,10 @@ export class CalendarComponent implements OnInit {
     initialView: 'dayGridMonth',
     events: this.Events=
     [
-      { title: 'event 1', date: '2022-04-01' },
-      { title: 'event 2', date: '2022-04-02' },{title:'event 1',date:'2022-03-22'},
-      { title: 'event 2', date: '2022-04-02' },
+      { title: 'event 1', start: '2022-04-01' },
+      { title: 'event 2', start: '2022-04-02' },
+      {title:'event 1',start:'2022-03-22'},
+      { title: 'event 2', start: '2022-04-02' },
      {  title:'try',   start: '2022-03-01', // a property!
      end: '2022-03-22' }]
    };
@@ -54,8 +57,8 @@ export class CalendarComponent implements OnInit {
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
     this.Events=[
-         {title:'event 1',date:'2022-03-22'},
-         { title: 'event 2', date: '2022-04-02' },
+         {title:'event 1',start:'2022-03-22'},
+         { title: 'event 2', start: '2022-04-02' },
         {  title:'try',   start: '2022-03-01', // a property!
         end: '2022-03-22' }]
       
@@ -71,7 +74,14 @@ export class CalendarComponent implements OnInit {
   }
   convertordersToEvenrs(){
     this.OrdersEvents.forEach(order=>{
-      
+    this.newevent.title=order.customerName+" "+order.hotelName;
+    order.checkOutDate=new Date();
+    let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
+    // this.newevent.start='3333';
+    
+    let start=order.checkInDate;
+    let end=order.checkOutDate;
+   
     })
   }
 }
