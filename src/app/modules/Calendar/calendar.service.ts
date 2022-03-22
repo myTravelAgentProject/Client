@@ -12,10 +12,10 @@ export class CalendarService{
   baseUrl: string = "/api/Calendar/date/";
   constructor(private _http: HttpClient) { }
 
-  getOrdersByMonth(year:number,month:number): Observable<OrderDTO[]> {
+  getEventsByMonth(year:number,month:number): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl+year+'/'+month+'/orders')
   }
-  getOrdersByDay(date:Date): Observable<OrderDTO[]> {
+  getEventsByDay(date:Date): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl+date+'/orders')
   }
 

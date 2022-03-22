@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { CalendarComponent } from './calendar/calendar.component';
  import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugi
-import interactionPlugin from '@fullcalendar/interaction';
-FullCalendarModule.registerPlugins([interactionPlugin, dayGridPlugin]);
+// import interactionPlugin from '@fullcalendar/interaction';
+FullCalendarModule.registerPlugins([ dayGridPlugin]);
+//[interactionPlugin
 // import resourceTimelinePlugin from '@fullcalendar/resource-timeline'; 
 //  import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
  
 
 FullCalendarModule.registerPlugins([ 
-  interactionPlugin,
+  // interactionPlugin,
   dayGridPlugin
 ]);
 
