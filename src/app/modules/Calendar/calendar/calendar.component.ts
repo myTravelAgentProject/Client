@@ -79,8 +79,9 @@ export class CalendarComponent implements OnInit {
   }
   convertordersToEvenrs(){
     this.OrdersEvents.forEach(order=>{
-    this.newevent.title="order.customerName order.hotelName";
+
     this.newevent.start= order.checkInDate;
+    this.newevent.title="order.customerName order.hotelName";
     this.newevent.end=order.checkOutDate;
     this.Events.push(this.newevent);
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
