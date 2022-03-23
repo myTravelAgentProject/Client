@@ -165,7 +165,7 @@ deleteOrder(){
    this._router.navigate(['./ordersList']))
 }
 }
-updateMySelection(object:string){
+updateMySelection(customerId:number){
   // this.actionData.libraryContent.billingActivityId=object.activityId;
 }
 }
