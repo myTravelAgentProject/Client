@@ -1,5 +1,5 @@
 export interface EventForCalendar{
     title:string,
-    startDate:string,
-    endDate:string
+    start:string,
+    end?:string
 }
