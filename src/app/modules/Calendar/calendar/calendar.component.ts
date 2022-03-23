@@ -6,6 +6,7 @@ import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
+// import { DatePipe } from '@angular/common';
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   let calendarEl: HTMLElement = document.getElementById('calendar')!;
@@ -32,6 +33,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(private _calendarService:CalendarService) { }
   Events: EventForCalendar[] = [];
+  newevent:EventForCalendar;
   OrdersEvents:OrderDTO[]=[];
   month:number;
   year:number;
@@ -40,30 +42,36 @@ export class CalendarComponent implements OnInit {
     this.year=2022;
     this.getMonthlyEvents();
   }
+  addDays(days : number): Date{
+    var futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + days);
+    return futureDate;
+  }
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    events: this.Events=
+    events: this.Events =
     [
-      { title: 'event 1', date: '2022-04-01' },
-      { title: 'event 2', date: '2022-04-02' },{title:'event 1',date:'2022-03-22'},
-      { title: 'event 2', date: '2022-04-02' },
-     {  title:'try',   start: '2022-03-01', // a property!
-     end: '2022-03-22' }]
+      { title: 'event 1', start:new Date() },
+       { title: 'michal 2', start: new Date() ,end:this.addDays(5) },
+    // //   {title:'event 1',start:'2022-03-22'},
+    // //   { title: 'event 2', start: '2022-04-02' },
+    // //  {  title:'rachel shachor waldorf',   start: '2022-03-01',  end: '2022-03-22' }, 
+    // //  {  title:'shoshy fraiman plaja',   start: '2022-03-01',  end: '2022-03-25' },
+    // //  { title: 'event 2', start: '2022-04-02' },
+    // //  { title: 'event 2', start: '2022-04-02' },
+     ]
    };
 
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
-    this.Events=[
-         {title:'event 1',date:'2022-03-22'},
-         { title: 'event 2', date: '2022-04-02' },
-        {  title:'try',   start: '2022-03-01', // a property!
-        end: '2022-03-22' }]
-      
+    this.Events=[ ]
+
   };
   getMonthlyEvents(){
     return this._calendarService.getEventsByMonth(this.year,this.month).subscribe(data=>{
       if(data){
         this.OrdersEvents=data;
+        this.convertordersToEvenrs();
       }
 
     })
@@ -71,7 +79,11 @@ export class CalendarComponent implements OnInit {
   }
   convertordersToEvenrs(){
     this.OrdersEvents.forEach(order=>{
-      
+    this.newevent.title="order.customerName order.hotelName";
+    this.newevent.start= order.checkInDate;
+    this.newevent.end=order.checkOutDate;
+    this.Events.push(this.newevent);
+    // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
     })
   }
 }

@@ -1,5 +1,12 @@
-export interface EventForCalendar{
-    title:string,
-    start:string,
-    end?:string
+export class EventForCalendar{
+    title?:string;
+    start?:Date;
+    end?:Date;
+
+    constructor(title?:string,start?:Date,end?:Date)
+    {
+        this.title=title;
+        this.start=start;
+        this.end=end;
+    }
 }
