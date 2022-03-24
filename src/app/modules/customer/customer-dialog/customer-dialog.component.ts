@@ -11,11 +11,19 @@ export class CustomerDialogComponent implements OnInit {
 
   customerID!: number;
 
-  constructor(  public dialogRef: MatDialogRef<CustomerDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<CustomerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Customer) { }
 
   ngOnInit(): void {
     this.customerID = this.data.id;
+  }
+
+  onCustomeBtnClikced(): void {
+    this.dialogRef.close(true);
+  }
+
+  onCloseBtnClicked(): void {
+    this.dialogRef.close(false);
   }
 
 }

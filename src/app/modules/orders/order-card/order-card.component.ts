@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit ,Output} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
@@ -26,6 +26,8 @@ export class OrderCardComponent implements OnInit {
   hotels:Hotel[]=[];
   @Input()
   orderID: number;
+  @Output()
+  onOrderBtnClikced = new EventEmitter();
   
 
   orderForm:FormGroup
@@ -140,11 +142,12 @@ saveOrder() {
       data => {
         if (data) {
           console.log("sucsess");
-          this._router.navigate(['./ordersList']);
+          // this._router.navigate(['./ordersList']);
         } else
           console.log("faild");
     
         });
+        this.onOrderBtnClikced.emit();
       }
     
  
@@ -162,7 +165,8 @@ saveOrder() {
 deleteOrder(){
   if(this.orderForm.value.id!=0){
     this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>
-   this._router.navigate(['./ordersList']))
+  //  this._router.navigate(['./ordersList'])
+  this.onOrderBtnClikced.emit())
 }
 }
 updateMySelection(customerId:number){

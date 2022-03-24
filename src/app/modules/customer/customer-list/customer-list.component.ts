@@ -45,7 +45,10 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      alert('popup closed!!!!!!!!!!');
+      // alert('popup closed!!!!!!!!!!');
+      if (result) {
+        this.getAllCustomers();
+      }
     });
   }
   

@@ -26,8 +26,9 @@ export class OrdersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      alert('popup closed!!!!!!!!!!');
+    if(result){
+      this.getTheLastOrders();
+    }
     });
   }
   
