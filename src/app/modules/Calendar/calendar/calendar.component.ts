@@ -76,8 +76,8 @@ export class CalendarComponent implements OnInit {
         const currentDate = calendarApi.currentData.currentDate;
         if (currentDate) {
           const year = currentDate.getFullYear();
-          const month = (currentDate.getMonth()- 1+12)%13;
-          this.getMonthlyEvents(year, month);
+          const month = currentDate.getMonth()+1;
+            this.getMonthlyEvents(year, month);
         }
       }
       },
@@ -89,7 +89,7 @@ export class CalendarComponent implements OnInit {
         const currentDate = calendarApi.currentData.currentDate;
         if (currentDate) {
           const year = currentDate.getFullYear();
-          const month = currentDate.getMonth() + 1;
+          const month = currentDate.getMonth()+1;
           this.getMonthlyEvents(year, month);
         }
        }
@@ -138,7 +138,7 @@ export class CalendarComponent implements OnInit {
     this.newevent.start= new Date(order.checkInDate);
     this.newevent.title= `${order.customerName}-${order.hotelName}` //"order.customerName order.hotelName";
     this.newevent.end = new Date(order.checkOutDate) ;
-    this.Events.push(this.newevent);
+    // this.Events.push(this.newevent);
     this.calendarComponent.getApi().addEvent(this.newevent);
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
     });
