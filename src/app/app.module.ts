@@ -25,18 +25,6 @@ import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './modules/material/material.module';
 
 
-const APP_ROUTES:Routes=[
-  
-  // {path:"", pathMatch: "full", redirectTo:"login"},
-  {path:"homePage",component:HomePageComponent},
-  {path:"login",component:LoginComponent},
-  // {path:"customer1",component:CustomerListComponent},
-  {path:"customer", loadChildren:()=> import("./modules/customer/customer.module").then(m=>m.CustomerModule)},
-  {path:"calendar",component:CalendarComponent},
-  // {path:"order",component:OrdersListComponent},
-  {path:"orders", loadChildren:()=> import("./modules/orders/orders.module").then(m=>m.OrdersModule)},
-
-];
 // FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 //   dayGridPlugin,
 //   // interactionPlugin
@@ -57,13 +45,12 @@ const APP_ROUTES:Routes=[
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CustomerModule,
+    // CustomerModule,
     LoginModule,
     CalendarModule,
     // FullCalendarModule,
     CalendarModule,
     OrdersModule,
-    RouterModule.forRoot(APP_ROUTES),
     ///////////////// material modules /////////////////
     MaterialModule,
     BrowserModule,
