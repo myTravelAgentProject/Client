@@ -1,11 +1,16 @@
+import { FullCalendarModule } from '@fullcalendar/angular'; 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
+
 // import { DatePipe } from '@angular/common';
 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -51,10 +56,11 @@ export class CalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     nextDayThreshold: '23:43:00',
     initialView: 'dayGridMonth',
+    // dateClick: this.handleDateClick.bind(this),
     headerToolbar: {
         left: 'today prev,next',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek'                
+        right: 'dayGridMonth,timeGridWeek'              
     },
     eventClick:function(arg){
       alert(JSON.stringify(arg.event))
@@ -64,9 +70,12 @@ export class CalendarComponent implements OnInit {
     events: this.Events =
     [
       { title: 'event 1', start:new Date() },
-       { title: 'michal 2', start: new Date() ,end:this.addDays(5) },
-    
+       { title: 'michal 2', start: new Date() ,end:this.addDays(5),
+      //  eventColor: '#378006' 
+       },
      ],
+    //  plugins: [ bootstrap5Plugin ],
+     themeSystem: 'bootstrap5',
      customButtons: {
       prev: { // this overrides the prev button
         text: 'PREV',
@@ -149,86 +158,3 @@ export class CalendarComponent implements OnInit {
 }
 
 
-
-//   // handleDateClick(arg) {
-//   //   alert('date click! ' + arg.dateStr)
-//   // }
-  
-// // }
-// import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { CalendarOptions } from '@fullcalendar/angular';
-// import { DatePipe } from '@angular/common';
-// @Component({  
-//   selector: 'app-calendar',
-//   templateUrl: './calendar.component.html',
-//   styleUrls: ['./calendar.component.css']
-// })
-// export class CalendarComponent implements OnInit {
-
-//   Events: any[] = []
-//   calendarOptions: CalendarOptions = {
-//     headerToolbar: {
-//       left: 'prev,next today',
-//       center: 'title',
-//       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-//     },
-//     initialView: 'dayGridMonth',
-//     weekends: true,
-//     editable: true,
-//     selectable: true,
-//     selectMirror: true,
-//     dayMaxEvents: true
-//   };
-//   constructor(private httpClient: HttpClient) {}
-//   onDateClick(res: any) {
-//     alert('Clicked on date : ' + res.dateStr);
-//   }
-//   ngOnInit() {
-//    setTimeout(() => {
-//       this.calendarOptions = {
-//         initialView: 'dayGridMonth',
-//         // dateClick: this.onDateClick.bind(this),
-//         events: this.Events,
-//       };
-//     }, 2500);
-//   }
-
-  // Events: any[] = [{ title: 'event 2', date: '2022-04-02' },
-  // { title: 'event 3', date: '2022-03-13' }];
-  // calendarOptions: CalendarOptions = {
-  //   headerToolbar: {
-  //     left: 'prev,next today',
-  //     center: 'title',
-  //     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  //   },
-  //   initialView: 'dayGridMonth',
-  //   weekends: true,
-  //   editable: true,
-  //   selectable: true,
-  //   selectMirror: true,
-  //   dayMaxEvents: true
-  // };
-  // constructor(private httpClient: HttpClient) {}
-  // onDateClick(res: any) {
-  //   alert('Clicked on date : ' + res.dateStr);
-  // }
-  // ngOnInit() {
-    
-  //   setTimeout(() => {
-  //     this.calendarOptions = {
-  //       initialView: 'dayGridMonth',
-  //       // dateClick: this.onDateClick.bind(this),
-  //       events: this.Events,
-  //     };
-  //   }, 2500);
-  // }
-  
-//   toggleWeekends() {
-//     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
-//     this.Events=[
-//          { title: 'event 2', date: '2022-04-02' }]
-      
-//   };
-
-// }
