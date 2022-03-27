@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { Alert } from 'src/app/models/Alert.model';
@@ -33,14 +33,15 @@ export class CalendarComponent implements OnInit {
 
   constructor(private _calendarService:CalendarService) { }
   Events: EventForCalendar[] = [];
-  newevent:EventForCalendar;
+  newevent:EventForCalendar = {};
   OrdersEvents:OrderDTO[]=[];
   month:number;
   year:number;
+  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   ngOnInit(): void {
     this.month=3;
     this.year=2022;
-    this.getMonthlyEvents();
+    this.getMonthlyEvents(this.year, this.month);
   }
   addDays(days : number): Date{
     var futureDate = new Date();
@@ -48,27 +49,82 @@ export class CalendarComponent implements OnInit {
     return futureDate;
   }
   calendarOptions: CalendarOptions = {
+    nextDayThreshold: '23:43:00',
     initialView: 'dayGridMonth',
+    headerToolbar: {
+        left: 'today prev,next',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek'                
+    },
+    eventClick:function(arg){
+      alert(JSON.stringify(arg.event))
+      alert(arg.event.title)
+      alert(arg.event.start)
+    },
     events: this.Events =
     [
       { title: 'event 1', start:new Date() },
        { title: 'michal 2', start: new Date() ,end:this.addDays(5) },
-    // //   {title:'event 1',start:'2022-03-22'},
-    // //   { title: 'event 2', start: '2022-04-02' },
-    // //  {  title:'rachel shachor waldorf',   start: '2022-03-01',  end: '2022-03-22' }, 
-    // //  {  title:'shoshy fraiman plaja',   start: '2022-03-01',  end: '2022-03-25' },
-    // //  { title: 'event 2', start: '2022-04-02' },
-    // //  { title: 'event 2', start: '2022-04-02' },
-     ]
-   };
+    
+     ],
+     customButtons: {
+      prev: { // this overrides the prev button
+        text: 'PREV',
+        click: () => {
+        const calendarApi = this.calendarComponent.getApi();
+        calendarApi.prev();
+        const currentDate = calendarApi.currentData.currentDate;
+        if (currentDate) {
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth()+1;
+            this.getMonthlyEvents(year, month);
+        }
+      }
+      },
+      next: { // this overrides the next button
+        text: 'NEXT',
+        click: () => {
+        const calendarApi = this.calendarComponent.getApi();
+        calendarApi.next();
+        const currentDate = calendarApi.currentData.currentDate;
+        if (currentDate) {
+          const year = currentDate.getFullYear();
+          const month = currentDate.getMonth()+1;
+          this.getMonthlyEvents(year, month);
+        }
+       }
+     },
+      dayGridMonth: { // this overrides the month button
+         text: 'Month',
+         click: () => {
+           const calendarApi = this.calendarComponent.getApi();
+           calendarApi.changeView('dayGridMonth');
+         }
+       },
+       timeGridWeek: { // this overrides the week button
+         text: 'Week',
+         click: () => {
+           const calendarApi = this.calendarComponent.getApi();
+           calendarApi.changeView('dayGridWeek');
+         }
+       },
+       timeGridDay: { // this overrides the day button
+         text: 'Day',
+         click: () => {
+           const calendarApi = this.calendarComponent.getApi();
+           calendarApi.changeView('dayGridMonth');
+         }
+       }
+   }
+  }
 
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
     this.Events=[ ]
 
   };
-  getMonthlyEvents(){
-    return this._calendarService.getEventsByMonth(this.year,this.month).subscribe(data=>{
+  getMonthlyEvents(year: number, month: number){
+    return this._calendarService.getEventsByMonth(year, month).subscribe(data=>{
       if(data){
         this.OrdersEvents=data;
         this.convertordersToEvenrs();
@@ -79,14 +135,17 @@ export class CalendarComponent implements OnInit {
   }
   convertordersToEvenrs(){
     this.OrdersEvents.forEach(order=>{
-
-    this.newevent.start= order.checkInDate;
-    this.newevent.title="order.customerName order.hotelName";
-    this.newevent.end=order.checkOutDate;
-    this.Events.push(this.newevent);
+    this.newevent.start= new Date(order.checkInDate);
+    this.newevent.title= `${order.customerName}-${order.hotelName}` //"order.customerName order.hotelName";
+    this.newevent.end = new Date(order.checkOutDate) ;
+    // this.Events.push(this.newevent);
+    this.calendarComponent.getApi().addEvent(this.newevent);
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
-    })
+    });
+ 
   }
+
+  
 }
 
 

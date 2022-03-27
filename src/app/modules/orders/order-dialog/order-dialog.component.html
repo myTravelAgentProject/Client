@@ -1,1 +1,2 @@
-<app-order-card [orderID]="orderID"></app-order-card>
+<button (click)="onCloseBtnClicked()">X</button>
+<app-order-card (onOrderBtnClikced)="onOrderBtnClikced()" [orderID]="orderID"></app-order-card>

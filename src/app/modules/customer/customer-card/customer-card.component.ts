@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -21,6 +22,8 @@ export class CustomerCardComponent implements OnInit {
 
   @Input()
   customerID: number=0;
+  @Output()
+  onCustomeBtnClikced = new EventEmitter();
 
   ngOnInit(): void {
     this.buildForm();
@@ -77,10 +80,11 @@ export class CustomerCardComponent implements OnInit {
       this._customerService.addNewCustomer(this.customerForm.value).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
-            this._router.navigate(['./customerList']); 
+            this.onCustomeBtnClikced.emit();
+            // this._router.navigate(['./customerList']); 
           } else {
             console.log("faild");
-            this._router.navigate(['./homePage']);
+            this.onCustomeBtnClikced.emit();
           }
         });
     }
@@ -96,13 +100,14 @@ export class CustomerCardComponent implements OnInit {
             this._router.navigate(['./customerList']);
             console.log("faild");
           }
+          this.onCustomeBtnClikced.emit();
         });
   }
 
   deleteCustomer(){
     if(this.customerForm.value.id!=0){
       this._customerService.deleteCustomer(this.customerForm.value.id).subscribe(  data => {
-          this._router.navigate(['./customerList']);
+        this.onCustomeBtnClikced.emit();
           // if (data) {
           //   console.log("sucsess");
             

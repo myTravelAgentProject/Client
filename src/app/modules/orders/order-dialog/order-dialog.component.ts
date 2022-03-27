@@ -18,5 +18,11 @@ export class OrderDialogComponent implements OnInit {
   ngOnInit(): void {
     this.orderID = this.data.id;
   }
+  onOrderBtnClikced(){
+    this.dialogRef.close(true)
+  }
+  onCloseBtnClicked(){
+    this.dialogRef.close(false)
+  }
 
 }
