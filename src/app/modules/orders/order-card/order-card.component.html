@@ -10,40 +10,24 @@
           </div>
     <form [formGroup]="orderForm">
 
-      <!-- formControlName="customerName" -->
-      <!-- <mat-form-field  class="name-filed" appearance="fill">
-        <mat-label><mat-icon>person</mat-icon> שם לקוח</mat-label>
+  
+      <mat-form-field  class="name-filed" appearance="fill">
+        <mat-label> שם לקוח</mat-label>
         <input type="text"
-            placeholder="שם לקוח"
+        id="filterField"
+            placeholder="בחר לקוח"
                matInput
-               formControlName="customerName"
-               [matAutocomplete]="auto">
+               [formControl]="myControl"
+               [matAutocomplete]="auto"
+               >
         <mat-autocomplete #auto="matAutocomplete" >
-          <mat-select [formControlName]="customerName">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (optionSelected)="updateMySelection(option)">
-            {{option}}
+          <mat-select [formControl]="myControl">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
           </mat-option>
         </mat-select>
         </mat-autocomplete>
-      </mat-form-field> -->
-
-      <!-- <mat-form-field  class="name-filed" appearance="fill">
-        <mat-label><mat-icon>person</mat-icon> שם לקוח</mat-label>
-        <input type="text"
-            placeholder="שם לקוח"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="aut">
-               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option
-                *ngFor="let option of filteredOptions | async"
-                  [value]="option"
-                  (onSelectionChange)="updateMySelection(option.id)"
-                >
-                  {{ option.firstName+" "+option.lastName }}
-                </mat-option>
-            </mat-autocomplete>        
-      </mat-form-field> -->
+      </mat-form-field>
 
       <!-- hotel auto complete -->
       <mat-form-field  class="name-filed" appearance="fill">
@@ -52,9 +36,9 @@
             placeholder="בחר מלון"
                matInput
                [formControl]="myHotelControl"
-               [matAutocomplete]="aut"
+               [matAutocomplete]="autoHotel"
                >
-        <mat-autocomplete #aut="matAutocomplete" >
+        <mat-autocomplete #autoHotel="matAutocomplete" >
           <mat-select [formControl]="myHotelControl">
           <mat-option *ngFor="let hotelOption of filteredOptions | async" [value]="hotelOption">
             {{hotelOption}}

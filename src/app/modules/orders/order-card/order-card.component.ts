@@ -17,7 +17,7 @@ export class OrderCardComponent implements OnInit {
 
   constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService) { }
 
- filteredOptions: Observable<Customer[]>;
+ filteredOptions: Observable<string[]>;
  hotelsOption:Observable<string[]>;
   myControl = new FormControl();
   myHotelControl= new FormControl();
@@ -53,9 +53,9 @@ export class OrderCardComponent implements OnInit {
       }})
   };
  
-  _filter(val: string): Customer[] {
-    return this.customers.filter(option =>
-      (option.firstName+" "+option.lastName).toLowerCase().includes(val.toLowerCase()));
+  _filter(val: string): string[] {
+    return this.customers.map(x=>x.firstName+" "+x.lastName).filter(option =>
+      option.toLowerCase().includes(val.toLowerCase()));
   }
 
   _filterHotel(value: string): string[] {
