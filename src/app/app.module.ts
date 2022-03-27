@@ -48,8 +48,7 @@ import { MaterialModule } from './modules/material/material.module';
     // CustomerModule,
     LoginModule,
     CalendarModule,
-    // FullCalendarModule,
-    CalendarModule,
+    // CalendarModule,
     OrdersModule,
     ///////////////// material modules /////////////////
     MaterialModule,

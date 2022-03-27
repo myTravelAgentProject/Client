@@ -7,7 +7,7 @@ import { LoginComponent } from './modules/Login/login/login.component';
 
 const APP_ROUTES:Routes=[
   
-  // {path:"", pathMatch: "full", redirectTo:"login"},
+  {path:"", pathMatch: "full", redirectTo:"login"},
   {path:"homePage",component:HomePageComponent},
   {path:"login",component:LoginComponent},
   // {path:"customer1",component:CustomerListComponent},
