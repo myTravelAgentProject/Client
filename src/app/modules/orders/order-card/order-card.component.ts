@@ -30,19 +30,19 @@ export class OrderCardComponent implements OnInit {
   onOrderBtnClikced = new EventEmitter();
   
 
-  orderForm:FormGroup
+  orderForm:FormGroup;
   ngOnInit(): void {
     this.buildForm();
     this.getOrderDetails();
     this.getAllCustomers1();
     this.getHotelsList();
-    this.hotelsOption=this.myHotelControl.valueChanges.pipe(
+    this.filteredOptions=this.orderForm.controls.customerName.valueChanges.pipe(
       startWith(''),
-      map(val => this._filterHotel(val)),
-    )
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+      map((value:any) => this._filter(value)),
+    );
+    this.hotelsOption = this.orderForm.controls.hotelName.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value)),
+      map((val:any) => this._filterHotel(val)),
     );
    
   }
@@ -50,14 +50,15 @@ export class OrderCardComponent implements OnInit {
   getAllCustomers1(){
     this._customerService.getAllCustomers().subscribe(data=>{
       if(data)
-       {this.customers=data; 
+       {
+         this.customers=data; 
         console.log(this.customers);
       }})
   };
  
-  _filter(val: string): string[] {
+  _filter(value: string): string[] {
     return this.customers.map(x=>x.firstName+" "+x.lastName).filter(option =>
-      option.toLowerCase().includes(val.toLowerCase()));
+      option.toLowerCase().includes(value.toLowerCase()));
   }
 
   _filterHotel(value: string): string[] {
@@ -85,14 +86,14 @@ export class OrderCardComponent implements OnInit {
       "customerName": new FormControl("",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
-      "bookingDate":new FormControl("",Validators.required),
+      "bookingDate":new FormControl(),
       "earlyCheckIn": new FormControl(),
       "lateCheckOut": new FormControl(),
       "separteBeds": new FormControl(false,Validators.required),
       "multipleRooms": new FormControl(false,Validators.required),
       "floorHeight": new FormControl(),
-      // "highFloor": new FormControl(),
-      // "porch":new FormControl(),
+      "highFloor": new FormControl(),
+      "porch":new FormControl(),
       "totalPrice": new FormControl(0,Validators.required),
       "costPrice": new FormControl(0,Validators.required),
       "bookingId": new FormControl(),
@@ -102,10 +103,10 @@ export class OrderCardComponent implements OnInit {
       "newPrice": new FormControl(),
       "change": new FormControl(),
       "hotelId": new FormControl(4959,Validators.required),
-      "hotelName": new FormControl("Gan Ba’eden",Validators.required),
+      "hotelName": new FormControl("",Validators.required),
       "comments": new FormControl(""),
       "isImportant": new FormControl(),
-      "hotelPrice": new FormControl(0,Validators.required),
+      // "hotelPrice": new FormControl(0,Validators.required),
     });
   }
    
@@ -127,6 +128,9 @@ onEditClickecd(): void {
 
 saveOrder() {
   if (this.orderForm.get('id')?.value == 0) {
+    this.orderForm.patchValue({
+      "bookingDate":new Date()
+    });
     this._orderService.addNewOrder(this.orderForm.value).subscribe( data => {
         if (data) {
           console.log("sucsess " + data);

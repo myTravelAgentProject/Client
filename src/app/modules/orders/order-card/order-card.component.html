@@ -12,12 +12,12 @@
 
   
       <mat-form-field  class="name-filed" appearance="fill">
-        <mat-label> שם לקוח</mat-label>
+        <mat-label><mat-icon>person</mat-icon>  שם לקוח</mat-label>
         <input type="text"
         id="filterField"
             placeholder="בחר לקוח"
                matInput
-               [formControl]="myControl"
+               formControlName="customerName"
                [matAutocomplete]="auto"
                >
         <mat-autocomplete #auto="matAutocomplete" >
@@ -28,41 +28,27 @@
         </mat-select>
         </mat-autocomplete>
       </mat-form-field>
-
+     
       <!-- hotel auto complete -->
-      <mat-form-field  class="name-filed" appearance="fill">
-        <mat-label> שם מלון</mat-label>
+      <mat-form-field  class="hotel" appearance="fill">
+        <mat-label><mat-icon>hotel</mat-icon>  שם מלון</mat-label>
         <input type="text"
+        id="filterField"
             placeholder="בחר מלון"
                matInput
-               [formControl]="myHotelControl"
+               formControlName="hotelName"
                [matAutocomplete]="autoHotel"
                >
         <mat-autocomplete #autoHotel="matAutocomplete" >
           <mat-select [formControl]="myHotelControl">
-          <mat-option *ngFor="let hotelOption of filteredOptions | async" [value]="hotelOption">
-            {{hotelOption}}
+            <mat-option *ngFor="let option of hotelsOption | async" [value]="option">
+              {{option}}
           </mat-option>
         </mat-select>
         </mat-autocomplete>
       </mat-form-field>
-      
-      <!-- <mat-form-field  class="name-filed" appearance="fill">
-        <mat-label> שם מלון</mat-label>
-        <input type="text"
-            placeholder="שם מלון"
-               matInput
-               [formControl]="hotelName1"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete" >
-          <mat-select [formControl]="hotelName1">
-          <mat-option *ngFor="let option1 of hotelsOption| async" [value]="option1">
-            {{option1}}
-          </mat-option>
-        </mat-select>
-        </mat-autocomplete>
-      </mat-form-field> -->
-
+     
+<br>
   <mat-form-field appearance="fill" class="dates">
   <mat-label>תאריכים</mat-label>
   <mat-date-range-input [rangePicker]="rangePicker">
@@ -74,21 +60,48 @@
   </mat-date-range-picker>
 </mat-form-field>
 
-<input matinput type="datetime">
-   
-    <br>
-    <mat-form-field appearance="fill">
+    
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Booking Date</mat-label>
       <input matInput [matDatepicker]="picker3" placeholder="Booking Date" formControlName="bookingDate">
       <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
       <mat-datepicker #picker3></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
 <!-- הגעה מוקדמת/עזיבה מאוחרת -->
+early check in and late check out.
+<input type="time" >
+<input type="time" >
+<!--         
+<div class="12hr-example">
+  <input placeholder="12hr format (default settings)" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+  <ngx-material-timepicker #default></ngx-material-timepicker>
+</div>
+
+<div class="24hr-example">
+  <input placeholder="24hr format" aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24"  readonly>
+  <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+</div>
+<div class="default-time-example">
+  <input aria-label="default time" [ngxTimepicker]="defaultValue" [value]="'05:11 pm'"  readonly>
+  <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+</div>
+
+<div class="ngx-material-timepicker-example__form-group">
+  <input placeholder="Default time 11:11 pm" aria-label="default time"
+      [ngxTimepicker]="defaultTime" readonly>
+  <ngx-material-timepicker #defaultTime [defaultTime]="'11:11 pm'"></ngx-material-timepicker>
+</div>
+
+<div class="disabled-example">
+  <input placeholder="Disabled Time Picker" aria-label="disabled time picker" [ngxTimepicker]="disabled" [disabled]="true">
+  <ngx-material-timepicker #disabled></ngx-material-timepicker>
+</div> -->
+
+
     <br>
-    <mat-form-field class="hotel" appearance="fill">
-      <mat-label>	<mat-icon> hotel</mat-icon> שם המלון</mat-label>
-      <input matInput formControlName="hotelName">
-    </mat-form-field>
+    <table>
+      <tr>
+        <td>
     <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
       <mat-label>מחיר מלא</mat-label>
       <input matInput type="number"  placeholder="0" formControlName="totalPrice">
@@ -101,8 +114,21 @@
       <span matPrefix>₪&nbsp;</span>
       <span matSuffix>.00</span>
     </mat-form-field>
+    </td>
+    <td>
+    <section dir="rtl">
+      <label>סטטוס הזמנה:</label>
+      <mat-radio-group formControlName="statusCode">
+        <br>
+        <mat-radio-button class="status" value=1>שולם</mat-radio-button>
+        <br>
+        <mat-radio-button class="status" value=2>לא שולם</mat-radio-button>
+      </mat-radio-group>
+    </section>
+        </td>
+      </tr>
+    </table>
     <br>
-
         <table>
             <tr>
                 <td>
@@ -119,15 +145,18 @@
                             <input matInput type="number" formControlName="numOfKids">
                           </mat-form-field>
                        ילדים</h4>
-                    
                   </td>
                   <td>
                         <section dir="rtl">
-                          
                             <p><mat-checkbox formControlName="separteBeds">חדרים מחוברים</mat-checkbox></p>
                             <p><mat-checkbox formControlName="multipleRooms">מיטות מופרדות</mat-checkbox></p>
-                            <!-- <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p> -->
                           </section>
+                  </td>
+                  <td>
+                    <section dir="rtl">
+                      <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p>
+                      <p><mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox></p>
+                    </section>
                   </td>
               </tr>
           </table>
@@ -136,15 +165,7 @@
     <br>
     <tr>
       <td>
-  <div dir="rtl">
-  <section >
-    <label>סטטוס הזמנה:</label>
-    <mat-radio-group formControlName="statusCode">
-      <mat-radio-button class="status" value=1>status.1</mat-radio-button>
-      <mat-radio-button class="status" value=2>status.2</mat-radio-button>
-    </mat-radio-group>
-  </section>
-</div>
+  
 </td>
 <!-- <td>
   <div dir="rtl">
@@ -186,7 +207,6 @@
           מחיקת הזמנה  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
               <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
             </svg> </button>
-            <button  (click)="getHotelsList()"> Get Hotels</button>
     </p>
 
 </form>

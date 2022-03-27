@@ -21,12 +21,13 @@
 }
 
 .name-filed{
-    width:63%;
+    width:52%;
     margin-left: 2%;
 }
 
 .dates{
-    width: 35%;
+    width: 40%;
+    margin-left:2%;
 }
 
 .num-of-people{
@@ -73,11 +74,12 @@ margin-left: 2%;
 
   .hotel{
       width: 46%;
+      /* margin-left: 2%; */
   }
 
   .price{
-      width: 25%;
-      margin-right: 2%;
+      width: 40%;
+      margin-left: 2%;
   }
 
   .comments{
