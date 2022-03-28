@@ -52,7 +52,6 @@ import { MaterialModule } from './modules/material/material.module';
     OrdersModule,
     ///////////////// material modules /////////////////
     MaterialModule,
-    BrowserModule,
     DropDownsModule,
   ],
   providers: [],

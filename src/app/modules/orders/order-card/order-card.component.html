@@ -15,14 +15,16 @@
         <mat-label><mat-icon>person</mat-icon>  שם לקוח</mat-label>
         <input type="text"
         id="filterField"
+        
             placeholder="בחר לקוח"
                matInput
                formControlName="customerName"
                [matAutocomplete]="auto"
+               #customer
                >
         <mat-autocomplete #auto="matAutocomplete" >
           <mat-select [formControl]="myControl">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="findCustomer(customer.value)">
               {{option}}
           </mat-option>
         </mat-select>
@@ -38,10 +40,11 @@
                matInput
                formControlName="hotelName"
                [matAutocomplete]="autoHotel"
+               #hotel
                >
         <mat-autocomplete #autoHotel="matAutocomplete" >
           <mat-select [formControl]="myHotelControl">
-            <mat-option *ngFor="let option of hotelsOption | async" [value]="option">
+            <mat-option *ngFor="let option of hotelsOption | async" [value]="option" (click)="findHotel(hotel.value)">
               {{option}}
           </mat-option>
         </mat-select>
@@ -104,13 +107,13 @@ early check in and late check out.
         <td>
     <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
       <mat-label>מחיר מלא</mat-label>
-      <input matInput type="number"  placeholder="0" formControlName="totalPrice">
+      <input matInput type="number"  placeholder="0" formControlName="totalPrice" min="0">
       <span matPrefix>₪&nbsp;</span>
       <span matSuffix>.00</span>
     </mat-form-field>
     <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
       <mat-label>מחיר עלות</mat-label>
-      <input matInput type="number"  placeholder="0" formControlName="costPrice">
+      <input matInput type="number"  placeholder="0" formControlName="costPrice"  min="0">
       <span matPrefix>₪&nbsp;</span>
       <span matSuffix>.00</span>
     </mat-form-field>
@@ -134,7 +137,7 @@ early check in and late check out.
                 <td>
                     <h4>
                         <mat-form-field appearance="fill" class="num-of-people">
-                            <input matInput type="number" formControlName="numOfAdults">
+                            <input matInput type="number" formControlName="numOfAdults"  min="0">
                           </mat-form-field>
                          מבוגרים</h4>
                     
@@ -142,7 +145,7 @@ early check in and late check out.
                     <td>
                         <h4>
                         <mat-form-field appearance="fill" class="num-of-people" >
-                            <input matInput type="number" formControlName="numOfKids">
+                            <input matInput type="number" formControlName="numOfKids"  min="0">
                           </mat-form-field>
                        ילדים</h4>
                   </td>

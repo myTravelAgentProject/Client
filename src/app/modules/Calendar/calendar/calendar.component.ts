@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+// import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import { Alert } from 'src/app/models/Alert.model';

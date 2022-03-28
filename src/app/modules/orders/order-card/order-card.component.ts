@@ -44,7 +44,25 @@ export class OrderCardComponent implements OnInit {
       startWith(''),
       map((val:any) => this._filterHotel(val)),
     );
-   
+    // this.orderForm.get("customerName")?.valueChanges.subscribe(x => {
+    //   var choseCustomerId:number=this.customers.filter(y=>(y.firstName+" "+y.lastName).toLowerCase()==x.toLowerCase())[0].id;
+    //   this.orderForm.patchValue({
+    //     "customerId":choseCustomerId
+      // });
+  // })
+  }
+  findCustomer(name:string){
+    var chooseCustomer:number=this.customers.filter(x=>(x.firstName+" "+x.lastName).toLowerCase()==name.toLowerCase())[0].id;
+    this.orderForm.patchValue({
+      "customerId":chooseCustomer
+    })
+  }
+
+  findHotel(hotelName:string){
+    var chooseHotel:number=this.hotels.filter(x=>x.name.toLowerCase()==hotelName.toLowerCase())[0].id;
+    this.orderForm.patchValue({
+      "hotelId":chooseHotel
+    })
   }
 
   getAllCustomers1(){
