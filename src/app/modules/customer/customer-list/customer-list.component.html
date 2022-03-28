@@ -30,7 +30,11 @@
 <!-- <mat-form-field>
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="שם לקוח">
 </mat-form-field> -->
-<div class="mat-elevation-z8 demo-table">
+<!-- <div class="mat-elevation-z8 demo-table"> -->
+  <!-- <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field> -->
   <table mat-table [dataSource]="customers"  matSort (matSortChange)="sortData($event)"
   class="mat-elevation-z8" >
     <!-- (matSortChange)="announceSortChange($event)" -->
@@ -72,6 +76,9 @@
     </td>
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getCustomerDetails(row.id)"></tr>
+    <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr> -->
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
@@ -80,7 +87,7 @@
               <!-- aria-label="Select page of customers elements"
                  [pageSize]="1"
                  [length]="5" -->
-</div>
+<!-- </div> -->
 
 </body>
 </html>

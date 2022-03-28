@@ -82,7 +82,7 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(18,Validators.required),
+      "customerId":new FormControl(0,Validators.required),
       "customerName": new FormControl("",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
@@ -102,7 +102,7 @@ export class OrderCardComponent implements OnInit {
       "statusCode": new FormControl(1,Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
-      "hotelId": new FormControl(4959,Validators.required),
+      "hotelId": new FormControl(0,Validators.required),
       "hotelName": new FormControl("",Validators.required),
       "comments": new FormControl(""),
       "isImportant": new FormControl(),

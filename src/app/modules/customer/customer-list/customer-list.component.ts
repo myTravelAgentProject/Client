@@ -36,6 +36,12 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   filteredOptions: Observable<string[]>;
   myControl = new FormControl();
 
+    
+  columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
+  dataSource = new MatTableDataSource<Customer>(this.customers);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort)sort: MatSort// = new MatSort;
+
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
       width: '80%',
@@ -107,11 +113,7 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
     // document.getElementById("filterField")?.ariaValueText='';
     this.customers=this.allCustomers;
   }
-  
-  columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
-  dataSource = new MatTableDataSource<Customer>(this.customers);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort)sort: MatSort// = new MatSort;
+
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -165,8 +167,13 @@ export class CustomerListComponent implements OnInit,AfterViewInit {
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
-  applyFilter(filterValue:string){
-    this.dataSource.filter=filterValue.trim().toLowerCase();
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

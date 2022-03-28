@@ -23,7 +23,7 @@ export class CustomerService {
   getOrdersByCustomerId(id:number):Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl+id+"/orders")
   }
-  addNewCustomer(newCustomer:Customer):Observable<any>{
+  addNewCustomer(newCustomer:Customer):Observable<number>{
       return this._http.post<any>(this.baseUrl,newCustomer)
   }
   updateCustomer(customerToUpdate:Customer):Observable<any>{

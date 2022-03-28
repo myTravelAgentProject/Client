@@ -40,7 +40,7 @@ export class CustomerCardComponent implements OnInit {
 
   buildForm(): void {
     this.customerForm = new FormGroup({
-      "id":new FormControl(2),
+      "id":new FormControl(0),
       "firstName": new FormControl("", Validators.required),
       "lastName": new FormControl("", Validators.required),
       "numOfAdults": new FormControl(0),
@@ -80,8 +80,8 @@ export class CustomerCardComponent implements OnInit {
       this._customerService.addNewCustomer(this.customerForm.value).subscribe( data => {
           if (data) {
             console.log("sucsess " + data);
-            this.onCustomeBtnClikced.emit();
-            // this._router.navigate(['./customerList']); 
+            // this.onCustomeBtnClikced.emit();
+            this._router.navigate(['customer/customerList']); 
           } else {
             console.log("faild");
             this.onCustomeBtnClikced.emit();
