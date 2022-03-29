@@ -10,6 +10,7 @@ import { MaterialModule } from '../material/material.module';
 const ORDER_ROUTES: Routes = [
   { path: "ordersList", component: OrdersListComponent },
   { path: "orders/NewOrder", component: OrderCardComponent },
+  { path: "orders/NewOrder/:id", component: OrderCardComponent },
 ];
 
 @NgModule({

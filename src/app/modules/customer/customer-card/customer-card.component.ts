@@ -1,13 +1,13 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatAccordion } from '@angular/material/expansion';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from 'src/app/modules/customer/customer.service';
 import { OrdersService } from '../../orders/orders.service';
-
 @Component({
   selector: 'app-customer-card',
   templateUrl: './customer-card.component.html',
@@ -24,6 +24,9 @@ export class CustomerCardComponent implements OnInit {
   customerID: number=0;
   @Output()
   onCustomeBtnClikced = new EventEmitter();
+  panelOpenState = false;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+
 
   ngOnInit(): void {
     this.buildForm();
@@ -114,17 +117,8 @@ export class CustomerCardComponent implements OnInit {
           // } else
           //   console.log("faild");
         });
-      //   if(data)  {
-      //  console.log("delete");
-      //  this.getALLCustomerDetails();
-      //  this._router.navigate(['./customerList']);}
-      //  else
-      //      { console.log("faild");}
-
-      //     // });}
-      //     // else
-      //     this._router.navigate(['./customerList'])
-      //   })
+    
+     
      
    } }
 
@@ -146,6 +140,13 @@ export class CustomerCardComponent implements OnInit {
     // }
  }
 
-
+ getOrderDetails(id:number){
+   if(id!=0){
+     debugger;
+     this.onCustomeBtnClikced.emit()
+    this._router.navigate(['/orders/orders/NewOrder',id]);
+    
+   }
+ }
  }
 //  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };

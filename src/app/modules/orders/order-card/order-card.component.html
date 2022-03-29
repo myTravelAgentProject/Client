@@ -71,11 +71,13 @@
       <mat-datepicker #picker3></mat-datepicker>
     </mat-form-field> -->
 <!-- הגעה מוקדמת/עזיבה מאוחרת -->
-<mat-form-field class="time" appearance="fill">
+<!-- <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  הגעה מוקדמת</mat-label>
-  <input matInput [ngxMatTimepicker]="picker" formControlName="earlyCheckIn">
-  <ngx-mat-timepicker #picker></ngx-mat-timepicker>
-</mat-form-field>
+  <input type="time" matInput  formControlName="earlyCheckIn"> -->
+  <!-- [ngxMatTimepicker]="picker" -->
+  <!-- <ngx-mat-timepicker #picker></ngx-mat-timepicker> -->
+<!-- </mat-form-field> -->
+
 <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
   <input type="time" matInput  formControlName="lateCheckOut">
@@ -163,8 +165,8 @@
                   </td>
                   <td>
                     <section dir="rtl">
-                      <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p>
-                      <p><mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox></p>
+                      <!-- <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p> -->
+                      <!-- <p><mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox></p> -->
                     </section>
                   </td>
               </tr>

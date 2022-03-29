@@ -32,7 +32,7 @@ import { MaterialModule } from './modules/material/material.module';
 @NgModule({
   declarations: [
     AppComponent,
-    // AdminComponent,
+     AdminComponent,
     HomePageComponent,
     // CalendarComponent,
     MenuComponent,

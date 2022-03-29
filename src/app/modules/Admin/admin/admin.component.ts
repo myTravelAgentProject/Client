@@ -17,6 +17,9 @@ export class AdminComponent implements OnInit {
 //  hide = true;
   constructor(private _adminService: AdminService) { }
 
+  ngOnInit(): void {
+    
+  }
   onSubmit() {
    // this.userAdmin.name=
    //this._adminService.getAdmin().subscribe();
@@ -35,19 +38,20 @@ export class AdminComponent implements OnInit {
   //     })
   //   };
         
-        AddNewAdmin(name:string,password:string){
-          this.userAdmin.name=name;
-          this.userAdmin.password=password
-          this._adminService.addNewAdmin(this.userAdmin).subscribe(data=>{
-            if(data)
-            { console.log(this.userAdmin.id); }
-            else{console.log("no such user")}  }
-            )};
-  ngOnInit(): void {
-    this.adminForm=new FormGroup({
-      name:new FormControl("",Validators.email),
-      password:new FormControl("",[Validators.required,Validators.minLength(8)]),
-    });
-  }
+  //       AddNewAdmin(name:string,password:string){
+  //         this.userAdmin.name=name;
+  //         this.userAdmin.password=password
+  //         this._adminService.addNewAdmin(this.userAdmin).subscribe(data=>{
+  //           if(data)
+  //           { console.log(this.userAdmin.id); }
+  //           else{console.log("no such user")}  }
+  //           )};
+  // ngOnInit(): void {
+  //   this.adminForm=new FormGroup({
+  //     name:new FormControl("",Validators.email),
+  //     password:new FormControl("",[Validators.required,Validators.minLength(8)]),
+  //   });
+  // }
+  
 
 }

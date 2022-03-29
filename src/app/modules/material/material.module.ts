@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
     MatNativeDateModule,
     MatRadioModule,
     NgxMatTimepickerModule,
+    MatExpansionModule,
+    
     // NgxMaterialTimepickerModule,
     // MatSliderModule,
   ],
@@ -64,6 +67,7 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
     MatNativeDateModule,
     MatRadioModule,
     NgxMatTimepickerModule,
+    MatExpansionModule,
     // NgxMaterialTimepickerModule,
   ]
 })

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit ,Output} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { Hotel } from 'src/app/models/Hotel.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from '../../customer/customer.service';
 import { OrdersService } from '../orders.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
@@ -15,7 +15,7 @@ import { OrdersService } from '../orders.service';
 })
 export class OrderCardComponent implements OnInit {
 
-  constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService) { }
+  constructor(private _orderService:OrdersService,private _router:Router,private _customerService:CustomerService,private route:ActivatedRoute) { }
 
  filteredOptions: Observable<string[]>;
  hotelsOption:Observable<string[]>;
@@ -24,6 +24,8 @@ export class OrderCardComponent implements OnInit {
   customers:Customer[]=[]
   customerId:number;
   hotels:Hotel[]=[];
+  subscription:Subscription;
+  fromCustomerCard=false;
   @Input()
   orderID: number;
   @Output()
@@ -34,22 +36,22 @@ export class OrderCardComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getOrderDetails();
-    this.getAllCustomers1();
+    this.getAllCustomers();
     this.getHotelsList();
-    this.filteredOptions=this.orderForm.controls.customerName.valueChanges.pipe(
-      startWith(''),
-      map((value:any) => this._filter(value)),
-    );
-    this.hotelsOption = this.orderForm.controls.hotelName.valueChanges.pipe(
-      startWith(''),
-      map((val:any) => this._filterHotel(val)),
-    );
+    this.route.paramMap.subscribe(params=>{
+      let orderId=params.get('id');
+      this.orderID= Number(orderId);
+      this.fromCustomerCard=true;
+      this.getOrderDetails();
+      
+    })
     // this.orderForm.get("customerName")?.valueChanges.subscribe(x => {
     //   var choseCustomerId:number=this.customers.filter(y=>(y.firstName+" "+y.lastName).toLowerCase()==x.toLowerCase())[0].id;
     //   this.orderForm.patchValue({
     //     "customerId":choseCustomerId
       // });
   // })
+ 
   }
   findCustomer(name:string){
     var chooseCustomer:number=this.customers.filter(x=>(x.firstName+" "+x.lastName).toLowerCase()==name.toLowerCase())[0].id;
@@ -65,11 +67,15 @@ export class OrderCardComponent implements OnInit {
     })
   }
 
-  getAllCustomers1(){
+  getAllCustomers(){
     this._customerService.getAllCustomers().subscribe(data=>{
       if(data)
        {
          this.customers=data; 
+         this.filteredOptions=this.orderForm.controls.customerName.valueChanges.pipe(
+          startWith(''),
+          map((value:any) => this._filter(value)),
+        );
         console.log(this.customers);
       }})
   };
@@ -90,6 +96,10 @@ export class OrderCardComponent implements OnInit {
     this._orderService.getAllHotels().subscribe(data=>
       {if(data){
         this.hotels=data;
+        this.hotelsOption = this.orderForm.controls.hotelName.valueChanges.pipe(
+          startWith(''),
+          map((val:any) => this._filterHotel(val)),
+        );
      }; })
   }
   setOrderDetails(order: OrderDTO): void {
@@ -100,8 +110,8 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(0,Validators.required),
-      "customerName": new FormControl("",Validators.required),
+      "customerId":new FormControl(15,Validators.required),
+      "customerName": new FormControl("chanchy finkel",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
       "bookingDate":new FormControl(),
@@ -109,9 +119,9 @@ export class OrderCardComponent implements OnInit {
       "lateCheckOut": new FormControl(),
       "separteBeds": new FormControl(false,Validators.required),
       "multipleRooms": new FormControl(false,Validators.required),
-      "floorHeight": new FormControl(),
-      "highFloor": new FormControl(),
-      "porch":new FormControl(),
+      "floorHeight": new FormControl(0),
+      // "highFloor": new FormControl(),
+      // "porch":new FormControl(),
       "totalPrice": new FormControl(0,Validators.required),
       "costPrice": new FormControl(0,Validators.required),
       "bookingId": new FormControl(),
@@ -120,17 +130,18 @@ export class OrderCardComponent implements OnInit {
       "statusCode": new FormControl(1,Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
-      "hotelId": new FormControl(0,Validators.required),
-      "hotelName": new FormControl("",Validators.required),
+      "hotelId": new FormControl(5052,Validators.required),
+      "hotelName": new FormControl("Mamilla Hotel",Validators.required),
       "comments": new FormControl(""),
       "isImportant": new FormControl(),
-      // "hotelPrice": new FormControl(0,Validators.required),
+      "hotelPrice": new FormControl(0,Validators.required),
     });
   }
    
     getOrderDetails(){
       if(this.orderID){
          this.orderForm.disable();
+
       this._orderService.getOrderById(this.orderID).subscribe(data => {
         if (data) {
           this.setOrderDetails(data);
@@ -159,18 +170,20 @@ saveOrder() {
         }
       });
   }
-  else
-    this._orderService.updateOrder(this.orderForm.value).subscribe(
-      data => {
-        if (data) {
+  else{
+    this._orderService.updateOrder(this.orderForm.value).subscribe(()=> {
+        // if () {
+          debugger;
           console.log("sucsess");
-          // this._router.navigate(['./ordersList']);
-        } else
-          console.log("faild");
+           this._router.navigate(['/orders/ordersList']);
+        // } else
+        //   console.log("faild");
     
         });
-        this.onOrderBtnClikced.emit();
+        if(this.fromCustomerCard==false)
+          this.onOrderBtnClikced.emit();
       }
+    }
     
  
 
@@ -185,13 +198,17 @@ saveOrder() {
 // }
 
 deleteOrder(){
-  if(this.orderForm.value.id!=0){
-    this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>
+  if(this.orderForm.get('id')?.value!=0){
+    this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>{
+      if(this.fromCustomerCard==false)
+        this.onOrderBtnClikced.emit();
+        else 
+          this.orderForm.reset();
+    });
   //  this._router.navigate(['./ordersList'])
-  this.onOrderBtnClikced.emit())
-}
-}
-updateMySelection(customerId:number){
-  // this.actionData.libraryContent.billingActivityId=object.activityId;
-}
+  
+  }
+// updateMySelection(customerId:number){
+//   // this.actionData.libraryContent.billingActivityId=object.activityId;
+ }
 }
