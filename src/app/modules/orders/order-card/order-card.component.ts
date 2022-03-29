@@ -152,7 +152,7 @@ saveOrder() {
     this._orderService.addNewOrder(this.orderForm.value).subscribe( data => {
         if (data) {
           console.log("sucsess " + data);
-          this._router.navigate(['./ordersList']); 
+          this._router.navigate(['orders/ordersList']); 
         } else {
           console.log("faild");
           this._router.navigate(['./homePage']);
