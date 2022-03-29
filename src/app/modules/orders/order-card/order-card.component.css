@@ -15,7 +15,7 @@
 }
 
 .form-card{
-    width: 55%;
+    width: 60%;
     position: relative;
     right: 20%;
 }
@@ -27,7 +27,6 @@
 
 .dates{
     width: 40%;
-    margin-left:2%;
 }
 
 .num-of-people{
@@ -88,4 +87,9 @@ margin-left: 2%;
 
   .status{
       margin-right: 2%;
+  }
+
+  .time{
+      width:28%;
+      margin-right:2%;
   }

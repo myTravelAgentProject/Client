@@ -40,6 +40,7 @@
     "fullcalendar": "^5.10.2",
     "luxon": "^2.3.1",
     "material-icons-font": "^2.1.0",
+    "ngx-mat-timepicker": "^13.0.0",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-material-timepicker-decon": "^3.3.0",
     "primeicons": "^5.0.0",

@@ -71,9 +71,15 @@
       <mat-datepicker #picker3></mat-datepicker>
     </mat-form-field> -->
 <!-- הגעה מוקדמת/עזיבה מאוחרת -->
-early check in and late check out.
-<input type="time" >
-<input type="time" >
+<mat-form-field class="time" appearance="fill">
+  <mat-label><mat-icon>watch_later</mat-icon>  הגעה מוקדמת</mat-label>
+  <input matInput [ngxMatTimepicker]="picker" formControlName="earlyCheckIn">
+  <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+</mat-form-field>
+<mat-form-field class="time" appearance="fill">
+  <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
+  <input type="time" matInput  formControlName="lateCheckOut">
+</mat-form-field>
 <!--         
 <div class="12hr-example">
   <input placeholder="12hr format (default settings)" aria-label="12hr format" [ngxTimepicker]="default" readonly>

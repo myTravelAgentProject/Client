@@ -4,4 +4,8 @@
       margin: 125px 5% 5px;
   }
 
+  .nav{
+    z-index: 2;
+  }
+
  
