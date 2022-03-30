@@ -38,10 +38,13 @@ export class OrderCardComponent implements OnInit {
     this.getOrderDetails();
     this.getAllCustomers();
     this.getHotelsList();
+    debugger;
+    this.fromCustomerCard=false;
     this.route.paramMap.subscribe(params=>{
       let orderId=params.get('id');
       this.orderID= Number(orderId);
-      this.fromCustomerCard=true;
+      if(this.orderID)
+        this.fromCustomerCard=true;
       this.getOrderDetails();
       
     })
@@ -110,8 +113,8 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(15,Validators.required),
-      "customerName": new FormControl("chanchy finkel",Validators.required),
+      "customerId":new FormControl(0,Validators.required),
+      "customerName": new FormControl("",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
       "bookingDate":new FormControl(),
@@ -130,8 +133,8 @@ export class OrderCardComponent implements OnInit {
       "statusCode": new FormControl(1,Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
-      "hotelId": new FormControl(5052,Validators.required),
-      "hotelName": new FormControl("Mamilla Hotel",Validators.required),
+      "hotelId": new FormControl(0,Validators.required),
+      "hotelName": new FormControl("",Validators.required),
       "comments": new FormControl(""),
       "isImportant": new FormControl(),
       "hotelPrice": new FormControl(0,Validators.required),
@@ -139,6 +142,7 @@ export class OrderCardComponent implements OnInit {
   }
    
     getOrderDetails(){
+      debugger;
       if(this.orderID){
          this.orderForm.disable();
 
@@ -202,8 +206,10 @@ deleteOrder(){
     this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>{
       if(this.fromCustomerCard==false)
         this.onOrderBtnClikced.emit();
-        else 
+        else {
           this.orderForm.reset();
+          this.orderForm.enable();
+        }
     });
   //  this._router.navigate(['./ordersList'])
   
