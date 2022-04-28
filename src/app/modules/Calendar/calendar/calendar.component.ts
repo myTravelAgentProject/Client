@@ -10,6 +10,7 @@ import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
+import interactionPlugin from '@fullcalendar/interaction';
 
 // import { DatePipe } from '@angular/common';
 
@@ -42,9 +43,11 @@ export class CalendarComponent implements OnInit {
   OrdersEvents:OrderDTO[]=[];
   month:number;
   year:number;
+  date1 = new Date();
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   ngOnInit(): void {
-    this.month=3;
+    debugger;
+    this.month=this.date1.getMonth()+1;
     this.year=2022;
     this.getMonthlyEvents(this.year, this.month);
   }
@@ -61,11 +64,27 @@ export class CalendarComponent implements OnInit {
         left: 'today prev,next',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'              
+    },   
+    selectable:true,
+    dateClick: function(info) {
+      alert('clicked ' + info.date);
     },
+    // plugins: [ interactionPlugin ],
     eventClick:function(arg){
       alert(JSON.stringify(arg.event))
       alert(arg.event.title)
       alert(arg.event.start)
+    },
+    // dateClick:function(arg){
+    //   alert(JSON.stringify(arg.dateStr))
+    //   alert(arg.jsEvent.pageX+ ',' + arg.jsEvent.pageY )
+    //   alert(arg.view.type)
+    // },
+  
+
+
+    select: function(info) {
+      alert('selected ' + info.startStr + ' to ' + info.endStr);
     },
     events: this.Events =
     [
@@ -124,7 +143,8 @@ export class CalendarComponent implements OnInit {
            const calendarApi = this.calendarComponent.getApi();
            calendarApi.changeView('dayGridMonth');
          }
-       }
+       },
+       
    }
   }
 
@@ -133,17 +153,18 @@ export class CalendarComponent implements OnInit {
     this.Events=[ ]
 
   };
-  getMonthlyEvents(year: number, month: number){
+   getMonthlyEvents(year: number, month: number){
     return this._calendarService.getEventsByMonth(year, month).subscribe(data=>{
       if(data){
         this.OrdersEvents=data;
         this.convertordersToEvenrs();
       }
-
     })
 
   }
+  
   convertordersToEvenrs(){
+   this.calendarComponent.getApi().removeAllEvents();
     this.OrdersEvents.forEach(order=>{
     this.newevent.start= new Date(order.checkInDate);
     this.newevent.title= `${order.customerName}-${order.hotelName}` //"order.customerName order.hotelName";
@@ -152,10 +173,31 @@ export class CalendarComponent implements OnInit {
     this.calendarComponent.getApi().addEvent(this.newevent);
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
     });
+    
  
   }
 
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var calendarEl = document.getElementById('calendar');
+    
+    //   var calendar = new FullCalendar.Calendar(calendarEl, {
+    //     selectable: true,
+    //     headerToolbar: {
+    //       left: 'prev,next today',
+    //       center: 'title',
+    //       right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    //     },
+    //     dateClick: function(info) {
+    //       alert('clicked ' + info.dateStr);
+    //     },
+    //     select: function(info) {
+    //       alert('selected ' + info.startStr + ' to ' + info.endStr);
+    //     }
+    //   });
+    
+    //   calendar.render();
+    // });
   
+  
+    
 }
-
-
