@@ -30,8 +30,8 @@ export class CustomerCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.getALLCustomerDetails();
     this.getAllCustomerOrders();
+    this.getALLCustomerDetails();
   }
 
   setCustomerDetails(customer: Customer): void {

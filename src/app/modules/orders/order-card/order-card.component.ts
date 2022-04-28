@@ -38,10 +38,13 @@ export class OrderCardComponent implements OnInit {
     this.getOrderDetails();
     this.getAllCustomers();
     this.getHotelsList();
+    debugger;
+    this.fromCustomerCard=false;
     this.route.paramMap.subscribe(params=>{
       let orderId=params.get('id');
       this.orderID= Number(orderId);
-      this.fromCustomerCard=true;
+      if(this.orderID)
+        this.fromCustomerCard=true;
       this.getOrderDetails();
       
     })
@@ -110,7 +113,7 @@ export class OrderCardComponent implements OnInit {
   buildForm(): void {
     this.orderForm = new FormGroup({
       "id":new FormControl(0,Validators.required),
-      "customerId":new FormControl(15,Validators.required),
+      "customerId":new FormControl(0,Validators.required),
       "customerName": new FormControl("",Validators.required),
       "checkInDate": new FormControl("",Validators.required),
       "checkOutDate": new FormControl("",Validators.required),
@@ -119,9 +122,8 @@ export class OrderCardComponent implements OnInit {
       "lateCheckOut": new FormControl(),
       "separteBeds": new FormControl(false,Validators.required),
       "multipleRooms": new FormControl(false,Validators.required),
-      "floorHeight": new FormControl(0),
-      // "highFloor": new FormControl(),
-      // "porch":new FormControl(),
+      "highFloor": new FormControl(),
+      "porch":new FormControl(),
       "totalPrice": new FormControl(0,Validators.required),
       "costPrice": new FormControl(0,Validators.required),
       "bookingId": new FormControl(),
@@ -130,7 +132,7 @@ export class OrderCardComponent implements OnInit {
       "statusCode": new FormControl(1,Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
-      "hotelId": new FormControl("",Validators.required),
+      "hotelId": new FormControl(0,Validators.required),
       "hotelName": new FormControl("",Validators.required),
       "comments": new FormControl(""),
       "isImportant": new FormControl(),
@@ -139,6 +141,7 @@ export class OrderCardComponent implements OnInit {
   }
    
     getOrderDetails(){
+      debugger;
       if(this.orderID){
          this.orderForm.disable();
 
@@ -202,8 +205,10 @@ deleteOrder(){
     this._orderService.deleteOrder(this.orderForm.value.id).subscribe(()=>{
       if(this.fromCustomerCard==false)
         this.onOrderBtnClikced.emit();
-        else 
+        else {
           this.orderForm.reset();
+          this.orderForm.enable();
+        }
     });
   //  this._router.navigate(['./ordersList'])
   

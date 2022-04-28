@@ -16,7 +16,6 @@ export class OrdersListComponent implements OnInit {
 
   
   constructor(private _orderService:OrdersService,public dialog: MatDialog) { }
-
   
   openDialog(Id:number): void {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
@@ -31,8 +30,6 @@ export class OrdersListComponent implements OnInit {
     }
     });
   }
-  
-  
 
   getTheLastOrders() {
     this._orderService.getTheLastOrders().subscribe(data => {

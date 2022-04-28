@@ -73,14 +73,21 @@
 <!-- הגעה מוקדמת/עזיבה מאוחרת -->
 <!-- <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  הגעה מוקדמת</mat-label>
-  <input type="time" matInput  formControlName="earlyCheckIn"> -->
+  <input type="datetime" matInput  formControlName="earlyCheckIn"> -->
   <!-- [ngxMatTimepicker]="picker" -->
-  <!-- <ngx-mat-timepicker #picker></ngx-mat-timepicker> -->
-<!-- </mat-form-field> -->
+  <!-- <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+</mat-form-field> -->
+<mat-form-field class="time" appearance="fill">
+  <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
+
+</mat-form-field>
+<!-- <input mdc-datetime-picker="" date="false" time="true" placeholder="Time" minutes="true"
+ng-model-options="{timezone: 'utc'}" min-date="minDate" type="text" id="timez"
+format="HH:mm" edit-input="true" show-icon="true" ng-model="timez" class=" dtp-no-msclear dtp-input md-input" > -->
 
 <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
-  <input type="time" matInput  formControlName="lateCheckOut">
+  <input type="date" matInput  formControlName="lateCheckOut">
 </mat-form-field>
 <!--         
 <div class="12hr-example">
@@ -165,8 +172,8 @@
                   </td>
                   <td>
                     <section dir="rtl">
-                      <!-- <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p> -->
-                      <!-- <p><mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox></p> -->
+                      <p><mat-checkbox formControlName="porch">מרפסת</mat-checkbox></p>
+                     <p><mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox></p>
                     </section>
                   </td>
               </tr>
