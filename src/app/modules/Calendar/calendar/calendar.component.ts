@@ -10,9 +10,6 @@ import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
-import interactionPlugin from '@fullcalendar/interaction';
-
-// import { DatePipe } from '@angular/common';
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   let calendarEl: HTMLElement = document.getElementById('calendar')!;
@@ -45,6 +42,9 @@ export class CalendarComponent implements OnInit {
   year:number;
   date1 = new Date();
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
+  onDateClick(res: any) {
+    alert('Clicked on date : ' + res.dateStr);
+  }
   ngOnInit(): void {
     debugger;
     this.month=this.date1.getMonth()+1;
@@ -59,6 +59,11 @@ export class CalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     nextDayThreshold: '23:43:00',
     initialView: 'dayGridMonth',
+    editable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+
+    // dateClick: this.onDateClick.bind(this),
     // dateClick: this.handleDateClick.bind(this),
     headerToolbar: {
         left: 'today prev,next',
@@ -75,11 +80,11 @@ export class CalendarComponent implements OnInit {
       alert(arg.event.title)
       alert(arg.event.start)
     },
-    dateClick:function(arg){
-      alert(JSON.stringify(arg.dateStr))
-      alert(arg.jsEvent.pageX+ ',' + arg.jsEvent.pageY )
-      alert(arg.view.type)
-    },
+    // dateClick:function(arg){
+    //   alert(JSON.stringify(arg.dateStr))
+    //   alert(arg.jsEvent.pageX+ ',' + arg.jsEvent.pageY )
+    //   alert(arg.view.type)
+    // },
   
 
 

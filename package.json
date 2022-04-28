@@ -25,7 +25,6 @@
     "@fullcalendar/bootstrap5": "^5.10.2",
     "@fullcalendar/core": "^5.10.1",
     "@fullcalendar/daygrid": "^5.10.1",
-    "@fullcalendar/interaction": "^5.10.1",
     "@progress/kendo-angular-common": "^2.0.0",
     "@progress/kendo-angular-dropdowns": "^6.0.1",
     "@progress/kendo-angular-inputs": "^8.0.0",

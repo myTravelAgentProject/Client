@@ -77,17 +77,21 @@
   <!-- [ngxMatTimepicker]="picker" -->
   <!-- <ngx-mat-timepicker #picker></ngx-mat-timepicker>
 </mat-form-field> -->
-<mat-form-field class="time" appearance="fill">
+<!-- <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
 
-</mat-form-field>
+</mat-form-field> -->
 <!-- <input mdc-datetime-picker="" date="false" time="true" placeholder="Time" minutes="true"
 ng-model-options="{timezone: 'utc'}" min-date="minDate" type="text" id="timez"
 format="HH:mm" edit-input="true" show-icon="true" ng-model="timez" class=" dtp-no-msclear dtp-input md-input" > -->
+<mat-form-field class="time" appearance="fill">
+  <mat-label><mat-icon>watch_later</mat-icon> הגעה מוקדמת</mat-label>
+  <input type="datetime-local" matInput  formControlName="earlyCheckIn">
+</mat-form-field>
 
 <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
-  <input type="date" matInput  formControlName="lateCheckOut">
+  <input type="datetime-local" matInput  formControlName="lateCheckOut">
 </mat-form-field>
 <!--         
 <div class="12hr-example">
