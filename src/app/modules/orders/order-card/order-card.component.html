@@ -63,27 +63,6 @@
   </mat-date-range-picker>
 </mat-form-field>
 
-    
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Booking Date</mat-label>
-      <input matInput [matDatepicker]="picker3" placeholder="Booking Date" formControlName="bookingDate">
-      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-      <mat-datepicker #picker3></mat-datepicker>
-    </mat-form-field> -->
-<!-- הגעה מוקדמת/עזיבה מאוחרת -->
-<!-- <mat-form-field class="time" appearance="fill">
-  <mat-label><mat-icon>watch_later</mat-icon>  הגעה מוקדמת</mat-label>
-  <input type="datetime" matInput  formControlName="earlyCheckIn"> -->
-  <!-- [ngxMatTimepicker]="picker" -->
-  <!-- <ngx-mat-timepicker #picker></ngx-mat-timepicker>
-</mat-form-field> -->
-<!-- <mat-form-field class="time" appearance="fill">
-  <mat-label><mat-icon>watch_later</mat-icon>  עזיבה מאוחרת</mat-label>
-
-</mat-form-field> -->
-<!-- <input mdc-datetime-picker="" date="false" time="true" placeholder="Time" minutes="true"
-ng-model-options="{timezone: 'utc'}" min-date="minDate" type="text" id="timez"
-format="HH:mm" edit-input="true" show-icon="true" ng-model="timez" class=" dtp-no-msclear dtp-input md-input" > -->
 <mat-form-field class="time" appearance="fill">
   <mat-label><mat-icon>watch_later</mat-icon> הגעה מוקדמת</mat-label>
   <input type="datetime-local" matInput  formControlName="earlyCheckIn">
@@ -136,6 +115,12 @@ format="HH:mm" edit-input="true" show-icon="true" ng-model="timez" class=" dtp-n
       <span matPrefix>₪&nbsp;</span>
       <span matSuffix>.00</span>
     </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-form-field" appearance="fill" class="bookingId">
+        <mat-label>מספר הזמנה</mat-label>
+        <input matInput type="text" formControlName="bookingId">
+      </mat-form-field>
     </td>
     <td>
     <section dir="rtl">

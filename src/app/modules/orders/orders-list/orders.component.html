@@ -1,72 +1,66 @@
-<!-- <p>orders works!</p>
-<mat-icon> message</mat-icon>
-<mat-icon>today</mat-icon>
-<mat-icon>search</mat-icon>
-<mat-icon>home</mat-icon> -->
+
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="הכנס שם לקוח ,שם מלון, או תאריך" #input>
+</mat-form-field>
 
 <div class="mat-elevation-z8 demo-table">
-    <table mat-table [dataSource]="ordersList"  
-    class="mat-elevation-z8" >
-    <!-- matSort (matSortChange)="sortData($event)" -->
-      <!-- (matSortChange)="announceSortChange($event)" -->
+    <table mat-table [dataSource]="dataSource"  matSort >
   
       <!-- FirstName Column -->
       <ng-container matColumnDef="customerName">
-        <th mat-header-cell *matHeaderCellDef > Customer Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name</th>
         <!-- sortActionDescription="Sort by firstname" -->
-        <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.customerName}} </td>
       </ng-container>
 
       <!-- FirstName Column -->
       <ng-container matColumnDef="checkInDate">
-        <th mat-header-cell *matHeaderCellDef > Check In Date</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Check In Date</th>
         <!-- sortActionDescription="Sort by firstname" -->
         <td mat-cell *matCellDef="let element"> {{element.checkInDate}} </td>
       </ng-container>
   
       <!-- LastName Column -->
       <ng-container matColumnDef="checkOutDate">
-        <th mat-header-cell *matHeaderCellDef> check Out Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.checkOutDate}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> check Out Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.checkOutDate}} </td>
       </ng-container>
   
       <!-- EmailAddress Column -->
       <ng-container matColumnDef="totalPrice">
-        <th mat-header-cell *matHeaderCellDef> Total Price </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Price </th>
         <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
       </ng-container>
   
       <!-- Symbol Column -->
       <ng-container matColumnDef="costPrice">
-        <th mat-header-cell *matHeaderCellDef>Cost Price</th>
-        <td mat-cell *matCellDef="let element"> {{element.costPrice}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost Price</th>
+        <td mat-cell *matCellDef="let row"> {{row.costPrice}} </td>
       </ng-container>
       <!-- Symbol Column -->
       <ng-container matColumnDef="numOfAdults">
-        <th mat-header-cell *matHeaderCellDef> Num Of Adults </th>
-        <td mat-cell *matCellDef="let element"> {{element.numOfAdults}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Num Of Adults </th>
+        <td mat-cell *matCellDef="let row"> {{row.numOfAdults}} </td>
       </ng-container>
 
       <ng-container matColumnDef="numOfKids">
-        <th mat-header-cell *matHeaderCellDef> Num Of Kids </th>
-        <td mat-cell *matCellDef="let element"> {{element.numOfKids}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Num Of Kids </th>
+        <td mat-cell *matCellDef="let row"> {{row.numOfKids}} </td>
       </ng-container>
 
       <ng-container matColumnDef="hotelName">
-        <th mat-header-cell *matHeaderCellDef> Hotel Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.hotelName}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.hotelName}} </td>
       </ng-container>
 
-      <td>
-      <div class="example-button-container">
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-      </td>
       <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getOrderDetails(row.id)"></tr>
-      <!-- (dblclick)="getCustomerDetails(row.id)" -->
-     <!--  -->
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
     </table>
-<!-- <button (click)="getTheLastOrders()">Get All Orders</button> -->
+      
+    <mat-paginator [pageSizeOptions]="[7, 10, 25, 100]" ></mat-paginator>
+</div>

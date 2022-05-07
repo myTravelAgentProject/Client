@@ -11,22 +11,7 @@ import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   let calendarEl: HTMLElement = document.getElementById('calendar')!;
 
-//   let calendar = new Calendar(calendarEl, {
-//     plugins: [ dayGridPlugin ],
-//     // options here
-//     // schedulerLicenseKey: 'XXX'
-//     // dateClick: this.handleDateClick.bind(this), // bind is important!
-//     events: [
-//       { title: 'event 1', date: '2022-04-01' },
-//       { title: 'event 2', date: '2022-04-02' }
-//     ]
-//   });
-//   // calendar.addEvent()
-//   calendar.render();
-// });
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -41,6 +26,7 @@ export class CalendarComponent implements OnInit {
   month:number;
   year:number;
   date1 = new Date();
+  profit:number=0;
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   onDateClick(res: any) {
     alert('Clicked on date : ' + res.dateStr);
@@ -156,13 +142,13 @@ export class CalendarComponent implements OnInit {
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
     this.Events=[ ]
-
   };
    getMonthlyEvents(year: number, month: number){
     return this._calendarService.getEventsByMonth(year, month).subscribe(data=>{
       if(data){
         this.OrdersEvents=data;
         this.convertordersToEvenrs();
+        this.calculateProfit ();
       }
     })
 
@@ -179,8 +165,14 @@ export class CalendarComponent implements OnInit {
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
     });
     
- 
   }
+  calculateProfit(){
+    this.OrdersEvents.forEach(order=>{
+      this.profit=order.totalPrice-order.costPrice;
+    })   
+    //  alert(this.profit)
+    }
+  
 
     // document.addEventListener('DOMContentLoaded', function() {
     //   var calendarEl = document.getElementById('calendar');
@@ -202,7 +194,7 @@ export class CalendarComponent implements OnInit {
     
     //   calendar.render();
     // });
-  
+   
   
     
 }
