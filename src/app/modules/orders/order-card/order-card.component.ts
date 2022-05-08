@@ -38,7 +38,6 @@ export class OrderCardComponent implements OnInit {
     this.getOrderDetails();
     this.getAllCustomers();
     this.getHotelsList();
-    debugger;
     this.fromCustomerCard=false;
     this.route.paramMap.subscribe(params=>{
       let orderId=params.get('id');
@@ -142,7 +141,6 @@ export class OrderCardComponent implements OnInit {
   }
    
     getOrderDetails(){
-      debugger;
       if(this.orderID){
          this.orderForm.disable();
 
@@ -177,7 +175,6 @@ saveOrder() {
   else{
     this._orderService.updateOrder(this.orderForm.value).subscribe(()=> {
         // if () {
-          debugger;
           console.log("sucsess");
            this._router.navigate(['/orders/ordersList']);
         // } else

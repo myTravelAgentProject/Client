@@ -94,7 +94,6 @@ export class CustomerCardComponent implements OnInit {
     else
       this._customerService.updateCustomer(this.customerForm.value).subscribe(
         data => {
-          debugger;
          
           if (data) {
             console.log("sucsess");
@@ -142,7 +141,6 @@ export class CustomerCardComponent implements OnInit {
 
  getOrderDetails(id:number){
    if(id!=0){
-     debugger;
      this.onCustomeBtnClikced.emit()
     this._router.navigate(['/orders/orders/NewOrder',id]);
     
