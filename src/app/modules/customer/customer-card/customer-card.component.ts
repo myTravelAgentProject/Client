@@ -25,7 +25,7 @@ export class CustomerCardComponent implements OnInit {
   @Output()
   onCustomeBtnClikced = new EventEmitter();
   panelOpenState = false;
-  @ViewChild(MatAccordion) accordion: MatAccordion;
+  // @ViewChild(MatAccordion) accordion: MatAccordion;
 
 
   ngOnInit(): void {
