@@ -5,33 +5,13 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- <form>
-    <mat-form-field  appearance="fill">
-      <mat-label>הכנס את שם הלקוח</mat-label>
-      <input type="text"
-      id="filterField"
-             placeholder="שם מלא"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto"  #name>
-      <mat-autocomplete #auto="matAutocomplete" >
-        <mat-select [formControl]="myControl">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-select>
-      </mat-autocomplete>
-    </mat-form-field>
-    <button (click)="findCustomer(name.value)">חיפוש</button>
-    <button (click)="clear()">נקה שדות חיפוש</button>
-  </form> -->
 
-
+<div dir="rtl">
   <mat-form-field appearance="standard">
-    <mat-label>Filter</mat-label>
+    <mat-label><mat-icon>search</mat-icon> חיפוש </mat-label >
     <input matInput (keyup)="applyFilter($event)" placeholder="הכנס שם לקוח " #input>
   </mat-form-field>
-
+</div>
   <div class="mat-elevation-z8 demo-table">
     <table mat-table [dataSource]="dataSource"  matSort >
     <!-- (matSortChange)="announceSortChange($event)" -->
@@ -73,7 +53,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[7, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
 </body>
 </html>

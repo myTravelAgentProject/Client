@@ -52,7 +52,7 @@ export class CalendarComponent implements OnInit {
     // dateClick: this.onDateClick.bind(this),
     // dateClick: this.handleDateClick.bind(this),
     headerToolbar: {
-        left: 'today prev,next',
+        left: 'today,prev,next',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'              
     },   
@@ -100,7 +100,7 @@ export class CalendarComponent implements OnInit {
             this.getMonthlyEvents(year, month);
         }
       }
-      },
+    },
       next: { // this overrides the next button
         text: 'NEXT',
         click: () => {
@@ -114,6 +114,23 @@ export class CalendarComponent implements OnInit {
         }
        }
      },
+     today: { // this overrides the prev button
+      text: 'Today',
+      click: () => {
+      const calendarApi = this.calendarComponent.getApi();
+      calendarApi.today();
+      const currentDate = calendarApi.currentData.currentDate;
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth()+1;
+      this.getMonthlyEvents(year, month);
+      // const currentDate = calendarApi.currentData.currentDate;
+      // if (currentDate) {
+      //   const year = currentDate.getFullYear();
+      //   const month = currentDate.getMonth();
+      //     this.getMonthlyEvents(year, month);
+      // }
+    }
+  },
       dayGridMonth: { // this overrides the month button
          text: 'Month',
          click: () => {
@@ -167,8 +184,9 @@ export class CalendarComponent implements OnInit {
     
   }
   calculateProfit(){
+    this.profit=0;
     this.OrdersEvents.forEach(order=>{
-      this.profit=order.totalPrice-order.costPrice;
+      this.profit+=order.totalPrice-order.costPrice;
     })   
     //  alert(this.profit)
     }

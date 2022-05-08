@@ -19,19 +19,22 @@ export class CustomerCardComponent implements OnInit {
 
   edit: boolean = true;
   customerForm!: FormGroup;
-
+  fromCustomerList:boolean=false;
   @Input()
   customerID: number=0;
   @Output()
   onCustomeBtnClikced = new EventEmitter();
   panelOpenState = false;
   // @ViewChild(MatAccordion) accordion: MatAccordion;
+  //Orders
+  ordersList:OrderDTO[]=[];
+  columnsToDisplay: string[] = ['checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
+  dataSource: MatTableDataSource<OrderDTO>;
 
 
   ngOnInit(): void {
     this.buildForm();
     this.getAllCustomerOrders();
-    this.getALLCustomerDetails();
   }
 
   setCustomerDetails(customer: Customer): void {
@@ -65,6 +68,7 @@ export class CustomerCardComponent implements OnInit {
   getALLCustomerDetails() {
     if(this.customerID){
       this.customerForm.disable();
+      this.fromCustomerList=true;
     this._customerService.getByCustomerId(this.customerID).subscribe(data => {
       if (data) {
         this.setCustomerDetails(data);
@@ -122,21 +126,19 @@ export class CustomerCardComponent implements OnInit {
      
    } }
 
-   //Orders
-   ordersList:OrderDTO[]=[];
-   columnsToDisplay: string[] = ['checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
-   dataSource = new MatTableDataSource<OrderDTO>(this.ordersList);
  
    getAllCustomerOrders() {
     //  if (this.customerForm.get('id')?.value != 0) {
       this._customerService.getOrdersByCustomerId(this.customerID).subscribe( data => {
           if (data) {
-            console.log("sucsess " + data);
             this.ordersList=data;
+            this.dataSource = new MatTableDataSource(this.ordersList);
+            console.log("sucsess " + data);
           } else {
             console.log("faild");
           }
-        });
+        this.getALLCustomerDetails();
+        })
     // }
  }
 
@@ -149,4 +151,3 @@ export class CustomerCardComponent implements OnInit {
    }
  }
  }
-//  const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
