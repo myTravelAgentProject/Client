@@ -1,12 +1,9 @@
-.card-default {
+ .card-default {
     color: #333;
     background: linear-gradient(#fff,#ebebeb) repeat scroll 0 0 transparent;
     font-weight: 600;
     border-radius: 6px;
-}
-
-
-
+} 
 .mat-icon{
     font-size: 200%;
 }
@@ -43,11 +40,18 @@ margin-right: 2%;
     margin-right: 0%; 
 }
 
-table{
+.form-table{
     width: 100%;
     margin-right: 0%;
     text-align: right;
 }
+.demo-table {
+    width: 100%;
+  }
+  table {
+    width: 1150px;
+    width: 100%;
+  }
 
 .title{
     text-align: center;
@@ -73,4 +77,11 @@ margin-left: 2%;
 
   .btn {
     font-size: 1vw;
+    margin-right: 2%;
+    width: 150px;
 }
+
+.orders{
+    width: 80%;
+    margin-left: 10%;
+} 

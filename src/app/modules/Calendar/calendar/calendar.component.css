@@ -5,9 +5,12 @@
   }
 
 .profit{
-background-color: rgb(224, 203, 208);
-margin-right: 20%;
-margin-left: 20%;
-text-align: center; 
- }
+/* background-color:lightgray; */
+position:relative;
+bottom: 20px;
+text-align: left; 
+font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+font-size:large;
+}
+
   

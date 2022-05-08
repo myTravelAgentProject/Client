@@ -37,16 +37,15 @@ export class OrderCardComponent implements OnInit {
     this.buildForm();
     this.getOrderDetails();
     this.getAllCustomers();
-    this.getHotelsList();
-    debugger;
     this.fromCustomerCard=false;
     this.route.paramMap.subscribe(params=>{
       let orderId=params.get('id');
       this.orderID= Number(orderId);
-      if(this.orderID)
+      if(this.orderID){
         this.fromCustomerCard=true;
+        this.orderForm.disable();
+      }
       this.getOrderDetails();
-      
     })
     // this.orderForm.get("customerName")?.valueChanges.subscribe(x => {
     //   var choseCustomerId:number=this.customers.filter(y=>(y.firstName+" "+y.lastName).toLowerCase()==x.toLowerCase())[0].id;
@@ -74,6 +73,7 @@ export class OrderCardComponent implements OnInit {
     this._customerService.getAllCustomers().subscribe(data=>{
       if(data)
        {
+        this.getHotelsList();
          this.customers=data; 
          this.filteredOptions=this.orderForm.controls.customerName.valueChanges.pipe(
           startWith(''),
@@ -89,21 +89,25 @@ export class OrderCardComponent implements OnInit {
   }
 
   _filterHotel(value: string): string[] {
-    // const filterValue = value.toLowerCase();
-    // debugger;
     return this.hotels.map(x=>x.name).filter(option =>
        option.toLowerCase().includes(value.toLowerCase()));
   }
 
   getHotelsList(){
     this._orderService.getAllHotels().subscribe(data=>
-      {if(data){
+      {
+        if(data){
         this.hotels=data;
         this.hotelsOption = this.orderForm.controls.hotelName.valueChanges.pipe(
           startWith(''),
           map((val:any) => this._filterHotel(val)),
         );
-     }; })
+     };
+     if(this.orderForm.get('id')?.value == 0)
+     {
+        this.orderForm.enable();
+     } 
+    })
   }
   setOrderDetails(order: OrderDTO): void {
     // this.customerDetails = customer;
@@ -138,13 +142,11 @@ export class OrderCardComponent implements OnInit {
       "isImportant": new FormControl(),
       "hotelPrice": new FormControl(0,Validators.required),
     });
+    this.orderForm.disable();
   }
    
-    getOrderDetails(){
-      debugger;
+  getOrderDetails(){
       if(this.orderID){
-         this.orderForm.disable();
-
       this._orderService.getOrderById(this.orderID).subscribe(data => {
         if (data) {
           this.setOrderDetails(data);
