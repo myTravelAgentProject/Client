@@ -12,41 +12,42 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userAdmin!:AdminDTO;
-  loginForm!:FormGroup;
-  userAdminDTO!:AdminDTO;
+  userAdmin!: AdminDTO;
+  loginForm!: FormGroup;
+  userAdminDTO!: AdminDTO;
   hide = true;
-  
-  constructor(private _loginService: LoginService,private router: Router,private _userService:UserService) { }
 
-  onSubmit() {  
-      
-   // this.userAdmin.name=
-   //this._adminService.getAdmin().subscribe();
-   //this.adminForm.get('name')?.value, this.adminForm.get('name')?.value
+  constructor(private _loginService: LoginService, private router: Router, private _userService: UserService) { }
+
+  onSubmit() {
+
+    // this.userAdmin.name=
+    //this._adminService.getAdmin().subscribe();
+    //this.adminForm.get('name')?.value, this.adminForm.get('name')?.value
   }
-  
-  Login(){
-    this.userAdmin=this.loginForm.value;
-    this.userAdmin.name=this.userAdmin.name.replace(/\s/g, '');
-    this.userAdmin.password=this.userAdmin.password.replace(/\s/g, '');
-    this._loginService.getAdmin(this.userAdmin).subscribe(data=>{
-        if(data)
-        {
-          this.userAdminDTO=data;
-         console.log(this.userAdminDTO);
-         alert("Welcome to "+this.userAdminDTO.name);
-         this.router.navigate(['/homePage']); 
-         this._userService.setAuthorized(true);
-        }
-        else{console.log("no such user");}  
-      })
-    };
+
+  Login() {
+    this.userAdmin = this.loginForm.value;
+    this.userAdmin.name = this.userAdmin.name.replace(/\s/g, '');
+    this.userAdmin.password = this.userAdmin.password.replace(/\s/g, '');
+    this._loginService.getAdmin(this.userAdmin).subscribe(data => {
+      if (data) {
+        this.userAdminDTO = data;
+        console.log(this.userAdminDTO);
+        alert("Welcome to " + this.userAdminDTO.name);
+        this._userService.setAuthorized(true);
+        this._userService.setUserAdmin(data);
+        this.router.navigate(['/homePage']);
+
+      }
+      else { console.log("no such user"); }
+    })
+  };
 
   ngOnInit(): void {
-    this.loginForm=new FormGroup({
-      name:new FormControl("",[Validators.required,Validators.email]),
-      password:new FormControl("",[Validators.required,Validators.minLength(8)]),
+    this.loginForm = new FormGroup({
+      name: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required, Validators.minLength(8)]),
     });
   }
 

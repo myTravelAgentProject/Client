@@ -9,10 +9,10 @@ import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule,ReactiveFormsModule, FormsModule ,MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   providers: [LoginService],
-  exports:[LoginComponent]
+  exports: [LoginComponent]
 })
 export class LoginModule {
 
- }
+}

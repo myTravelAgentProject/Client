@@ -1,7 +1,7 @@
 export interface AdminDTO{
+    // id:number;
     name:string;
     password:string;
-    token?:string;
     
     // constructor(name:string ,password:string,token?:string) {
     //     this.name=name;
