@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
 
   
   authorized:boolean=false;
-  adminName:string="admin";
+  adminName:string="מנהל";
   toAddNewAdmin:boolean
   
   constructor(private _userservice:UserService, private _router:Router) { }
