@@ -83,7 +83,7 @@ export class CalendarComponent implements OnInit {
        { title: 'michal 2', start: new Date() ,end:this.addDays(5),
        },
      ],
-     eventColor: '#008b8b',
+     eventColor: '#517ec0',
     //  eventBorderColor:"#000000",
     //  plugins: [ bootstrap5Plugin ],
      themeSystem: 'bootstrap5',
