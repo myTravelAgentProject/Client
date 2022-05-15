@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './modules/Admin/admin/admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerModule } from './modules/customer/customer.module';
 import { CalendarModule } from './modules/Calendar/calendar.module';
@@ -23,6 +23,8 @@ import { CalendarComponent } from './modules/Calendar/calendar/calendar.componen
 import { OrdersModule } from './modules/orders/orders.module';
 import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './modules/material/material.module';
+import { InterceptorService } from './services/interceptor.service';
+import { UserService } from './services/user.service';
 
 
 // FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -54,7 +56,12 @@ import { MaterialModule } from './modules/material/material.module';
     MaterialModule,
     DropDownsModule,
   ],
-  providers: [],
+  providers: [
+    UserService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+   }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

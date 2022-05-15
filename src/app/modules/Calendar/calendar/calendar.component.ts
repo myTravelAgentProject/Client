@@ -83,7 +83,7 @@ export class CalendarComponent implements OnInit {
        { title: 'michal 2', start: new Date() ,end:this.addDays(5),
        },
      ],
-     eventColor: '#008b8b',
+     eventColor: '#517ec0',
     //  eventBorderColor:"#000000",
     //  plugins: [ bootstrap5Plugin ],
      themeSystem: 'bootstrap5',
@@ -186,7 +186,7 @@ export class CalendarComponent implements OnInit {
   calculateProfit(){
     this.profit=0;
     this.OrdersEvents.forEach(order=>{
-      this.profit=order.totalPrice-order.costPrice;
+      this.profit+=order.totalPrice-order.costPrice;
     })   
     //  alert(this.profit)
     }

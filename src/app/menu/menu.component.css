@@ -45,3 +45,18 @@ ul {
   .active {
     background-color: rgb(141,194, 249);
   } 
+  .left-element{
+    float: left;
+    }
+    li button {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li button:hover:not(.active) {
+      color: #000;
+    }

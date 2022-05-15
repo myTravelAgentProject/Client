@@ -14,14 +14,11 @@ export class LoginService {
 
   constructor(private _http: HttpClient) { }
 
-  getAdmin(admin:AdminDTO): Observable<AdminDTO> {
-    return this._http.post<AdminDTO>("/api/Admin/Login",admin)
-    
+  getAdmin(admin: AdminDTO): Observable<Admin> {
+    return this._http.post<Admin>("/api/Admin/Login", admin)
+
   }
-  addNewAdmin(newAdmin:Admin):Observable<any>{
-    return this._http.post<any>(this.baseURL,newAdmin)
-}
-// changePaswword(changePaswword:Admin):Observable<any>{
-//   return this._http.put(this.baseURL+changePaswword.id,changePaswword)
-//   }
+  // changePaswword(changePaswword:Admin):Observable<any>{
+  //   return this._http.put(this.baseURL+changePaswword.id,changePaswword)
+  //   }
 }
