@@ -6,13 +6,12 @@ export class OrderDTO{
     checkInDate:Date;
     checkOutDate:Date;
     bookingDate:Date;
-    earlyCheckIn?:Time;
-    lateCheckOut?:Time;
+    earlyCheckIn?:Date;
+    lateCheckOut?:Date;
     separteBeds:boolean;
     multipleRooms:boolean;
-    floorHeight:number;
-   //  highFloor?:boolean;
-   //  porch?:boolean;
+    highFloor?:boolean;
+    porch?:boolean;
     totalPrice:number;
     costPrice:number;
     bookingId?:number;
@@ -29,9 +28,9 @@ export class OrderDTO{
 
 
     
-    constructor( id:number,   customerId:number,customerName:string,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number,hotelName:string, comments:string,floorHeight:number
-        ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,statusCode:number ,earlyCheckIn?:Time,lateCheckOut?:Time,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean)
-      //   ,highFloor?:boolean,porch?:boolean
+    constructor( id:number,   customerId:number,customerName:string,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number,hotelName:string, comments:string
+        ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,statusCode:number ,earlyCheckIn?:Date,lateCheckOut?:Date,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean
+        ,highFloor?:boolean,porch?:boolean)
    {
       this.id=id;
       this.customerId=customerId;
@@ -51,9 +50,8 @@ export class OrderDTO{
       this.hotelPrice=hotelPrice;
       this.earlyCheckIn=earlyCheckIn;
       this.lateCheckOut=lateCheckOut;
-      this.floorHeight=floorHeight
-      // this.highFloor=highFloor;
-      // this.porch=porch;
+      this.highFloor=highFloor;
+      this.porch=porch;
       this.bookingId=bookingId;
       this.numOfKIds=numOfKIds;
       this.newPrice=newPrice;

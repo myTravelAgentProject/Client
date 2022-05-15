@@ -2,152 +2,15 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
-<!-- 
-<div class="container">
-<div id="accordion"  [formGroup]="customerForm" >
-    
-   
-    <div class="card card-default">
-        <div class="card-header">
-            <h4 class="card-title">
-        <i class="glyphicon glyphicon-lock text-gold"></i> 
-                    <b>Customer Card</b>
-               
-      </h4>
-        </div>
-        <div id="collapse2" class="collapse show">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 col-lg-5">
-                        <div class="form-group">
-                            <label class="control-label">First Name</label>
-                            <input id="firstName" type="text" class="form-control" name="FirstName" formControlName="firstName"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-lg-5">
-                        <div class="form-group">
-                            <label class="control-label">Last Name</label>
-                            <input  id="lastName" type="text" class="form-control" name="LastName" formControlName="lastName" />
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    
-                    <div class="col-md-2 col-lg-4">
-                        <div class="form-group">
-                            <label class="control-label">Email Adress</label>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                             </div>
-                            <input  id="Email Adress" type="email" class="form-control" name="EmailAdress" formControlName="emailAddress" />
-                        </div>
-                    </div>
-                  
-
-                    <div class="col-md-3 col-lg-3">
-                        <div class="form-group">
-                            <label class="control-label">Phone Number</label>
-                            <input  id="Phone Number" type="text" class="form-control" name="PhoneNumber" formControlName="phoneNumber" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-lg-5">
-                        <div class="form-group">
-                            <label class="control-label">Address</label>
-                            <input  id="address" type="text" class="form-control" name="Address" formControlName="address" />
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3 col-lg-1">
-                        <div class="form-group">
-                            <label class="control-label">Adults</label>
-                            <input  id="adults" type="number" class="form-control" name="Adults" formControlName="numOfAdults" />
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-1">
-                        <div class="form-group">
-                            <label class="control-label">Kids</label>
-                            <input  id="kids" type="number" class="form-control" name="Kids" formControlName="numOfKids" />
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-1">
-                        <div class="form-group">
-                            <label class="control-label">HighFloor</label>
-                            <input  id="highFloor" type="checkbox" class="form-control" name="HighFloor" formControlName="highFloor" />
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="control-label">Porch</label>
-                            <input  id="porch" type="checkbox" class="form-control" name="Porch" formControlName="porch" />
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="control-label">Separte Beds</label>
-                            <input  id="separteBeds" type="checkbox" class="form-control" name="SeparteBeds" formControlName="separteBeds" />
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-lg-1">
-                        <div class="form-group">
-                            <label class="control-label">Multiple Rooms</label>
-                            <input  id="multipleRooms" type="checkbox" class="form-control" name="MultipleRooms" formControlName="multipleRooms" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-lg-12">
-                        <div class="form-group">
-                            <label class="control-label">Comments</label>
-                            <input  id="comments" type="text" class="form-control" name="Comments" formControlName="comments" />
-                        </div>
-                    </div>
-                </div>
-                <div class="pull-right">
-                    <button  class="btn btn-success btn-lg" id="btnSubmit" (click)="saveCustomer()"><i class="fa fa-save" ></i> Save</button>
-                    <a  class="btn btn-warning btn-lg" id="btnSubmit" (click)="onEditClickecd()"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-warning btn-lg" href="#" id="btnToTop"><i class="fa fa-arrow-up"></i> Top</a>
-                    <a  class="btn btn-warning btn-lg" id="btnSubmit" (click)="deleteCustomer()"><i class="fa fa-edit"></i> Delete</a>
-                    <button (click)="deleteCustomer()">delete</button>
-        
-                </div>
-              
-         </div>
-        </div>
-    </div>
-    <br />
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        
-    </div>
-</div>
-
-</div> -->
 
    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-
-
-
-
 
 <div dir="rtl" >
     <form [formGroup]="customerForm" class="example-form">
@@ -205,7 +68,7 @@
           </mat-form-field>          
       </p>
       <!-- <p> -->
-     <table>
+     <table class="form-table">
             <tr>
                 <td>
                     <h4>
@@ -264,22 +127,10 @@
     <div>
 
     </div>
-    <!-- <div class="example-label">
-    <div class="example-button-row">
-    <button mat-raised-button color="primary" id="update"  *ngIf="customerForm.valid" (click)="saveCustomer()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check-fill" viewBox="0 0 16 16">
-        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47L15.964.686Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-      </svg> Save</button>
-      <button mat-raised-button color="primary" id="update"  *ngIf="customerForm.valid" (click)="deleteCustomer()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check-fill" viewBox="0 0 16 16">
-        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47L15.964.686Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
-        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
-      </svg> Delete</button>
-    </div>
-    </div> -->
 </form>
 </div>
 
-
+<div *ngIf="fromCustomerList" class="orders">
 <hr style="width:100% ;">
 
   <div class="title">
@@ -288,10 +139,9 @@
         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
       </svg>
       <h1>הזמנות</h1>
-      <div class="mat-elevation-z8 demo-table">
-        <table mat-table [dataSource]="ordersList"  
-        class="mat-elevation-z8" > 
-    
+    </div>
+     <div class="mat-elevation-z8 demo-table">
+        <table mat-table [dataSource]="ordersList">
           <!-- checkin Column -->
            <ng-container matColumnDef="checkInDate">
             <th mat-header-cell *matHeaderCellDef > Check In Date</th> 
@@ -329,11 +179,10 @@
             <th mat-header-cell *matHeaderCellDef> Hotel Name </th>
             <td mat-cell *matCellDef="let element"> {{element.hotelName}} </td>
           </ng-container>
+
     
           <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getOrderDetails(row.id)"></tr> 
-          
-         <!--  -->
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"(dblclick)="getOrderDetails(row.id)"></tr>
         </table>
-            
-          
+      </div> 
+      </div>

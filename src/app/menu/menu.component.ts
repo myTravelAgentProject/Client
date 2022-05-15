@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',

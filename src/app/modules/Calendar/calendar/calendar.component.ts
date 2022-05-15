@@ -11,24 +11,7 @@ import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CalendarService } from '../calendar.service';
 
-// import { DatePipe } from '@angular/common';
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   let calendarEl: HTMLElement = document.getElementById('calendar')!;
-
-//   let calendar = new Calendar(calendarEl, {
-//     plugins: [ dayGridPlugin ],
-//     // options here
-//     // schedulerLicenseKey: 'XXX'
-//     // dateClick: this.handleDateClick.bind(this), // bind is important!
-//     events: [
-//       { title: 'event 1', date: '2022-04-01' },
-//       { title: 'event 2', date: '2022-04-02' }
-//     ]
-//   });
-//   // calendar.addEvent()
-//   calendar.render();
-// });
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -42,9 +25,15 @@ export class CalendarComponent implements OnInit {
   OrdersEvents:OrderDTO[]=[];
   month:number;
   year:number;
+  date1 = new Date();
+  profit:number=0;
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
+  onDateClick(res: any) {
+    alert('Clicked on date : ' + res.dateStr);
+  }
   ngOnInit(): void {
-    this.month=3;
+    debugger;
+    this.month=this.date1.getMonth()+1;
     this.year=2022;
     this.getMonthlyEvents(this.year, this.month);
   }
@@ -56,16 +45,37 @@ export class CalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     nextDayThreshold: '23:43:00',
     initialView: 'dayGridMonth',
+    editable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+
+    // dateClick: this.onDateClick.bind(this),
     // dateClick: this.handleDateClick.bind(this),
     headerToolbar: {
-        left: 'today prev,next',
+        left: 'today,prev,next',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'              
-    },
+    },   
+    selectable:true,
+    // dateClick: function(info) {
+    //   alert('clicked ' + info.date);
+    // },
+    // plugins: [ interactionPlugin ],
     eventClick:function(arg){
       alert(JSON.stringify(arg.event))
       alert(arg.event.title)
       alert(arg.event.start)
+    },
+    // dateClick:function(arg){
+    //   alert(JSON.stringify(arg.dateStr))
+    //   alert(arg.jsEvent.pageX+ ',' + arg.jsEvent.pageY )
+    //   alert(arg.view.type)
+    // },
+  
+
+
+    select: function(info) {
+      alert('selected ' + info.startStr + ' to ' + info.endStr);
     },
     events: this.Events =
     [
@@ -90,7 +100,7 @@ export class CalendarComponent implements OnInit {
             this.getMonthlyEvents(year, month);
         }
       }
-      },
+    },
       next: { // this overrides the next button
         text: 'NEXT',
         click: () => {
@@ -104,6 +114,23 @@ export class CalendarComponent implements OnInit {
         }
        }
      },
+     today: { // this overrides the prev button
+      text: 'Today',
+      click: () => {
+      const calendarApi = this.calendarComponent.getApi();
+      calendarApi.today();
+      const currentDate = calendarApi.currentData.currentDate;
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth()+1;
+      this.getMonthlyEvents(year, month);
+      // const currentDate = calendarApi.currentData.currentDate;
+      // if (currentDate) {
+      //   const year = currentDate.getFullYear();
+      //   const month = currentDate.getMonth();
+      //     this.getMonthlyEvents(year, month);
+      // }
+    }
+  },
       dayGridMonth: { // this overrides the month button
          text: 'Month',
          click: () => {
@@ -124,26 +151,28 @@ export class CalendarComponent implements OnInit {
            const calendarApi = this.calendarComponent.getApi();
            calendarApi.changeView('dayGridMonth');
          }
-       }
+       },
+       
    }
   }
 
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
     this.Events=[ ]
-
   };
-  getMonthlyEvents(year: number, month: number){
+   getMonthlyEvents(year: number, month: number){
     return this._calendarService.getEventsByMonth(year, month).subscribe(data=>{
       if(data){
         this.OrdersEvents=data;
         this.convertordersToEvenrs();
+        this.calculateProfit ();
       }
-
     })
 
   }
+  
   convertordersToEvenrs(){
+   this.calendarComponent.getApi().removeAllEvents();
     this.OrdersEvents.forEach(order=>{
     this.newevent.start= new Date(order.checkInDate);
     this.newevent.title= `${order.customerName}-${order.hotelName}` //"order.customerName order.hotelName";
@@ -152,10 +181,38 @@ export class CalendarComponent implements OnInit {
     this.calendarComponent.getApi().addEvent(this.newevent);
     // let latest_date =this.datepipe.transform( order.checkOutDate, 'yyyy-MM-dd');
     });
- 
+    
   }
-
+  calculateProfit(){
+    this.profit=0;
+    this.OrdersEvents.forEach(order=>{
+      this.profit=order.totalPrice-order.costPrice;
+    })   
+    //  alert(this.profit)
+    }
   
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var calendarEl = document.getElementById('calendar');
+    
+    //   var calendar = new FullCalendar.Calendar(calendarEl, {
+    //     selectable: true,
+    //     headerToolbar: {
+    //       left: 'prev,next today',
+    //       center: 'title',
+    //       right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    //     },
+    //     dateClick: function(info) {
+    //       alert('clicked ' + info.dateStr);
+    //     },
+    //     select: function(info) {
+    //       alert('selected ' + info.startStr + ' to ' + info.endStr);
+    //     }
+    //   });
+    
+    //   calendar.render();
+    // });
+   
+  
+    
 }
-
-

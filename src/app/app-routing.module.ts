@@ -15,7 +15,6 @@ const APP_ROUTES: Routes = [
   { path: "calendar", component: CalendarComponent },
   // {path:"order",component:OrdersListComponent},
   { path: "orders", loadChildren: () => import("./modules/orders/orders.module").then(m => m.OrdersModule) },
-
 ];
 
 @NgModule({

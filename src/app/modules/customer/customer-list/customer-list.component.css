@@ -1,7 +1,11 @@
-.demo-table {
+/* .demo-table {
+  width: 100%;
+} */
+
+table {
+  width: 1150px;
   width: 100%;
 }
-
 .mat-row .mat-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
@@ -20,9 +24,7 @@
 .demo-row-is-clicked {
   font-weight: bold;
 }
-table {
-  width: 1150px;
-}
+
 
 .example-container {
   width: 100%;
@@ -38,9 +40,7 @@ table {
   background-color: #FFFFFF;
 }
 
-table {
-  width: 100%;
-}
+
 
 th.mat-sort-header-sorted {
   color: black;

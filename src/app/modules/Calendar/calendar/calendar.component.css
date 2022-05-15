@@ -3,4 +3,14 @@
     padding: 2px 4px;
     /* color:#000000 */
   }
+
+.profit{
+/* background-color:lightgray; */
+position:relative;
+bottom: 20px;
+text-align: left; 
+font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+font-size:large;
+}
+
   
