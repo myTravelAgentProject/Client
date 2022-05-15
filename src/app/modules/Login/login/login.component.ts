@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this._userService.setAuthorized(true);
         this._userService.setUserAdmin(data);
         this.router.navigate(['/calendar']);
-        sessionStorage.setItem('admin',JSON.stringify(data))
+        localStorage.setItem('admin',JSON.stringify(data))
       }
       else { console.log("no such user"); }
     })
