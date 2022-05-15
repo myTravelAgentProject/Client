@@ -1,5 +1,4 @@
-<div class="adminForm">
-  
+<div class="adminForm" >
  <form [formGroup]="adminForm" >
   <div>
   <mat-form-field appearance="fill">
@@ -16,12 +15,36 @@
         {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </mat-form-field>
   </div>
-  <button [disabled]="!adminForm.valid" (click)="addNewAdmin()">הרשם</button>
+  <button [disabled]="!adminForm.valid" (click)="addNewAdmin()" *ngIf="toAddNewAdmin">הרשם</button>
   
-  <button [disabled]="!adminForm.valid" (click)="updateAdmin()">עדכן פרטים</button>
+  <button [disabled]="!adminForm.valid" (click)="updateAdmin()" *ngIf="!toAddNewAdmin">עדכן פרטים</button>
 <!-- Remind Passowrd -->
 </form>
 </div>
+<!-- <div class="adminForm">
+  
+  <form [formGroup]="adminForm" >
+   <div>
+   <mat-form-field appearance="fill">
+     <mat-label>Enter your Email address</mat-label>
+     <input matInput type="text"  [disabled]="true" id="userName" formControlName="name" >
+     <mat-icon matSuffix > mail</mat-icon>     
+   </mat-form-field>
+ </div>
+   <div>
+     <mat-form-field appearance="fill">
+       <mat-label>Enter your Password</mat-label>
+       <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password" >
+       <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+         {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+     </mat-form-field>
+   </div>
+   <button [disabled]="!adminForm.valid" (click)="addNewAdmin()">הרשם</button>
+   
+   <button [disabled]="!adminForm.valid" (click)="updateAdmin()">עדכן פרטים</button> -->
+ <!-- Remind Passowrd -->
+ <!-- </form>
+ </div> -->
 
 
 

@@ -11,7 +11,7 @@ const APP_ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "login" },
   { path: "homePage", component: HomePageComponent },
   { path: "login", component: LoginComponent },
-  { path: "admin", component: AdminComponent },
+  { path: "admin/:toAddNewAdmin", component: AdminComponent },
   // {path:"customer1",component:CustomerListComponent},
   { path: "customer", loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule) },
   { path: "calendar", component: CalendarComponent },

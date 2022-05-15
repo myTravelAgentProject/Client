@@ -1,11 +1,11 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Admin } from 'src/app/models/Admin.model';
 import { AdminDTO } from 'src/app/models/AdminDTO.model';
 import { UserService } from 'src/app/services/user.service';
 import { AdminService } from '../admin.service';
-
 
 @Component({
   selector: 'app-admin',
@@ -16,15 +16,27 @@ export class AdminComponent implements OnInit {
   userAdmin: Admin;
   adminForm: FormGroup;
   hide = true;
-  constructor(private _adminService: AdminService, private _userService: UserService) { }
-
+  toAddNewAdmin:boolean
+  constructor(private _adminService: AdminService,private route: ActivatedRoute, private _userService: UserService) { }
 
   ngOnInit(): void {
     this.buildForm();
     // if (this.adminForm.get('id')?.value == 0) {
     //   // this.adminForm.controls['name'].disable()
     // }
-    this.getAdminDetails();
+    this.route.paramMap.subscribe(params => {
+      let isNewAdmin=params.get('toAddNewAdmin');
+      if(isNewAdmin){
+        if(isNewAdmin=="false"){
+          this.getAdminDetails();
+          this.toAddNewAdmin=false;
+        }
+        else{
+          this.toAddNewAdmin=true;
+          this.adminForm.reset();
+        }
+      }
+  })
   }
 
   getAdminDetails() {
@@ -48,8 +60,8 @@ export class AdminComponent implements OnInit {
     });
   }
   addNewAdmin() {
-    this.adminForm.controls['id'].setValue(0);
-    this.adminForm.controls['token'].setValue("");
+    // this.adminForm.controls['id'].setValue(0);
+    // this.adminForm.controls['token'].setValue("");
     this._adminService.addNewAdmin(this.adminForm.value).subscribe(data => {
       if (data) {
         alert('admin add succsess')
