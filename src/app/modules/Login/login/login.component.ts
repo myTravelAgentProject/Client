@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
         alert("Welcome to " + this.userAdminDTO.name);
         this._userService.setAuthorized(true);
         this._userService.setUserAdmin(data);
-        this.router.navigate(['/homePage']);
-
+        this.router.navigate(['/calendar']);
+        sessionStorage.setItem('admin',JSON.stringify(data))
       }
       else { console.log("no such user"); }
     })

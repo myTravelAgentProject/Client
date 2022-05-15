@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
 
   
   authorized:boolean=false;
+  adminName:string="admin";
   
   constructor(private _userservice:UserService) { }
 
@@ -17,6 +18,9 @@ export class MenuComponent implements OnInit {
     this._userservice.getAuthorized().subscribe(data=>{
       if(data){
         this.authorized=data;
+        let admin=sessionStorage.getItem('admin')
+        if(admin)
+          this.adminName=JSON.parse(admin).name;
       }
 
     })
