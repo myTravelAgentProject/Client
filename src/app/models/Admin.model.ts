@@ -2,7 +2,7 @@ export class Admin {
     id: number;
     name: string;
     password: string;
-    token?: string;
+    token: string;
 
     constructor(id: number, name: string, password: string, token: string) {
         this.id = id;
