@@ -27,6 +27,14 @@ export class AdminComponent implements OnInit {
     this.getAdminDetails();
   }
 
+  getAdminDetails() {
+    this._userService.getUserAdmin().subscribe(data => {
+      if (data) {
+        this.userAdmin = data;
+        this.adminForm.patchValue(this.userAdmin);
+      }
+    })
+  }
   setAdminDetails(admin: AdminDTO): void {
     this.adminForm.patchValue(admin);
   }
@@ -44,7 +52,7 @@ export class AdminComponent implements OnInit {
     this.adminForm.controls['token'].setValue("");
     this._adminService.addNewAdmin(this.adminForm.value).subscribe(data => {
       if (data) {
-        console.log('admin add succsess')
+        alert('admin add succsess')
       } else {
         console.log('admin failed')
       }
@@ -53,20 +61,13 @@ export class AdminComponent implements OnInit {
   }
 
   updateAdmin() {
-    this._adminService.updateAdmin(this.adminForm.value).subscribe(data=>{
-      
-      console.log('admin update was succsessfully')
+    this._adminService.updateAdmin(this.adminForm.value).subscribe(data => {
+
+      alert('admin update was succsessfully')
     })
-        
-     
+
+
   }
-  getAdminDetails() {
-    this._userService.getUserAdmin().subscribe(data => {
-      if (data) {
-        this.userAdmin = data;
-        this.adminForm.patchValue(this.userAdmin);
-      }
-    })
-  }
+
 }
 
