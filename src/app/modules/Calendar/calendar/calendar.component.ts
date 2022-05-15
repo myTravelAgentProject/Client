@@ -186,7 +186,7 @@ export class CalendarComponent implements OnInit {
   calculateProfit(){
     this.profit=0;
     this.OrdersEvents.forEach(order=>{
-      this.profit=order.totalPrice-order.costPrice;
+      this.profit+=order.totalPrice-order.costPrice;
     })   
     //  alert(this.profit)
     }

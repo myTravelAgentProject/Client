@@ -45,3 +45,7 @@ ul {
   .active {
     background-color: rgb(141,194, 249);
   } 
+  .user{
+    /* margin-left: 2%; */
+    margin-right: 90%;
+    }
