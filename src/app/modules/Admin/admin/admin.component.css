@@ -10,7 +10,7 @@ html {
     height: 100vh;
     background-image: url('src/imgs/inside.jpg');
     background-size: cover;
-    position: fixed;
+    position: auto;
     width: 100%;
     text-align: center;
     /* opacity: 50%; */
