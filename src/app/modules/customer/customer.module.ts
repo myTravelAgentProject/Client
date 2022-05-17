@@ -7,11 +7,11 @@ import { CustomerCardComponent} from './customer-card/customer-card.component';
 import { CustomerDialogComponent } from "./customer-dialog/customer-dialog.component";
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from "../material/material.module";
-
+import { AuthGuardService as AuthGuard } from "src/app/services/auth-guard.service";
 
 const CUSTOMER_ROUTES: Routes = [
-    { path: "customerList", component: CustomerListComponent },
-    { path: "NewCustomer", component: CustomerCardComponent },
+    { path: "customerList", component: CustomerListComponent ,canActivate: [AuthGuard]},
+    { path: "NewCustomer", component: CustomerCardComponent,canActivate: [AuthGuard] },
 ];
 @NgModule({
     declarations: [CustomerListComponent, CustomerCardComponent, CustomerDialogComponent],

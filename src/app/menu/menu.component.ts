@@ -17,11 +17,7 @@ export class MenuComponent implements OnInit {
   constructor(private _userservice: UserService, private _router: Router) { }
 
   ngOnInit(): void {
-    this._userservice.getAuthorized().subscribe(data => {
-      if (data) {
-        this.authorized = data;
-      }
-    });
+    this.authorized=this._userservice.getAuthorized();
     this._userservice.getUserAdmin().subscribe(data=>{
       if(data){
         this.adminName=data.name;
