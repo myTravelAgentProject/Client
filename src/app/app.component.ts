@@ -8,12 +8,18 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'MyTravelAgent-app';
- _authorized!:boolean;
+  _authorized: boolean = false;
 
-  constructor(private _userservice:UserService) {
+  constructor(private _userservice: UserService) {
 
   }
-  ngOnInit(){
-    this._authorized=this._userservice.getAuthorized();
-}
+  ngOnInit() {
+    this._userservice.getUserAdmin().subscribe(data => {
+      if (data.token != "")
+        this._authorized = true;
+      else
+        this._authorized = false;
+    })
+    //this._userservice.getAuthorized();
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { Admin } from '../models/Admin.model';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -12,7 +13,8 @@ export class MenuComponent implements OnInit {
 
   authorized: boolean = false;
   adminName: string = "מנהל";
-  toAddNewAdmin: boolean
+  toAddNewAdmin: boolean;
+  emptyAdmin:Admin=new Admin(0,"","","");
 
   constructor(private _userservice: UserService, private _router: Router) { }
 
@@ -31,6 +33,12 @@ export class MenuComponent implements OnInit {
   goToAddAdmin() {
     this.toAddNewAdmin = true;
     this._router.navigate(['/admin', this.toAddNewAdmin]);
+  }
+  logOut(){
+    this._userservice.setUserAdmin(this.emptyAdmin);
+    localStorage.clear();
+     this._router.navigate(['/login']);
+  //   this._router.navigate(['']);
   }
 
 }

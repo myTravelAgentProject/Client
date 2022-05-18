@@ -1,0 +1,10 @@
+body{
+    /* background-color: blueviolet; */
+   /* background-image: url('../../../imgs/404-page.gif');
+   background-size: cover;*/
+   height: 1100px; 
+   background-image: url('../../../imgs/404-page.gif');
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  background-size: cover;
+}

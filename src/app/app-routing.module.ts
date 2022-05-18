@@ -4,6 +4,7 @@ import { AdminComponent } from './modules/Admin/admin/admin.component';
 import { CalendarComponent } from './modules/Calendar/calendar/calendar.component';
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
 import { LoginComponent } from './modules/Login/login/login.component';
+import { WrongRouteComponent } from './modules/wrong-route/wrong-route.component';
 import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
 
 const APP_ROUTES: Routes = [
@@ -17,6 +18,7 @@ const APP_ROUTES: Routes = [
   { path: "calendar", component: CalendarComponent ,canActivate: [AuthGuard]},
   // {path:"order",component:OrdersListComponent},
   { path: "orders", loadChildren: () => import("./modules/orders/orders.module").then(m => m.OrdersModule) },
+  { path: "**",pathMatch:"full", component: WrongRouteComponent}
 ];
 
 @NgModule({

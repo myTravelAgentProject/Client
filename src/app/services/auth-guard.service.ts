@@ -13,13 +13,14 @@ export class AuthGuardService implements CanActivate {
   
   canActivate(): boolean {
     this._userService.getUserAdmin().subscribe(data=>{
-      if(data){
+      if(data.token!=""){
         this.isAuthoraize=true;
       }
     })
     if (this.isAuthoraize==true) {
       return true;
     }
+    alert("על מנת להכנס לאתר, יש להזין שם משתמש וסיסמה")
     this._router.navigate(['login']);
     return false;
   }
