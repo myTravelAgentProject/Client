@@ -177,9 +177,8 @@ export class OrderCardComponent implements OnInit {
     else {
       this._orderService.updateOrder(this.orderForm.value).subscribe(() => {
         // if () {
-        debugger;
-        console.log("sucsess");
-        this._router.navigate(['/orders/ordersList']);
+          console.log("sucsess");
+           this._router.navigate(['/orders/ordersList']);
         // } else
         //   console.log("faild");
 

@@ -9,31 +9,28 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  
-  authorized:boolean=false;
-  adminName:string="admin";
-  toAddNewAdmin:boolean
-  
-  constructor(private _userservice:UserService, private _router:Router) { }
+
+  authorized: boolean = false;
+  adminName: string = "מנהל";
+  toAddNewAdmin: boolean
+
+  constructor(private _userservice: UserService, private _router: Router) { }
 
   ngOnInit(): void {
-    this._userservice.getAuthorized().subscribe(data=>{
+    this.authorized=this._userservice.getAuthorized();
+    this._userservice.getUserAdmin().subscribe(data=>{
       if(data){
-        this.authorized=data;
-        let admin=sessionStorage.getItem('admin')
-        if(admin)
-          this.adminName=JSON.parse(admin).name;
+        this.adminName=data.name;
       }
-
     })
   }
-  goToUpdateAdmin(){
-    this.toAddNewAdmin=false;
-    this._router.navigate(['/admin',this.toAddNewAdmin]);
+  goToUpdateAdmin() {
+    this.toAddNewAdmin = false;
+    this._router.navigate(['/admin', this.toAddNewAdmin]);
   }
-  goToAddAdmin(){
-    this.toAddNewAdmin=true;
-    this._router.navigate(['/admin',this.toAddNewAdmin]);
+  goToAddAdmin() {
+    this.toAddNewAdmin = true;
+    this._router.navigate(['/admin', this.toAddNewAdmin]);
   }
 
 }

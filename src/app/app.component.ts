@@ -14,11 +14,6 @@ export class AppComponent {
 
   }
   ngOnInit(){
-    this._userservice.getAuthorized().subscribe(data=>{
-      if(data){
-        this._authorized=data;
-      }
-   
-  })
+    this._authorized=this._userservice.getAuthorized();
 }
 }
