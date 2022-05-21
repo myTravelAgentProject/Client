@@ -20,6 +20,6 @@ export class AppComponent {
       else
         this._authorized = false;
     })
-    //this._userservice.getAuthorized();
+    // this._authorized=this._userservice.getAuthorized();
   }
 }

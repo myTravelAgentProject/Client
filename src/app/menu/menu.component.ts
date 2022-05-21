@@ -19,18 +19,18 @@ export class MenuComponent implements OnInit {
   constructor(private _userservice: UserService, private _router: Router) { }
 
   ngOnInit(): void {
-    this.authorized=this._userservice.getAuthorized();
+    // this.authorized=this._userservice.getAuthorized();
     this._userservice.getUserAdmin().subscribe(data=>{
-      if(data){
+      if(data.name!=""){
         this.adminName=data.name;
       }
     })
   }
-  goToUpdateAdmin() {
+  updateAdmin() {
     this.toAddNewAdmin = false;
     this._router.navigate(['/admin', this.toAddNewAdmin]);
   }
-  goToAddAdmin() {
+  addAdmin() {
     this.toAddNewAdmin = true;
     this._router.navigate(['/admin', this.toAddNewAdmin]);
   }

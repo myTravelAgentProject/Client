@@ -14,7 +14,7 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
   userAdmin!: AdminDTO;
   loginForm!: FormGroup;
-  userAdminDTO!: AdminDTO;
+  userAdminDTO!: Admin;
   hide = true;
 
   constructor(private _loginService: LoginService, private router: Router, private _userService: UserService) { }
@@ -35,12 +35,11 @@ export class LoginComponent implements OnInit {
         this.userAdminDTO = data;
         console.log(this.userAdminDTO);
         alert("Welcome to " + this.userAdminDTO.name);
-        // this._userService.setAuthorized(true);
-        debugger;
-        this._userService.setUserAdmin(data);
         localStorage.setItem('admin',JSON.stringify(data))
+        // this._userService.setAuthorized(true);
+        // this._userService.setUserAdmin(data);
         this.router.navigate(['/calendar']);
-      }
+      } 
       else { console.log("no such user"); }
     })
   };

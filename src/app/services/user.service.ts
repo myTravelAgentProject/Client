@@ -12,16 +12,16 @@ export class UserService {
   // authorized: BehaviorSubject<boolean> = new BehaviorSubject(this.isAuthorized);
   admin: Admin = new Admin(0, "", "", "");
   userAdmin: BehaviorSubject<Admin> = new BehaviorSubject(this.admin);
-  userAdminDetails: string="";
+  userAdminDetails:string|null
+  // =new Admin(0, "", "", "");
   // token: string = "";
   // userToken: BehaviorSubject<string> = new BehaviorSubject(this.admin.token);
   getUserAdmin() {
     this.userAdmin.subscribe(data => {
-      debugger;
       if (data.token == "") {
-        this.userAdminDetails = JSON.stringify(localStorage.getItem('admin'));
-        if (this.userAdminDetails!="null")
-          this.userAdmin = new BehaviorSubject(JSON.parse(this.userAdminDetails));
+        this.userAdminDetails = localStorage.getItem('admin');
+        if (this.userAdminDetails!=null)
+          this.userAdmin.next(JSON.parse(this.userAdminDetails));
       }
     })
     return this.userAdmin;
@@ -29,6 +29,7 @@ export class UserService {
 
   setUserAdmin(_admin: Admin) {
     this.userAdmin.next(_admin);
+    this.userAdminDetails=String(_admin);
   }
   // getUserToken(){
   //   return this.userToken;

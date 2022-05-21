@@ -13,7 +13,7 @@ export class InterceptorService  implements HttpInterceptor{
 
   constructor(private _userServicr:UserService) { }
 
-  token: string;
+  token: string="";
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -23,7 +23,7 @@ export class InterceptorService  implements HttpInterceptor{
      }
    });
      
-    if (this.token) {
+    if (this.token!="") {
       const tokenizedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.token) });
       return next.handle(tokenizedReq);
     }

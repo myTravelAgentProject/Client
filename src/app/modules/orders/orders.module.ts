@@ -6,13 +6,13 @@ import { OrderCardComponent } from './order-card/order-card.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { MaterialModule } from '../material/material.module';
-import { AuthGuardService as AuthGuard } from "src/app/services/auth-guard.service";
+// import { AuthGuardService as AuthGuard } from "src/app/services/auth-guard.service";
 
 
 const ORDER_ROUTES: Routes = [
-  { path: "ordersList", component: OrdersListComponent,canActivate: [AuthGuard] },
-  { path: "orders/NewOrder", component: OrderCardComponent ,canActivate: [AuthGuard]},
-  { path: "orders/NewOrder/:id", component: OrderCardComponent ,canActivate: [AuthGuard]},
+  { path: "ordersList", component: OrdersListComponent },
+  { path: "orders/NewOrder", component: OrderCardComponent },
+  { path: "orders/NewOrder/:id", component: OrderCardComponent},
 ];
 
 @NgModule({

@@ -32,7 +32,6 @@ export class CalendarComponent implements OnInit {
     alert('Clicked on date : ' + res.dateStr);
   }
   ngOnInit(): void {
-    debugger;
     this.month=this.date1.getMonth()+1;
     this.year=2022;
     this.getMonthlyEvents(this.year, this.month);
