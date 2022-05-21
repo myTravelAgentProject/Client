@@ -8,11 +8,12 @@ import { Admin } from '../models/Admin.model';
 })
 export class UserService {
 
-  // isAuthorized: boolean = false;
-  // authorized: BehaviorSubject<boolean> = new BehaviorSubject(this.isAuthorized);
+  isAuthorized: boolean = true;
+  authorized: BehaviorSubject<boolean> = new BehaviorSubject(this.isAuthorized);
   admin: Admin = new Admin(0, "", "", "");
   userAdmin: BehaviorSubject<Admin> = new BehaviorSubject(this.admin);
   userAdminDetails: string
+  // _authorize: boolean = false;
   // token: string = "";
   // userToken: BehaviorSubject<string> = new BehaviorSubject(this.admin.token);
   getUserAdmin() {
@@ -20,7 +21,7 @@ export class UserService {
       if (data.token == "") {
         let userAdminDetails = localStorage.getItem('admin')
         if (userAdminDetails)
-          this.userAdmin = new BehaviorSubject(JSON.parse(userAdminDetails));
+          this.userAdmin.next(JSON.parse(userAdminDetails));
       }
     })
     return this.userAdmin;
@@ -34,15 +35,21 @@ export class UserService {
   //   return this.userToken;
   // }
 
-  // setAuthorized(_authorized: boolean) {
-  //   this.authorized.next(_authorized);
-  // }
-
-  getAuthorized() {
-    if(this.userAdmin){
-      return true;
-    }
-    return false;
+  setAuthorized(_authorized: boolean) {
+    this.authorized.next(_authorized);
   }
+
+  getAuthorized(){
+    return this.authorized;
+  }
+  // getAuthorized() {
+  //   if (this.userAdmin.subscribe(data => {
+  //     if (data.token != "")
+  //       this._authorize = true;
+  //   }))
+  //     if (this._authorize == true)
+  //       return true;
+  //   return false;
+  // }
 
 }
