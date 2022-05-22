@@ -344,3 +344,8 @@ button{
 button:disabled{
   color: rgb(213,243, 253);
 }
+
+
+.login-btn {
+  cursor: pointer;
+}

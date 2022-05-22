@@ -5,7 +5,7 @@ import { CalendarComponent } from './modules/Calendar/calendar/calendar.componen
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
 import { LoginComponent } from './modules/Login/login/login.component';
 import { WrongRouteComponent } from './modules/wrong-route/wrong-route.component';
-import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth.guard';
 
 const APP_ROUTES: Routes = [
 

@@ -122,11 +122,11 @@
           <td>
             <section dir="rtl">
               <label>סטטוס הזמנה:</label>
-              <mat-radio-group formControlName="statusCode">
+              <mat-radio-group formControlName="status">
                 <br>
-                <mat-radio-button class="status" value=1>שולם</mat-radio-button>
+                <mat-radio-button class="status" [value]="true">שולם</mat-radio-button>
                 <br>
-                <mat-radio-button class="status" value=2>לא שולם</mat-radio-button>
+                <mat-radio-button class="status" [value]="false">לא שולם</mat-radio-button>
               </mat-radio-group>
             </section>
           </td>

@@ -103,7 +103,7 @@ export class CustomerCardComponent implements OnInit {
             console.log("sucsess");
             
           } else{
-            this._router.navigate(['./customerList']);
+            this._router.navigate(['customer/customerList']);
             console.log("faild");
           }
           this.onCustomeBtnClikced.emit();

@@ -15,7 +15,7 @@ export class AppComponent {
   }
   ngOnInit() {
     this._userservice.getUserAdmin().subscribe(data => {
-      if (data.token != "")
+      if (data)
         this._authorized = true;
       else
         this._authorized = false;
