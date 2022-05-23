@@ -4,11 +4,11 @@ import { CustomerService } from 'src/app/modules/customer/customer.service';
 import { CustomerDialogComponent } from '../customer-dialog/customer-dialog.component';
 //Material:
 import { MatDialog } from '@angular/material/dialog';
-import {ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-customer-list',
@@ -19,23 +19,23 @@ export class CustomerListComponent implements OnInit {
 
 
 
-  constructor(private _customerService: CustomerService, public dialog: MatDialog,private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private _customerService: CustomerService, public dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer) { }
 
-  customers: Customer[]=[];
-  customersList:Customer[]=[];
-  customersName:string[]=[];
-  name:string;
-    
-  columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address','phoneNumber'];
+  customers: Customer[] = [];
+  customersList: Customer[] = [];
+  customersName: string[] = [];
+  name: string;
+
+  columnsToDisplay: string[] = ['firstName', 'lastName', 'emailAddress', 'address', 'phoneNumber'];
   dataSource: MatTableDataSource<Customer>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort)sort: MatSort
+  @ViewChild(MatSort) sort: MatSort
 
-  openDialog(Id:number): void {
+  openDialog(Id: number): void {
     const dialogRef = this.dialog.open(CustomerDialogComponent, {
       width: '80%',
-      height:'80%',
-      data: {id:Id},
+      height: '80%',
+      data: { id: Id },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -46,16 +46,18 @@ export class CustomerListComponent implements OnInit {
       }
     });
   }
-  
+
 
   getAllCustomers() {
     this._customerService.getAllCustomers().subscribe(data => {
-      if (data) { this.customersList=data; this.customers = data; 
+      if (data) {
+        this.customersList = data;
+        this.customers = data;
         this.dataSource = new MatTableDataSource(this.customersList);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator=this.paginator;
+        this.dataSource.paginator = this.paginator;
         this.dialog.closeAll();
-       } else { console.log("no customers") }
+      } else { console.log("no customers") }
     })
   }
 
@@ -65,7 +67,7 @@ export class CustomerListComponent implements OnInit {
 
   //   }
   // }
-  getCustomerDetails(id:number): void {
+  getCustomerDetails(id: number): void {
     this.openDialog(id);
   }
 
@@ -75,15 +77,15 @@ export class CustomerListComponent implements OnInit {
     //   startWith(''),
     //   map(value => this._filter(value)),
     // );
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
- 
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-  
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
-    }
-  
+  }
+
 }
