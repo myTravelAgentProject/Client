@@ -25,6 +25,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './modules/material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { UserService } from './services/user.service';
+import { WrongRouteComponent } from './modules/wrong-route/wrong-route.component';
 
 
 // FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -38,6 +39,7 @@ import { UserService } from './services/user.service';
     HomePageComponent,
     // CalendarComponent,
     MenuComponent,
+    WrongRouteComponent,
  
   ],
   imports: [

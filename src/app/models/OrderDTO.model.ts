@@ -17,7 +17,7 @@ export class OrderDTO{
     bookingId?:number;
     numOfAdults:number;
     numOfKIds?:number;
-    statusCode:number;
+    status:boolean;
     newPrice?:number;
     change?:boolean;
     hotelId:number;
@@ -29,7 +29,7 @@ export class OrderDTO{
 
     
     constructor( id:number,   customerId:number,customerName:string,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number,hotelName:string, comments:string
-        ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,statusCode:number ,earlyCheckIn?:Date,lateCheckOut?:Date,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean
+        ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,status:boolean ,earlyCheckIn?:Date,lateCheckOut?:Date,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean
         ,highFloor?:boolean,porch?:boolean)
    {
       this.id=id;
@@ -46,7 +46,7 @@ export class OrderDTO{
       this.totalPrice=totalPrice;
       this.costPrice=costPrice;
       this.numOfAdults=numOfAdults;
-      this.statusCode=statusCode;
+      this.status=status;
       this.hotelPrice=hotelPrice;
       this.earlyCheckIn=earlyCheckIn;
       this.lateCheckOut=lateCheckOut;

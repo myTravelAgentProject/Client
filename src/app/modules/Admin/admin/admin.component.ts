@@ -60,8 +60,8 @@ export class AdminComponent implements OnInit {
     });
   }
   addNewAdmin() {
-    // this.adminForm.controls['id'].setValue(0);
-    // this.adminForm.controls['token'].setValue("");
+    this.adminForm.controls['id'].setValue(0);
+    this.adminForm.controls['token'].setValue("");
     this._adminService.addNewAdmin(this.adminForm.value).subscribe(data => {
       if (data) {
         alert('admin add succsess')

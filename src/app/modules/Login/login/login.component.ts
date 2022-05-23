@@ -35,9 +35,10 @@ export class LoginComponent implements OnInit {
         this.userAdminDTO = data;
         console.log(this.userAdminDTO);
         alert("Welcome to " + this.userAdminDTO.name);
-        this._userService.setAuthorized(true);
+        // this._userService.setAuthorized(true);
+        debugger;
         this._userService.setUserAdmin(data);
-        localStorage.setItem('admin',JSON.stringify(data))
+     
         this.router.navigate(['/calendar']);
       }
       else { console.log("no such user"); }

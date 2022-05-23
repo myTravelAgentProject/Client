@@ -1,11 +1,10 @@
-
-
-    <div *ngIf="_authorized">
-     <app-menu class="nav"></app-menu>
-     <div class="router">
-      <router-outlet></router-outlet>
-    </div> 
-  </div>
-  <div *ngIf="!_authorized">
+<!-- <div> -->
+  <app-menu class="nav" *ngIf="_authorized"></app-menu>
+  <div [class.router]="_authorized">
     <router-outlet></router-outlet>
-</div>
+  </div>
+<!-- </div> -->
+<!-- <div *ngIf="!_authorized">
+  <router-outlet></router-outlet>
+</div> -->
+<!-- <router-outlet></router-outlet> -->
