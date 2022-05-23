@@ -30,9 +30,8 @@ export class OrderCardComponent implements OnInit {
   orderID: number;
   @Output()
   onOrderBtnClikced = new EventEmitter();
-
-
   orderForm: FormGroup;
+  
   ngOnInit(): void {
     this.buildForm();
     this.getOrderDetails();

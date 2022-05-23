@@ -9,7 +9,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const APP_ROUTES: Routes = [
 
-  { path: "", pathMatch: "full", redirectTo: "login" },
+  { path: "", pathMatch: "full", redirectTo: "calendar" },
   { path: "homePage", component: HomePageComponent ,canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   { path: "admin/:toAddNewAdmin", component: AdminComponent ,canActivate: [AuthGuard]},

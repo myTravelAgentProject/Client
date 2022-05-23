@@ -21,6 +21,13 @@ export class OrdersService {
   getTheLastOrders(): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl + "lastOrders")
   }
+  getOrdersByParams(customerName:string,hotelName:string,startDate?:string,endDate?:string):Observable<OrderDTO[]>{
+    let queryParamsString="?customerName="+customerName+"&hotelName="+hotelName;
+    if(startDate){
+      queryParamsString+="&startDate="+startDate+"&endDate="+endDate;
+    }
+    return this._http.get<OrderDTO[]>(this.baseUrl+queryParamsString);
+  }
   getOrderById(id: number): Observable<OrderDTO> {
     return this._http.get<OrderDTO>(this.baseUrl + id)
   }
