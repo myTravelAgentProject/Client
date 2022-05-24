@@ -92,7 +92,7 @@ export class OrdersListComponent implements OnInit{
     })
   }
   resetSearchParams(){
-    this.paramsForm.reset();
+    this.buildForm();
     this.getTheLastOrders();
   }
   buildForm(): void {

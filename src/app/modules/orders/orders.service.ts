@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { Hotel } from 'src/app/models/Hotel.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,12 @@ export class OrdersService {
   getTheLastOrders(): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl + "lastOrders")
   }
-  getOrdersByParams(customerName:string,hotelName:string,startDate?:string,endDate?:string):Observable<OrderDTO[]>{
+  getOrdersByParams(customerName:string,hotelName:string,startDate?:Date,endDate?:Date):Observable<OrderDTO[]>{
     let queryParamsString="?customerName="+customerName+"&hotelName="+hotelName;
-    if(startDate){
-      queryParamsString+="&startDate="+startDate+"&endDate="+endDate;
+    if(startDate&&endDate){
+      const start=formatDate(startDate,'mediumDate','en_US');
+      const end=formatDate(endDate,'mediumDate','en_US');
+      queryParamsString+="&startDate="+start+"&endDate="+end;
     }
     return this._http.get<OrderDTO[]>(this.baseUrl+queryParamsString);
   }
