@@ -7,7 +7,7 @@ import { CustomerCardComponent} from './customer-card/customer-card.component';
 import { CustomerDialogComponent } from "./customer-dialog/customer-dialog.component";
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from "../material/material.module";
-// import { AuthGuardService as AuthGuard } from "src/app/services/auth-guard.service";
+import { AuthGuard } from "src/app/services/auth.guard";
 
 const CUSTOMER_ROUTES: Routes = [
     { path: "customerList", component: CustomerListComponent },

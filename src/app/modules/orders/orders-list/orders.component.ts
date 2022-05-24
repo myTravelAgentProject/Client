@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {  OrderDTO } from 'src/app/models/OrderDTO.model';
 import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
 import { OrdersService } from '../orders.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-orders',
@@ -18,7 +19,7 @@ export class OrdersListComponent implements OnInit{
   hotelPrice:number;
   columnsToDisplay: string[] = ['customerName','checkInDate', 'checkOutDate', 'totalPrice', 'costPrice','numOfAdults','numOfKids','hotelName'];
   dataSource: MatTableDataSource<OrderDTO>;
-
+  paramsForm: FormGroup;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,7 +59,8 @@ export class OrdersListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getTheLastOrders()
+    this.getTheLastOrders();
+    this.buildForm();
    }
 
   //  ngAfterViewInit():void {
@@ -71,5 +73,34 @@ export class OrdersListComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  findOrdersByParams(){
+    const customerName=this.paramsForm.get('customerName')?.value;
+    const hotelName=this.paramsForm.get('hotelName')?.value;
+    const startDate=this.paramsForm.get('startDate')?.value;
+    const endDate=this.paramsForm.get('endDate')?.value;
+    this._orderService.getOrdersByParams(customerName,hotelName,startDate,endDate).subscribe(data => {
+      if (data) { 
+        this.ordersList = data; 
+        this.dataSource = new MatTableDataSource(this.ordersList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(this.ordersList);
+        this.dialog.closeAll();
+       } else { console.log("no customers with this params") }
+    })
+  }
+  resetSearchParams(){
+    this.buildForm();
+    this.getTheLastOrders();
+  }
+  buildForm(): void {
+    this.paramsForm = new FormGroup({
+      "customerName": new FormControl(""),
+      "hotelName": new FormControl(""),
+      "startDate": new FormControl(),
+      "endDate": new FormControl(),
+      });
   }
 }

@@ -9,25 +9,25 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class InterceptorService  implements HttpInterceptor{
+export class InterceptorService implements HttpInterceptor {
 
-  constructor(private _userServicr:UserService) { }
+  constructor(private _userServicr: UserService) { }
 
   token: string="";
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-   this._userServicr.getUserAdmin().subscribe(data=>{
-     if(data){
-        this.token =data.token;
-     }
-   });
-     
-    if (this.token!="") {
+    this._userServicr.getUserAdmin().subscribe(data => {
+      if (data) {
+        this.token = data.token;
+      }
+    });
+
+    if (this.token) {
       const tokenizedReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + this.token) });
       return next.handle(tokenizedReq);
     }
     return next.handle(req);
   }
-  
+
 }

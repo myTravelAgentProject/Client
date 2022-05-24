@@ -30,9 +30,8 @@ export class OrderCardComponent implements OnInit {
   orderID: number;
   @Output()
   onOrderBtnClikced = new EventEmitter();
-
-
   orderForm: FormGroup;
+  
   ngOnInit(): void {
     this.buildForm();
     this.getOrderDetails();
@@ -131,7 +130,7 @@ export class OrderCardComponent implements OnInit {
       "bookingId": new FormControl(),
       "numOfAdults": new FormControl(0, Validators.required),
       "numOfKids": new FormControl(0),
-      "statusCode": new FormControl(1, Validators.required),
+      "status": new FormControl(false, Validators.required),
       "newPrice": new FormControl(),
       "change": new FormControl(),
       "hotelId": new FormControl(0, Validators.required),

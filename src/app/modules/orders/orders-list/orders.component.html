@@ -1,10 +1,30 @@
-
 <div dir="rtl">
-<mat-form-field appearance="standard">
-  <mat-label><mat-icon>search</mat-icon> חיפוש </mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="הכנס שם לקוח ,שם מלון, או תאריך" #input>
-</mat-form-field>
+  <h4 class="title">חיפוש הזמנה לפי פרמטרים:</h4>
 </div>
+  <form [formGroup]="paramsForm" class="searchParams" dir="rtl">
+<mat-form-field appearance="fill" class="searchInput">
+  <mat-label> לקוח </mat-label>
+  <input matInput formControlName="customerName" placeholder="חיפוש לפי שם לקוח" #input>
+</mat-form-field>
+<mat-form-field appearance="fill"  class="searchInput">
+  <mat-label>מלון</mat-label>
+  <input matInput formControlName="hotelName" placeholder="חיפוש לפי שם מלון" #input>
+</mat-form-field>
+<mat-form-field appearance="fill" class="searchInput">
+  <mat-label>תאריכים</mat-label>
+  <mat-date-range-input [rangePicker]="rangePicker">
+    <input matStartDate formControlName="startDate" placeholder="מתאריך">
+    <input matEndDate formControlName="endDate" placeholder="עד לתאריך">
+  </mat-date-range-input>
+  <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+  <mat-date-range-picker #rangePicker>
+  </mat-date-range-picker>
+</mat-form-field>
+<div>
+<button mat-fab class="searchButton" (click)="findOrdersByParams()"><mat-icon>search</mat-icon></button>
+<button mat-fab class="searchButton" (click)="resetSearchParams()"><mat-icon>delete_outline</mat-icon></button>
+</div>
+</form>
 <div class="mat-elevation-z8 demo-table">
     <table mat-table [dataSource]="dataSource"  matSort >
   

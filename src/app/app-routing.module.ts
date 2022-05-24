@@ -5,12 +5,12 @@ import { CalendarComponent } from './modules/Calendar/calendar/calendar.componen
 import { HomePageComponent } from './modules/homePage/home-page/home-page.component';
 import { LoginComponent } from './modules/Login/login/login.component';
 import { WrongRouteComponent } from './modules/wrong-route/wrong-route.component';
-// import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth.guard';
 
 const APP_ROUTES: Routes = [
 
-  { path: "", pathMatch: "full", redirectTo: "login" },
-  { path: "homePage", component: HomePageComponent },
+  { path: "", pathMatch: "full", redirectTo: "calendar" },
+  { path: "homePage", component: HomePageComponent ,canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   { path: "admin/:toAddNewAdmin", component: AdminComponent },
   // {path:"customer1",component:CustomerListComponent},

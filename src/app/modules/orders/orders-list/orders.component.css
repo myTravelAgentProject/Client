@@ -53,3 +53,21 @@
     font-size: 14px;
     width: 100%;
   }
+  .searchInput{
+    width: 25%;
+  }
+  
+  .searchParams{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .title{
+    font-size: 200%;
+    padding: 1%;
+    font-weight: bold;
+  }
+  .searchButton{
+    margin-right: 10px;
+    background-color:rgb(141,194, 249) ;
+  }

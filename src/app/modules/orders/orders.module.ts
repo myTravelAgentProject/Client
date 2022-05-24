@@ -6,7 +6,7 @@ import { OrderCardComponent } from './order-card/order-card.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { MaterialModule } from '../material/material.module';
-// import { AuthGuardService as AuthGuard } from "src/app/services/auth-guard.service";
+import { AuthGuard } from 'src/app/services/auth.guard';
 
 
 const ORDER_ROUTES: Routes = [
