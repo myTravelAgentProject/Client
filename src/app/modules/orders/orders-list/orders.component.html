@@ -83,5 +83,9 @@
       </tr>
     </table>
       
-    <mat-paginator [pageSizeOptions]="[10, 25, 100]" ></mat-paginator>
+    <mat-paginator  #paginator
+    [length]="length"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    (page)="pageEvent = getTheLastOrders($event)"></mat-paginator>
 </div>

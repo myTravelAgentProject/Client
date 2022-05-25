@@ -5,6 +5,7 @@ import { Customer } from 'src/app/models/Customer.model';
 import { Hotel } from 'src/app/models/Hotel.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { formatDate } from '@angular/common';
+import { PageEvent } from '@angular/material/paginator';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,10 @@ export class OrdersService {
   getChangePriceOrders(): Observable<OrderDTO[]> {
     return this._http.get<OrderDTO[]>(this.baseUrl + "ChangedPriceOrders")
   }
-  getTheLastOrders(): Observable<OrderDTO[]> {
+  getTheLastOrders(event?:PageEvent |any): Observable<OrderDTO[]> {
+    if(event){
+      return this._http.get<OrderDTO[]>(this.baseUrl + "lastOrders?page="+(event.pageIndex))
+    }
     return this._http.get<OrderDTO[]>(this.baseUrl + "lastOrders")
   }
   getOrdersByParams(customerName:string,hotelName:string,startDate?:Date,endDate?:Date):Observable<OrderDTO[]>{
