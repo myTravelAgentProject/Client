@@ -18,27 +18,29 @@ export class OrdersListComponent implements OnInit {
   ordersList: OrderDTO[] = [];
   hotelPrice: number;
   columnsToDisplay: string[] = ['customerName', 'checkInDate', 'checkOutDate', 'totalPrice', 'costPrice', 'numOfAdults', 'numOfKids', 'hotelName'];
-  dataSource: MatTableDataSource<OrderDTO>;
+  dataSource: MatTableDataSource<OrderDTO> = new MatTableDataSource();
   paramsForm: FormGroup;
-  pageEvent: PageEvent=new PageEvent();
-  pageIndex: number = 0;
-  pageSize: number = 20;
-  length: number = 2000;
-  
+  isLoading = false;
+  totalRows = 0;
+  pageSize = 5;
+  currentPage = 0;
+  pageSizeOptions: number[] = [20];
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+
 
   constructor(private _orderService: OrdersService, public dialog: MatDialog) {
     // this.dataSource = new MatTableDataSource(this.ordersList);
   }
   ngOnInit(): void {
-    this.getTheLastOrders(null);
+    this.getTheLastOrders();
     this.buildForm();
-    this.paginator.pageIndex=this.pageIndex;
-    this.paginator.pageSize=this.pageSize;
-    this.paginator.length=this.length;
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   openDialog(Id: number): void {
@@ -50,33 +52,42 @@ export class OrdersListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getTheLastOrders(null);
+        this.getTheLastOrders();
       }
     });
   }
 
-  getTheLastOrders(event: PageEvent|any) {
-    this._orderService.getTheLastOrders(event).subscribe(data => {
+  getTheLastOrders() {
+    this.isLoading = true;
+    this._orderService.getTheLastOrders(this.currentPage, this.pageSize).subscribe(data => {
       if (data) {
-        this.ordersList =data;
-        this.dataSource = new MatTableDataSource(this.ordersList);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.ordersList = data.orders;
+        this.dataSource.data = this.ordersList;
+        setTimeout(() => {
+          // this.dataSource.paginator = this.paginator;
+          this.paginator.pageIndex = this.currentPage;
+          this.paginator.length = data.totslRows;
+        });
         console.log(this.ordersList);
         this.dialog.closeAll();
-      } else { console.log("no customers") }
+      } else {
+        this.isLoading = false;
+        console.log("no customers")
+      }
     })
-    if(event){
-      return event;
-    }
-    return this.paginator;
+  }
+  pageChanged(event: PageEvent) {
+    console.log({ event });
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.getTheLastOrders();
   }
 
   getOrderDetails(id: number): void {
     this.openDialog(id);
   }
 
- 
+
 
   //  ngAfterViewInit():void {
 
@@ -85,9 +96,9 @@ export class OrdersListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    // if (this.dataSource.paginator) {
+    //   this.dataSource.paginator.firstPage();
+    // }
   }
 
   findOrdersByParams() {
@@ -99,7 +110,7 @@ export class OrdersListComponent implements OnInit {
       if (data) {
         this.ordersList = data;
         this.dataSource = new MatTableDataSource(this.ordersList);
-        this.dataSource.paginator = this.paginator;
+        //this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log(this.ordersList);
         this.dialog.closeAll();
@@ -108,7 +119,7 @@ export class OrdersListComponent implements OnInit {
   }
   resetSearchParams() {
     this.buildForm();
-    this.getTheLastOrders(null);
+    this.getTheLastOrders();
   }
   buildForm(): void {
     this.paramsForm = new FormGroup({

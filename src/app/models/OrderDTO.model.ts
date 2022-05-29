@@ -60,3 +60,8 @@ export class OrderDTO{
  
    }
 }
+
+export interface OrderDataList {
+   orders: OrderDTO[];
+   totslRows: number;
+}

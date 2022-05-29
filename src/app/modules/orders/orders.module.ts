@@ -10,9 +10,9 @@ import { AuthGuard } from 'src/app/services/auth.guard';
 
 
 const ORDER_ROUTES: Routes = [
-  { path: "ordersList", component: OrdersListComponent },
-  { path: "orders/NewOrder", component: OrderCardComponent },
-  { path: "orders/NewOrder/:id", component: OrderCardComponent},
+  { path: "ordersList", component: OrdersListComponent ,canActivate: [AuthGuard]},
+  { path: "orders/NewOrder", component: OrderCardComponent ,canActivate: [AuthGuard]},
+  { path: "orders/NewOrder/:id", component: OrderCardComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

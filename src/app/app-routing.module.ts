@@ -12,10 +12,10 @@ const APP_ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "calendar" },
   { path: "homePage", component: HomePageComponent ,canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
-  { path: "admin/:toAddNewAdmin", component: AdminComponent },
+  { path: "admin/:toAddNewAdmin", component: AdminComponent,canActivate: [AuthGuard] },
   // {path:"customer1",component:CustomerListComponent},
   { path: "customer", loadChildren: () => import("./modules/customer/customer.module").then(m => m.CustomerModule) },
-  { path: "calendar", component: CalendarComponent },
+  { path: "calendar", component: CalendarComponent,canActivate: [AuthGuard] },
   // {path:"order",component:OrdersListComponent},
   { path: "orders", loadChildren: () => import("./modules/orders/orders.module").then(m => m.OrdersModule) },
   { path: "**",pathMatch:"full", component: WrongRouteComponent}

@@ -24,6 +24,8 @@
 <button mat-fab class="searchButton" (click)="findOrdersByParams()"><mat-icon>search</mat-icon></button>
 <button mat-fab class="searchButton" (click)="resetSearchParams()"><mat-icon>delete_outline</mat-icon></button>
 </div>
+<!-- 
+<mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
 </form>
 <div class="mat-elevation-z8 demo-table">
     <table mat-table [dataSource]="dataSource"  matSort >
@@ -82,10 +84,15 @@
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
     </table>
-      
+<!--       
     <mat-paginator  #paginator
     [length]="length"
     [pageIndex]="pageIndex"
     [pageSize]="pageSize"
-    (page)="pageEvent = getTheLastOrders($event)"></mat-paginator>
+    (page)="pageEvent = getTheLastOrders($event)"></mat-paginator> -->
+    <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+  </mat-paginator>
+
+  
 </div>

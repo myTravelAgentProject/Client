@@ -10,8 +10,8 @@ import { MaterialModule } from "../material/material.module";
 import { AuthGuard } from "src/app/services/auth.guard";
 
 const CUSTOMER_ROUTES: Routes = [
-    { path: "customerList", component: CustomerListComponent },
-    { path: "NewCustomer", component: CustomerCardComponent },
+    { path: "customerList", component: CustomerListComponent,canActivate: [AuthGuard] },
+    { path: "NewCustomer", component: CustomerCardComponent ,canActivate: [AuthGuard]},
 ];
 @NgModule({
     declarations: [CustomerListComponent, CustomerCardComponent, CustomerDialogComponent],
