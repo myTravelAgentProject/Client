@@ -8,6 +8,7 @@ import { OrderDTO } from 'src/app/models/OrderDTO.model';
 import { CustomerService } from '../../customer/customer.service';
 import { OrdersService } from '../orders.service';
 import { ActivatedRoute } from '@angular/router';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
@@ -31,21 +32,21 @@ export class OrderCardComponent implements OnInit {
   @Output()
   onOrderBtnClikced = new EventEmitter();
   orderForm: FormGroup;
-  
+
   ngOnInit(): void {
     this.buildForm();
+    this.orderForm.disable();
     this.getOrderDetails();
     this.getAllCustomers();
     this.fromCustomerCard = false;
-    this.orderForm.disable();
     this.route.paramMap.subscribe(params => {
-      let orderId = params.get('id');
-      this.orderID = Number(orderId);
-      if (this.orderID) {
+      let orderId = Number(params.get('id'));
+      if (orderId != 0) {
+        this.orderID =orderId;
         this.fromCustomerCard = true;
         this.orderForm.disable();
+        this.getOrderDetails();
       }
-      this.getOrderDetails();
     })
     // this.orderForm.get("customerName")?.valueChanges.subscribe(x => {
     //   var choseCustomerId:number=this.customers.filter(y=>(y.firstName+" "+y.lastName).toLowerCase()==x.toLowerCase())[0].id;
@@ -110,6 +111,7 @@ export class OrderCardComponent implements OnInit {
   setOrderDetails(order: OrderDTO): void {
     // this.customerDetails = customer;
     this.orderForm.patchValue(order);
+    this.orderForm.disable();
     // this.customerForm.controls["firstName"].setValue(customer.firstName);
   }
   buildForm(): void {
@@ -177,8 +179,8 @@ export class OrderCardComponent implements OnInit {
     else {
       this._orderService.updateOrder(this.orderForm.value).subscribe(() => {
         // if () {
-          console.log("sucsess");
-           this._router.navigate(['/orders/ordersList']);
+        console.log("sucsess");
+        this._router.navigate(['/orders/ordersList']);
         // } else
         //   console.log("faild");
 
