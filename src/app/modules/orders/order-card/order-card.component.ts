@@ -37,6 +37,7 @@ export class OrderCardComponent implements OnInit {
     this.getOrderDetails();
     this.getAllCustomers();
     this.fromCustomerCard = false;
+    this.orderForm.disable();
     this.route.paramMap.subscribe(params => {
       let orderId = params.get('id');
       this.orderID = Number(orderId);
