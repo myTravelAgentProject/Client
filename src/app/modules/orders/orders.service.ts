@@ -24,14 +24,15 @@ export class OrdersService {
     return this._http.get<OrderDataList>(`${this.baseUrl}lastOrders?page=${currentPage}&pageSize=${pageSize}`)
 
   }
-  getOrdersByParams(customerName: string, hotelName: string, currentPage: number, startDate?: Date, endDate?: Date): Observable<OrderDTO[]> {
-    let queryParamsString = "?customerName=" + customerName + "&hotelName=" + hotelName + "&page=" + currentPage;
+  getOrdersByParams(customerName: string, hotelName: string, currentPage: number,pageSize:number, startDate?: Date, endDate?: Date): Observable<OrderDataList> {
+    let queryParamsString =`?customerName=${customerName}&hotelName=${hotelName}`
     if (startDate && endDate) {
       const start = formatDate(startDate, 'mediumDate', 'en_US');
       const end = formatDate(endDate, 'mediumDate', 'en_US');
-      queryParamsString += "&startDate=" + start + "&endDate=" + end + "&page=" + currentPage;
+      queryParamsString += `&startDate=${start}&endDate=${end}`;
     }
-    return this._http.get<OrderDTO[]>(this.baseUrl + queryParamsString);
+    queryParamsString+=`&page=${currentPage}&pageSize=${pageSize}`;
+    return this._http.get<OrderDataList>(this.baseUrl + queryParamsString);
   }
   getOrderById(id: number): Observable<OrderDTO> {
     return this._http.get<OrderDTO>(this.baseUrl + id)

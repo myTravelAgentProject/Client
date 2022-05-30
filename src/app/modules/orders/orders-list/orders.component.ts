@@ -22,7 +22,7 @@ export class OrdersListComponent implements OnInit {
   paramsForm: FormGroup;
   isLoading = false;
   totalRows = 0;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
   pageSizeOptions: number[] = [20];
 
@@ -66,7 +66,7 @@ export class OrdersListComponent implements OnInit {
         setTimeout(() => {
           // this.dataSource.paginator = this.paginator;
           this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = data.totslRows;
+          this.paginator.length = data.totalRows;
         });
         console.log(this.ordersList);
         this.dialog.closeAll();
@@ -74,6 +74,26 @@ export class OrdersListComponent implements OnInit {
         this.isLoading = false;
         console.log("no customers")
       }
+    })
+  }
+  findOrdersByParams() {
+   // this.isLoading = true;
+   
+    const customerName = this.paramsForm.get('customerName')?.value.replace(/\s/g, '');;
+    const hotelName = this.paramsForm.get('hotelName')?.value.replace(/\s/g, '');;
+    const startDate = this.paramsForm.get('startDate')?.value;
+    const endDate = this.paramsForm.get('endDate')?.value;
+    this._orderService.getOrdersByParams(customerName, hotelName, this.currentPage, this.pageSize, startDate, endDate).subscribe(data => {
+      if (data) {
+        this.ordersList = data.orders;
+        this.dataSource.data = this.ordersList;
+        setTimeout(() => {
+          // this.dataSource.paginator = this.paginator;
+          this.paginator.pageIndex = this.currentPage;
+          this.paginator.length = data.totalRows;
+          console.log(this.ordersList);
+        }) }
+      else { console.log("no customers with this params") }
     })
   }
   pageChanged(event: PageEvent) {
@@ -101,22 +121,7 @@ export class OrdersListComponent implements OnInit {
     // }
   }
 
-  findOrdersByParams() {
-    const customerName = this.paramsForm.get('customerName')?.value;
-    const hotelName = this.paramsForm.get('hotelName')?.value;
-    const startDate = this.paramsForm.get('startDate')?.value;
-    const endDate = this.paramsForm.get('endDate')?.value;
-    this._orderService.getOrdersByParams(customerName, hotelName, startDate, endDate).subscribe(data => {
-      if (data) {
-        this.ordersList = data;
-        this.dataSource = new MatTableDataSource(this.ordersList);
-        //this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        console.log(this.ordersList);
-        this.dialog.closeAll();
-      } else { console.log("no customers with this params") }
-    })
-  }
+
   resetSearchParams() {
     this.buildForm();
     this.getTheLastOrders();
