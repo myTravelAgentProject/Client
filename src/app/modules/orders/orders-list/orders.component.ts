@@ -45,8 +45,8 @@ export class OrdersListComponent implements OnInit {
 
   openDialog(Id: number): void {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
-      width: '70%',
-      height: '70%',
+      width: '80%',
+      height:'80%',
       data: { id: Id },
     });
 
@@ -83,6 +83,7 @@ export class OrdersListComponent implements OnInit {
     const hotelName = this.paramsForm.get('hotelName')?.value.replace(/\s/g, '');;
     const startDate = this.paramsForm.get('startDate')?.value;
     const endDate = this.paramsForm.get('endDate')?.value;
+    this.currentPage=0;
     this._orderService.getOrdersByParams(customerName, hotelName, this.currentPage, this.pageSize, startDate, endDate).subscribe(data => {
       if (data) {
         this.ordersList = data.orders;
@@ -125,6 +126,7 @@ export class OrdersListComponent implements OnInit {
   resetSearchParams() {
     this.buildForm();
     this.getTheLastOrders();
+ //   this.currentPage=0;
   }
   buildForm(): void {
     this.paramsForm = new FormGroup({
