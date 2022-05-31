@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
   adminForm: FormGroup;
   hide = true;
   toAddNewAdmin:boolean
-  constructor(private _adminService: AdminService,private route: ActivatedRoute, private _userService: UserService) { }
+  constructor(private _adminService: AdminService,private route: ActivatedRoute, private _userService: UserService,private _router:Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -65,6 +65,7 @@ export class AdminComponent implements OnInit {
     this._adminService.addNewAdmin(this.adminForm.value).subscribe(data => {
       if (data) {
         alert('admin add succsess')
+        this._router.navigate(['/calendar']);
       } else {
         console.log('admin failed')
       }
@@ -76,6 +77,7 @@ export class AdminComponent implements OnInit {
     this._adminService.updateAdmin(this.adminForm.value).subscribe(data => {
 
       alert('admin update was succsessfully')
+      this._router.navigate(['/calendar']);
     })
 
 
