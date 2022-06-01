@@ -47,13 +47,12 @@
       <br>
       <mat-form-field appearance="fill" class="dates">
         <mat-label>תאריכים</mat-label>
-        <mat-date-range-input [rangePicker]="rangePicker">
+        <mat-date-range-input [rangePicker]="rangePicker" [min]="minDate">
           <input matStartDate formControlName="checkInDate" placeholder="תאריך הגעה">
           <input matEndDate formControlName="checkOutDate" placeholder="תאריך עזיבה">
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
-        <mat-date-range-picker #rangePicker>
-        </mat-date-range-picker>
+        <mat-date-range-picker #rangePicker></mat-date-range-picker>
       </mat-form-field>
 
       <mat-form-field class="time" appearance="fill">
