@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Customer } from 'src/app/models/Customer.model';
 import { Hotel } from 'src/app/models/Hotel.model';
-import { OrderDataList, OrderDTO } from 'src/app/models/OrderDTO.model';
+import {  OrderDTO } from 'src/app/models/OrderDTO.model';
 import { formatDate } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
+import { OrderDataList } from 'src/app/models/OrderDataList';
 
 @Injectable({
   providedIn: 'root'

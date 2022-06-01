@@ -32,7 +32,6 @@
 .num-of-people{
     width:50px ;
     margin: left 2%;
-    margin-right: 0%; 
 }
 
 table{
@@ -97,4 +96,12 @@ margin-left: 2%;
   .bookingId{
     width: 24%;
     margin-left: 2%;
+  }
+
+  .container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-right: 0%;
   }

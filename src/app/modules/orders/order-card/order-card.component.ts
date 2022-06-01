@@ -42,7 +42,7 @@ export class OrderCardComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       let orderId = Number(params.get('id'));
       if (orderId != 0) {
-        this.orderID =orderId;
+        this.orderID = orderId;
         this.fromCustomerCard = true;
         this.orderForm.disable();
         this.getOrderDetails();
@@ -141,6 +141,7 @@ export class OrderCardComponent implements OnInit {
       "comments": new FormControl(""),
       "isImportant": new FormControl(),
       "hotelPrice": new FormControl(0, Validators.required),
+      "typeOfRoom": new FormControl(""),
     });
     this.orderForm.disable();
   }

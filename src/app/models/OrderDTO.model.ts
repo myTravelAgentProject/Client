@@ -25,12 +25,13 @@ export class OrderDTO{
     comments:string;
     isImportant?:boolean;
     hotelPrice:number;
+    typeOfRoom?:string;
 
 
     
     constructor( id:number,   customerId:number,customerName:string,checkInDate:Date,checkOutDate:Date,bookingDate:Date,  separteBeds:boolean,multipleRooms:boolean,hotelId:number,hotelName:string, comments:string
         ,hotelPrice:number, totalPrice:number,costPrice:number ,numOfAdults:number,status:boolean ,earlyCheckIn?:Date,lateCheckOut?:Date,bookingId?:number,numOfKIds?:number,newPrice?:number, change?:boolean,isImportant?:boolean
-        ,highFloor?:boolean,porch?:boolean)
+        ,highFloor?:boolean,porch?:boolean, typeOfRoom?:string)
    {
       this.id=id;
       this.customerId=customerId;
@@ -57,11 +58,8 @@ export class OrderDTO{
       this.newPrice=newPrice;
       this.change=change;
       this.isImportant=isImportant;
+      this.typeOfRoom=typeOfRoom;
  
    }
 }
 
-export interface OrderDataList {
-   orders: OrderDTO[];
-   totalRows: number;
-}

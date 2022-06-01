@@ -132,48 +132,42 @@
           </td>
         </tr>
       </table>
-      <!-- <br> -->
-      <table>
-        <tr>
-          <td>
-            <h4>
-              <mat-form-field appearance="fill" class="num-of-people">
-                <input matInput type="number" formControlName="numOfAdults" min="0">
-              </mat-form-field>
-              מבוגרים
-            </h4>
-
-          </td>
-          <td>
-            <h4>
-              <mat-form-field appearance="fill" class="num-of-people">
-                <input matInput type="number" formControlName="numOfKids" min="0">
-              </mat-form-field>
-              ילדים
-            </h4>
-          </td>
-          <td>
-            <section dir="rtl">
-              <p>
-                <mat-checkbox formControlName="separteBeds">חדרים מחוברים</mat-checkbox>
-              </p>
-              <p>
-                <mat-checkbox formControlName="multipleRooms">מיטות מופרדות</mat-checkbox>
-              </p>
-            </section>
-          </td>
-          <td>
-            <section dir="rtl">
-              <p>
-                <mat-checkbox formControlName="porch">מרפסת</mat-checkbox>
-              </p>
-              <p>
-                <mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox>
-              </p>
-            </section>
-          </td>
-        </tr>
-      </table>
+      <br>
+     
+      <div class="container">
+        <h4>
+          <mat-form-field appearance="fill" class="num-of-people">
+            <input matInput type="number" formControlName="numOfAdults" min="0">
+          </mat-form-field>
+          מבוגרים
+        </h4>
+        <h4>
+          <mat-form-field appearance="fill" class="num-of-people">
+            <input matInput type="number" formControlName="numOfKids" min="0">
+          </mat-form-field>
+          ילדים
+        </h4>
+        <section dir="rtl">
+          <p>
+            <mat-checkbox formControlName="separteBeds">חדרים מחוברים</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="multipleRooms">מיטות מופרדות</mat-checkbox>
+          </p>
+        </section>
+        <section dir="rtl">
+          <p>
+            <mat-checkbox formControlName="porch">מרפסת</mat-checkbox>
+          </p>
+          <p>
+            <mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox>
+          </p>
+        </section>
+        <mat-form-field  formControlName="typeOfRoom" appearance="fill" class="typeOfRoom">
+          <mat-label>סוג חדר</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
 
       <!-- <table>
     <br>
