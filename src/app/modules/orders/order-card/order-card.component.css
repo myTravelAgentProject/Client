@@ -14,19 +14,20 @@
     
 }
 
-.form-card{
+/* .form-card{
     width: 60%;
     position: relative;
     right: 20%;
-}
+} */
 
 .name-filed{
     width:52%;
-    margin-left: 2%;
+    min-width: 250px;
 }
 
 .dates{
     width: 40%;
+    min-width: 200px;
 }
 
 .num-of-people{
@@ -34,11 +35,7 @@
     margin: left 2%;
 }
 
-table{
-    width: 100%;
-    margin-right: 0%;
-    text-align: right;
-}
+
 
 .title{
     text-align: center;
@@ -63,39 +60,32 @@ margin-left: 2%;
   }
 
   .btn {
-    font-size: 1vw;
-    margin-right: 2%;
+    font-size: 15px;
+    padding: 3;
     width: 150px;
 }
-.example-form-field {
-    margin-right: 20px;
-  }
+
 
   .hotel{
       width: 46%;
-      /* margin-left: 2%; */
+      min-width: 250px;
   }
 
   .price{
-      width: 35%;
-      margin-left: 2%;
+      width: 32%;
+      min-width: 150px;
   }
 
   .comments{
       width: 100%;
   }
 
-  .status{
-      margin-right: 2%;
-  }
+  
 
   .time{
       width:28%;
-      margin-right:2%;
-  }
-  .bookingId{
-    width: 24%;
-    margin-left: 2%;
+      /* margin-right:2%; */
+      min-width: 150px;
   }
 
   .container{
@@ -103,5 +93,52 @@ margin-left: 2%;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-right: 0%;
+      width: 100%;
   }
+
+  .options-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .button-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-end;
+    width: 100%;
+  }
+
+.orderForm{
+    width: 100%;
+}
+
+ .status{
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+
+  @media screen and (min-width: 1040px) {
+    .form-card{
+    width: 60%;
+    position: relative;
+    margin-right: 20%;
+}
+  }
+
+
+  @media screen and (max-width: 1040px) {
+    .form-card{
+    width: 90%;
+    position: relative;
+    margin-right:5%;
+}
+  }
+  .options{
+    text-align: right;
+    margin-left: 3%;
+}
