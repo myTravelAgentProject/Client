@@ -11,7 +11,7 @@
     </div>
     <form [formGroup]="orderForm">
 
-
+<div class="container">
       <mat-form-field class="name-filed" appearance="fill">
         <mat-label>
           <mat-icon>person</mat-icon> שם לקוח
@@ -43,8 +43,9 @@
           </mat-select>
         </mat-autocomplete>
       </mat-form-field>
-
+    </div>
       <br>
+      <div class="container">
       <mat-form-field appearance="fill" class="dates">
         <mat-label>תאריכים</mat-label>
         <mat-date-range-input [rangePicker]="rangePicker" [min]="minDate">
@@ -68,6 +69,7 @@
         </mat-label>
         <input type="datetime-local" matInput formControlName="lateCheckOut">
       </mat-form-field>
+    </div>
       <!--         
 <div class="12hr-example">
   <input placeholder="12hr format (default settings)" aria-label="12hr format" [ngxTimepicker]="default" readonly>
@@ -96,44 +98,32 @@
 
 
       <br>
-      <table>
-        <tr>
-          <td>
-            <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
-              <mat-label>מחיר מלא</mat-label>
-              <input matInput type="number" placeholder="0" formControlName="totalPrice" min="0">
-              <span matPrefix>₪&nbsp;</span>
-              <span matSuffix>.00</span>
-            </mat-form-field>
-            <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
-              <mat-label>מחיר עלות</mat-label>
-              <input matInput type="number" placeholder="0" formControlName="costPrice" min="0">
-              <span matPrefix>₪&nbsp;</span>
-              <span matSuffix>.00</span>
-            </mat-form-field>
-            <!-- </td>
-    <td> -->
-            <mat-form-field class="example-form-field" appearance="fill" class="bookingId">
-              <mat-label>מספר הזמנה</mat-label>
-              <input matInput type="text" formControlName="bookingId">
-            </mat-form-field>
-          </td>
-          <td>
-            <section dir="rtl">
-              <label>סטטוס הזמנה:</label>
-              <mat-radio-group formControlName="status">
-                <br>
-                <mat-radio-button class="status" [value]="true">שולם</mat-radio-button>
-                <br>
-                <mat-radio-button class="status" [value]="false">לא שולם</mat-radio-button>
-              </mat-radio-group>
-            </section>
-          </td>
-        </tr>
-      </table>
+      
+<div class="container">
+  <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
+    <mat-label>מחיר מלא</mat-label>
+    <input matInput type="number" placeholder="0" formControlName="totalPrice" min="0">
+    <span matPrefix>₪&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill" floatLabel="always" dir="ltr" class="price">
+    <mat-label>מחיר עלות</mat-label>
+    <input matInput type="number" placeholder="0" formControlName="costPrice" min="0">
+    <span matPrefix>₪&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <mat-form-field  appearance="fill" class="price">
+    <mat-label>מספר הזמנה</mat-label>
+    <input matInput type="text" formControlName="bookingId">
+  </mat-form-field>
+</div>
       <br>
      
       <div class="container">
+        <mat-form-field  formControlName="typeOfRoom" appearance="fill" class="typeOfRoom">
+        <mat-label>סוג חדר</mat-label>
+        <input matInput>
+      </mat-form-field>
         <h4>
           <mat-form-field appearance="fill" class="num-of-people">
             <input matInput type="number" formControlName="numOfAdults" min="0">
@@ -147,27 +137,25 @@
           ילדים
         </h4>
         <section dir="rtl">
-          <p>
-            <mat-checkbox formControlName="separteBeds">חדרים מחוברים</mat-checkbox>
-          </p>
-          <p>
-            <mat-checkbox formControlName="multipleRooms">מיטות מופרדות</mat-checkbox>
-          </p>
+          <label>סטטוס הזמנה:</label>
+          <mat-radio-group formControlName="status">
+            <br>
+            <mat-radio-button class="status" [value]="true">שולם</mat-radio-button>
+            <!-- <br> -->
+            <mat-radio-button class="status" [value]="false">לא שולם</mat-radio-button>
+          </mat-radio-group>
         </section>
-        <section dir="rtl">
-          <p>
-            <mat-checkbox formControlName="porch">מרפסת</mat-checkbox>
-          </p>
-          <p>
-            <mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox>
-          </p>
-        </section>
-        <mat-form-field  formControlName="typeOfRoom" appearance="fill" class="typeOfRoom">
-          <mat-label>סוג חדר</mat-label>
-          <input matInput>
-        </mat-form-field>
       </div>
 
+        <section dir="rtl" style="width: 100%;">
+          <div class="options-container">
+            <mat-checkbox formControlName="separteBeds">חדרים מחוברים</mat-checkbox>
+            <mat-checkbox formControlName="multipleRooms">מיטות מופרדות</mat-checkbox>
+            <mat-checkbox formControlName="porch">מרפסת</mat-checkbox>
+            <mat-checkbox formControlName="highFloor">קומה גבוהה</mat-checkbox>
+          </div>
+        </section>       
+<br>
       <!-- <table>
     <br>
     <tr>
@@ -188,6 +176,7 @@
       <!-- </tr>
   </table> 
      <br> -->
+     <div class="container">
       <mat-form-field class="comments" appearance="fill">
         <mat-label><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
@@ -196,16 +185,18 @@
           </svg> הערות</mat-label>
         <input matInput formControlName="comments">
       </mat-form-field>
+    </div>
       <br>
+      <div class="container">
       <section dir="rtl">
         <p>
           <mat-checkbox formControlName="isImportant">במידה וההזמנה חשובה, יש לסמן שורה זו ועדכוני מחירים יבדקו בתדירות
             גבוהה</mat-checkbox>
         </p>
       </section>
-
+      </div>
       <br>
-      <p dir="ltr">
+      <div class="button-container">
         <button mat-stroked-button class="btn" *ngIf="orderForm.valid" (click)="saveOrder()">
           שמירת שינויים <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
             class="bi bi-send-check-fill" viewBox="0 0 16 16">
@@ -226,7 +217,7 @@
             <path
               d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
           </svg> </button>
-      </p>
+        </div>
 
     </form>
   </div>

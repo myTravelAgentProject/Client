@@ -13,31 +13,18 @@
     
 }
 
-.form-card{
-    width: 60%;
-    position: relative;
-    right: 20%;
-}
 
-.first-name{
-    margin-left:2%;
-    width:49%;
-}
-
-.last-name{
+.name{
     width:49%;
 }
 
 .phone{
 width: 28%;
-margin-right: 2%;
 }
 
 
 .num-of-people{
     width:70px ;
-    margin: left 0%;
-    margin-right: 0%; 
 }
 
 .form-table{
@@ -76,8 +63,8 @@ margin-left: 2%;
   }
 
   .btn {
-    font-size: 1vw;
-    margin-right: 2%;
+    font-size: 15px;
+    padding: 3;
     width: 150px;
 }
 
@@ -85,3 +72,41 @@ margin-left: 2%;
     width: 80%;
     margin-left: 10%;
 } 
+
+@media screen and (min-width: 1400px) {
+    .form-card{
+    width: 60%;
+    position: relative;
+    margin-right: 20%;
+}
+  }
+
+
+  @media screen and (max-width: 1400px) {
+    .form-card{
+    width: 90%;
+    position: relative;
+    margin-right:5%;
+}
+  }
+
+  .container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-end;
+    width: 100%;
+  }
+
+  .options{
+      text-align: right;
+      margin-left: 3%;
+  }
