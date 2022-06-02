@@ -1,11 +1,8 @@
-import { FullCalendarModule } from '@fullcalendar/angular'; 
+//import { FullCalendarModule } from '@fullcalendar/angular'; 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import { Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-// import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css'; 
+//import dayGridPlugin from '@fullcalendar/daygrid';
 import { Alert } from 'src/app/models/Alert.model';
 import { EventForCalendar } from 'src/app/models/EventForCalendar.model';
 import { OrderDTO } from 'src/app/models/OrderDTO.model';
@@ -28,9 +25,9 @@ export class CalendarComponent implements OnInit {
   date1 = new Date();
   profit:number=0;
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
-  onDateClick(res: any) {
-    alert('Clicked on date : ' + res.dateStr);
-  }
+  // onDateClick(res: any) {
+  //   alert('Clicked on date : ' + res.dateStr);
+  // }
   ngOnInit(): void {
     this.month=this.date1.getMonth()+1;
     this.year=2022;
@@ -47,32 +44,19 @@ export class CalendarComponent implements OnInit {
     editable: true,
     selectMirror: true,
     dayMaxEvents: true,
-
-    // dateClick: this.onDateClick.bind(this),
-    // dateClick: this.handleDateClick.bind(this),
+    selectable:true,
+    //dateClick: this.handleDateClick.bind(this),
     headerToolbar: {
         left: 'today,prev,next',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'              
     },   
-    selectable:true,
-    // dateClick: function(info) {
-    //   alert('clicked ' + info.date);
-    // },
-    // plugins: [ interactionPlugin ],
     eventClick:function(arg){
       alert(JSON.stringify(arg.event))
-      alert(arg.event.title)
-      alert(arg.event.start)
+      
+    //  alert(arg.jsEvent.eventPhase)
+      // alert(arg.event.start)
     },
-    // dateClick:function(arg){
-    //   alert(JSON.stringify(arg.dateStr))
-    //   alert(arg.jsEvent.pageX+ ',' + arg.jsEvent.pageY )
-    //   alert(arg.view.type)
-    // },
-  
-
-
     select: function(info) {
       alert('selected ' + info.startStr + ' to ' + info.endStr);
     },
@@ -83,8 +67,6 @@ export class CalendarComponent implements OnInit {
        },
      ],
      eventColor: '#517ec0',
-    //  eventBorderColor:"#000000",
-    //  plugins: [ bootstrap5Plugin ],
      themeSystem: 'bootstrap5',
      customButtons: {
       prev: { // this overrides the prev button
@@ -154,6 +136,10 @@ export class CalendarComponent implements OnInit {
        
    }
   }
+  handleDateClick(arg:any) {
+    alert('date click! ' + arg.dateStr)
+     alert(''+arg)
+  }
 
   toggleWeekends() {
     this.calendarOptions.weekends = !this.calendarOptions.weekends // toggle the boolean!
@@ -190,28 +176,4 @@ export class CalendarComponent implements OnInit {
     //  alert(this.profit)
     }
   
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var calendarEl = document.getElementById('calendar');
-    
-    //   var calendar = new FullCalendar.Calendar(calendarEl, {
-    //     selectable: true,
-    //     headerToolbar: {
-    //       left: 'prev,next today',
-    //       center: 'title',
-    //       right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    //     },
-    //     dateClick: function(info) {
-    //       alert('clicked ' + info.dateStr);
-    //     },
-    //     select: function(info) {
-    //       alert('selected ' + info.startStr + ' to ' + info.endStr);
-    //     }
-    //   });
-    
-    //   calendar.render();
-    // });
-   
-  
-    
-}
+  }
