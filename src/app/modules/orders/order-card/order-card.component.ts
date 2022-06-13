@@ -10,6 +10,7 @@ import { OrdersService } from '../orders.service';
 import { ActivatedRoute } from '@angular/router';
 import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { ThrowStmt } from '@angular/compiler';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
@@ -17,7 +18,7 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class OrderCardComponent implements OnInit {
 
-  constructor(private _orderService: OrdersService, private _router: Router, private _customerService: CustomerService, private route: ActivatedRoute) { }
+  constructor(private _orderService: OrdersService, private _router: Router, private _customerService: CustomerService, private route: ActivatedRoute,private datepipe: DatePipe) { }
 
   filteredOptions: Observable<string[]>;
   hotelsOption: Observable<string[]>;
@@ -166,6 +167,11 @@ export class OrderCardComponent implements OnInit {
   }
 
   saveOrder() {
+    // this.orderForm.controls['checkInDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkInDate'].value.toL));
+    // this.orderForm.controls['checkOutDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkOutDate'].value, 'MM/dd/yyyy'));
+    // this.orderForm.controls['checkInDate'].value.toUTCString() ;
+    // this.orderForm.controls['checkOutDate'].value.toUTCString() ;
+
     if (this.orderForm.get('id')?.value == 0) {
       this.orderForm.patchValue({
         "bookingDate": new Date()
