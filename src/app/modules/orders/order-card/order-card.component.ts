@@ -169,7 +169,8 @@ export class OrderCardComponent implements OnInit {
   saveOrder() {
     // this.orderForm.controls['checkInDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkInDate'].value.toL));
     // this.orderForm.controls['checkOutDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkOutDate'].value, 'MM/dd/yyyy'));
-    // this.orderForm.controls['checkInDate'].value.toUTCString() ;
+     this.orderForm.controls['checkInDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkInDate'].value,'yyyy-MM-dd') );
+     this.orderForm.controls['checkOutDate'].setValue(this.datepipe.transform(this.orderForm.controls['checkOutDate'].value,'yyyy-MM-dd') );
     // this.orderForm.controls['checkOutDate'].value.toUTCString() ;
 
     if (this.orderForm.get('id')?.value == 0) {
