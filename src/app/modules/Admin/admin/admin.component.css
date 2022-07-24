@@ -8,12 +8,15 @@ html {
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
-    background-image: url('src/imgs/living-beach.jpg');
+    /* background-image: url('src/imgs/pexels-pixabay-462024.jpg'); */
     background-size: cover;
     position: auto;
     width: 100%;
     text-align: center;
-    /* opacity: 50%; */
+  }
+  img {
+    background-image: url('src/imgs/pexels-quark-studio-2506988.jpg');
+    opacity: 0.5;
   }
   
   a {

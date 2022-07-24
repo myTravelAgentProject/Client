@@ -34,7 +34,7 @@ export class OrderCardComponent implements OnInit {
   @Output()
   onOrderBtnClikced = new EventEmitter();
   orderForm: FormGroup;
-  minDate:Date=new Date();
+  // minDate:Date=new Date();
 
   ngOnInit(): void {
     this.buildForm();
@@ -50,7 +50,7 @@ export class OrderCardComponent implements OnInit {
         this.orderForm.disable();
         this.getOrderDetails();
       }
-      this.minDate=new Date();
+      // this.minDate=new Date();
     })
     // this.orderForm.get("customerName")?.valueChanges.subscribe(x => {
     //   var choseCustomerId:number=this.customers.filter(y=>(y.firstName+" "+y.lastName).toLowerCase()==x.toLowerCase())[0].id;

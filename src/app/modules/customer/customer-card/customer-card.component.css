@@ -73,16 +73,16 @@ margin-left: 2%;
     margin-left: 10%;
 } 
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1040px) {
     .form-card{
-    width: 60%;
+    width: 80%;
     position: relative;
-    margin-right: 20%;
+    margin-right: 10%;
 }
   }
 
 
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1040px) {
     .form-card{
     width: 90%;
     position: relative;

@@ -3,6 +3,7 @@
     background: linear-gradient(#fff,#ebebeb) repeat scroll 0 0 transparent;
     font-weight: 600;
     border-radius: 6px;
+    width: 100%;
 }
 
 /* .mat-icon{
@@ -124,9 +125,9 @@ margin-left: 2%;
 
   @media screen and (min-width: 1040px) {
     .form-card{
-    width: 60%;
+    width: 80%;
     position: relative;
-    margin-right: 20%;
+    margin-right: 10%;
 }
   }
 
